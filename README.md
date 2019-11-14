@@ -10,9 +10,10 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for production, then runs the server
 ```
 npm run build
+node server.js
 ```
 
 ### Customize configuration

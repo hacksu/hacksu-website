@@ -2,6 +2,8 @@
   "name": "hacksu-2020",
   "version": "0.1.0",
   "private": true,
+  "author": "Chris Seitz",
+  "description": "New Hacksu site built in late 2019 for a 2020 release.",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
