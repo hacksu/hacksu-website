@@ -1,0 +1,34 @@
+<template>
+<button v-on:click="routelink()" class="navbtn underline">
+	<slot></slot>
+</button>
+</template>
+
+<script>
+export default {
+  props: ["link"],
+  methods: {
+    routelink() {
+      //console.log(this);
+      if (!(this.$router.currentRoute.path == this.link)) {
+        this.$router.push(this.link);
+      }
+    }
+  }
+}
+</script>
+
+<style>
+.navbtn {
+	font-size: 2vh;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	height: 100%;
+	background: none;
+	padding-bottom: 10px;
+}
+
+#navbar .navbtn.underline:after {
+	background: linear-gradient(to top left, #35c982, #4683FF);
+}
+</style>
