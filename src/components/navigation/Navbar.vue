@@ -7,6 +7,34 @@
 </div>
 </template>
 
+<script>
+export default {
+
+}
+
+$(document).ready(function() {
+  var html = document.documentElement;
+  var status = false;
+  var navbar = function(first) {
+    console.log(html.scrollTop);
+    if (html.scrollTop <= 0) {
+      if (first === true || status == true) {
+        status = false;
+        document.getElementById("navbar").classList.remove("navbar-scroll");
+      }
+    } else {
+      if (first === true || status == false) {
+        status = true;
+        document.getElementById("navbar").classList.add("navbar-scroll");
+      }
+    }
+  }
+  $(window).on("scroll", navbar);
+  $(window).on("resize", navbar);
+  navbar(true);
+})
+</script>
+
 <style>
 #navbar {
 	position: fixed;

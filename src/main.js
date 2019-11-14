@@ -4,6 +4,9 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import jQuery from 'jquery'
+window.jQuery = window.$ = jQuery
+
 // Load Vue Components
 const requireComponent = require.context("./components/", true, /\.vue$/);
 requireComponent.keys().forEach(filename => {

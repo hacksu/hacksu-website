@@ -1,9 +1,9 @@
-
 var logTypes = {
   error: chalk.redBright,
   warn: chalk.yellowBright,
   info: chalk.blueBright,
   success: chalk.greenBright,
+  log: chalk.white,
 }
 var logHint = {
   error: [" ERROR ", chalk.bgRedBright.black, "\t"],
@@ -25,27 +25,31 @@ declare("log", (type, ...args) => {
     type_ = logTypes[type];
     type2_ = type;
   } else {
-    type_ = function(a) { return a; }; //logTypes["log"];
+    type_ = logTypes["log"];
     type2_ = "log";
     args.unshift(type);
   }
   var hint_ = (logHint[type2_] || false);
+  hint_ = hint_.slice(0);
   var msg = "";
   try {
     if (args[0].indexOf("|[") == 0 && args[0].indexOf("]| ") >= 0) {
       //var args = ["|[u wot]| omg hi |[there yeah it works ok. yeet]| pls."];
-      var splt = args[0].split("|["); splt.shift(); splt = splt.join("|[");
+      var splt = args[0].split("|[");
+      splt.shift();
+      splt = splt.join("|[");
       //console.log(splt);
       splt = splt.split("]| ");
       //var hint_ = [];
       //console.log(splt);
       hint_[0] = " " + splt[0] + " ";
-      splt.shift(); splt = splt.join("]| ");
+      splt.shift();
+      splt = splt.join("]| ");
       args[0] = splt;
       //console.log(args[0]);
       //console.log(hint_);
     }
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
   if (hint_) {
@@ -61,9 +65,13 @@ declare("log", (type, ...args) => {
   args.forEach(item => {
     var type__ = typeof(item);
     var str = String(item);
-    var str2 = util.inspect(item, showHidden=false, depth=7, colorize=coloring);
-    if (!(str2.slice(-1) == "'" && str2.substr(0,1) == "'")) {
-      str = str2;
+    if (typeof(item) == "string") {
+
+    } else {
+      var str2 = util.inspect(item, showHidden = false, depth = 7, colorize = coloring);
+      if (!(str2.slice(-1) == "'" && str2.substr(0, 1) == "'")) {
+        str = str2;
+      }
     }
     msg += type_(str);
   });

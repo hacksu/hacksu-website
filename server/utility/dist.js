@@ -9,17 +9,21 @@ module.exports = (app) => {
     index: '/dist/index.html'
   }));
   app.use(staticserve);*/
+  var ready = init.checkpoint();
   const mime = require("mime-types");
   const path = require("path");
   const dist = path.normalize(__dirname + "/../../dist");
   var indexPage;
   var statics = express();
+  log.info("|[LOADING VUE DISTRIBUTION]| ");
   require("glob")('/**/*', {
     root: dist,
     nodir: true,
   }, (err, paths) => {
     paths.forEach((item, index) => {
+      var ready2 = init.checkpoint();
       fs.readFile(item, (err, data) => {
+        ready2();
         //statics[item.split(dist)[1]] = res;
         var name = item.split(dist)[1];
         var typing = mime.lookup(item);
@@ -27,6 +31,7 @@ module.exports = (app) => {
           res.contentType(typing);
           res.send(data);
         })
+        log(name);
         if (name == "/index.html") {
           indexPage = data;
         } else if (name.indexOf(".map") >= 0) {
@@ -44,5 +49,6 @@ module.exports = (app) => {
     res.contentType("text/html");
     res.send(indexPage);
   })
+  ready();
 
 }
