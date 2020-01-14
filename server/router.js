@@ -1,3 +1,4 @@
+log.success("|[LOADING ROUTER]| ");
 var app = express();
 module.exports = app;
 

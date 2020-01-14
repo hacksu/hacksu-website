@@ -35,3 +35,5 @@ declare("sendgridSubscribe", (email) => {
     })
   })
 })
+
+log.white(chalk.green("+") + " SENDGRID OPERATIONAL ");

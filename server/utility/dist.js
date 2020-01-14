@@ -10,18 +10,23 @@ module.exports = (app) => {
   }));
   app.use(staticserve);*/
   var ready = init.checkpoint();
+  var init2 = new Sequence(() => {
+    log.success("|[VUE APPLICATION ONLINE]| ");
+    ready();
+  })
+  var ready2 = init2.checkpoint();
   const mime = require("mime-types");
   const path = require("path");
   const dist = path.normalize(__dirname + "/../../dist");
   var indexPage;
   var statics = express();
-  log.info("|[LOADING VUE DISTRIBUTION]| ");
+  log.success("|[LOADING VUE]| ");
   require("glob")('/**/*', {
     root: dist,
     nodir: true,
   }, (err, paths) => {
     paths.forEach((item, index) => {
-      var ready2 = init.checkpoint();
+      var ready2 = init2.checkpoint();
       fs.readFile(item, (err, data) => {
         ready2();
         //statics[item.split(dist)[1]] = res;
@@ -31,7 +36,7 @@ module.exports = (app) => {
           res.contentType(typing);
           res.send(data);
         })
-        log(name);
+        log.white(chalk.greenBright("> ") + name);
         if (name == "/index.html") {
           indexPage = data;
         } else if (name.indexOf(".map") >= 0) {
@@ -49,6 +54,6 @@ module.exports = (app) => {
     res.contentType("text/html");
     res.send(indexPage);
   })
-  ready();
+  ready2();
 
 }

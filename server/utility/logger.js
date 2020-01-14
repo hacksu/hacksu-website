@@ -50,7 +50,7 @@ declare("log", (type, ...args) => {
       //console.log(hint_);
     }
   } catch (e) {
-    console.log(e);
+    //console.log(e);
   }
   if (hint_) {
     if (typeof(hint_) == "string") {
@@ -85,9 +85,25 @@ Object.keys(logTypes).forEach(item => {
   }
   log["_" + item] = logTypes[item];
 })
+Object.entries({
+  red: chalk.redBright,
+  yellow: chalk.yellowBright,
+  blue: chalk.blueBright,
+  green: chalk.greenBright,
+  white: chalk.white,
+}).forEach(pair => {
+  var func = pair[1]
+  log[pair[0]] = function(...args) {
+    args.forEach((item, index) => {
+      args[index] = func(item);
+    })
+    log.apply(log, args);
+  }
+})
 
 process.on("uncaughtException", (e) => {
-  console.error(e);
+  //console.error(e);
+  log.error(e);
   //log.error(e);
   //log(o);
   //log.error(e, a, b, c);
@@ -95,8 +111,6 @@ process.on("uncaughtException", (e) => {
 process.on("warning", (w) => {
   log.warn(w);
 });
-
-
 
 /*log("hi there");
 log("error", "omg");

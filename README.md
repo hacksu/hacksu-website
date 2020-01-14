@@ -5,16 +5,30 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Make sure you have vue installed as well as vue-cli-service.
+```
+npm install -g @vue/cli
+npm install -g @vue/cli-service-global
+```
+
+### Compiles using vue and hot-reloads for development.
+```
+npm run serve-vue
+```
+This does not run the serversided code in server.js. This should only be used for **frontend** development.
+
+### Compile and minify for production
+```
+npm run build
+```
+
+### Run the compiled build
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production, then runs the server
-```
-npm run build
-node server.js
-```
+### Config.js
+Look at the config.js file for different documented options.
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -5,7 +5,8 @@
   "author": "Chris Seitz",
   "description": "New Hacksu site built in late 2019 for a 2020 release.",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve-vue": "vue-cli-service serve",
+    "serve": "node server.js",
     "build": "vue-cli-service build"
   },
   "dependencies": {
