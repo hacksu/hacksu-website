@@ -1,7 +1,7 @@
 declare("sendgridSubscribe", (email) => {
   return new Promise(function(resolve, reject) {
     var auth = {
-      'Authorization': 'Bearer ' + '',
+      'Authorization': 'Bearer ' + CONFIG.sendgrid.apikey,
       'Content-Type': 'application/json',
     }
     request({

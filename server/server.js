@@ -1,7 +1,7 @@
 log.warn("|[INIT]| BEGIN INITIALIZATION...");
-var config = require(__dirname + "/../config.js");
+global.CONFIG = require(__dirname + "/../config.js");
 var app = express();
-var port = config.port;
+var port = CONFIG.port;
 app.use(express.json());
 declare("init", new Sequence(() => {
   app.listen(port, () => {
