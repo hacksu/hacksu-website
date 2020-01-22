@@ -1,0 +1,102 @@
+* {
+  font-family: Arial;
+}
+
+body {
+  background-color: rgb(4, 16, 23);
+  overflow-x: hidden;
+  margin: 0px;
+  color: white;
+  font-family: 'Ropa Sans', sans-serif;
+}
+
+@font-face {
+  font-family: abel;
+  src: url(static/fonts/abel-regular.ttf);
+}
+
+.hacksu-box {
+  position: absolute;
+  background-image: url(static/images/hacksu-box.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 40vh;
+  max-width: 50vw;
+  height: 40vh;
+  max-height: 50vw;
+}
+
+.green {
+  color: rgb(53, 201, 130);
+}
+
+.green-bg {
+  background-color: rgb(53, 201, 130);
+}
+
+.rounded {
+  border-radius: 1vh;
+}
+
+button {
+  border: none;
+  outline: none;
+  color: white;
+  padding: 1.25vh;
+  cursor: pointer;
+  transition: transform 0.25s, filter 0.25s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  filter: brightness(120%);
+}
+
+.hovercontents .hovercontent {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.hovercontents:hover .hovercontent {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1.1) !important;
+}
+
+.grid {
+  display: grid;
+  text-align: center;
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 1) {
+  .laptopdesktop {
+    display: initial !important;
+  }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  .laptopdesktop {
+    display: initial !important;
+  }
+}
+
+.underline:after {
+  content: "";
+  display: block;
+  height: 2px;
+  margin-left: 50%;
+  transition: width 0.3s ease 0s, margin-left 0.3s ease 0s;
+  width: 0;
+  bottom: 0;
+  background: none repeat scroll 0 0 transparent;
+  margin-top: 5px;
+  border-radius: 5vh;
+}
+
+.underline:hover:after {
+  width: calc(100% + 20px);
+  margin-left: -10px;
+}
