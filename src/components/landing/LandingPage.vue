@@ -1,5 +1,5 @@
 <template>
-<div style="width: 100vw; height: 100vh; overflow-y: hidden;">
+<div style="width: 100%; height: 100vh; overflow-y: hidden;">
 	<div class="hacksu-box" style="background-position-y: 7vh; background-position-x: -14vh; left: 0px; bottom: 0px;"></div>
 
 	<div class="hacksu-box" style="transform: rotate(90deg); background-position-x: -7vh; background-position-y: -14vh; right: 0px; top: 0px;"></div>

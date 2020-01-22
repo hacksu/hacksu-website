@@ -21,5 +21,10 @@ requireComponent.keys().forEach(filename => {
 
 new Vue({
   router,
-  render: function (h) { return h(App) }
+  render: function (h) { return h(App) },
+  data: () => {
+		return {
+			mobile: false,
+		}
+	}
 }).$mount('#app')
