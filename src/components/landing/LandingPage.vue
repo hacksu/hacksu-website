@@ -4,8 +4,8 @@
 
 	<div class="hacksu-box" style="transform: rotate(90deg); background-position-x: -7vh; background-position-y: -14vh; right: 0px; top: 0px;"></div>
 
-	<button style="position: absolute; width: 10vh; right: 30px; bottom: 10px; background: transparent; opacity: 0.25;" onclick="window.location.href = 'https://discord.gg/33y5VK5';">
-		<img style="width: 10vh;" src="https://discordapp.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg" />
+	<button style="position: absolute; width: 10vh; right: 30px; bottom: 10px; background: transparent; opacity: 0.25;" hidden onclick="window.location.href = '';">
+		<img style="width: 10vh;" src="../../assets/images/github-white.svg" data-old-src="https://discordapp.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg" />
 	</button>
 	<div style="text-align: center; margin-left: auto; margin-right: auto; margin-top: 20vh;">
 
@@ -16,7 +16,7 @@
 
 		<br />
 
-		<button class="green-bg rounded" style="font-size: 3vh; width: 60vw; max-width: 40vh;">Get Involved</button>
+		<button class="green-bg rounded" style="font-size: 3vh; width: 60vw; max-width: 40vh;" onclick="$vue(document.getElementById('modal1')).toggle()">Get Involved</button>
 
 	</div>
 
@@ -33,5 +33,6 @@
 	max-width: 50vw;
 	height: 40vh;
 	max-height: 50vw;
+	z-index: -1;
 }
 </style>

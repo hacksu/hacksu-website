@@ -1,14 +1,14 @@
 <template>
   <div style="width: 100%;">
-  	<input id="emailsubscribe" spellcheck="false" v-bind:style="{ 'width': (this.$root.$data.mobile) ? '500px' : '50px', }" class="rounded widthitem" style="font-size: 2.5vh;" placeholder="email" v-on:input="validateEmail" v-on:change="validateEmail">
-    <button class="green-bg rounded widthitem" style="font-size: 2.5vh;">subscribe</button>
+  	<input id="emailsubscribe" spellcheck="false" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '30vw', 'margin': '5px', }" class="rounded widthitem" style="font-size: 2.5vh;" placeholder="email" v-on:input="validateEmail" v-on:change="validateEmail">
+    <button class="green-bg rounded widthitem emailsubbtn" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '10vw', 'margin': '5px', 'font-size': '2.5vh', }">subscribe</button>
   </div>
 </template>
 
 <style>
 
 .widthitem {
-  max-width: 80vw;
+  max-width: 80%;
   margin: 20px;
 }
 
@@ -35,13 +35,13 @@
 
 <script>
   export default {
-    data: () => {
+    data: function() {
       return {
 
       }
     },
     methods: {
-      validateEmail: (email) => {
+      validateEmail: function(email) {
         console.log(email);
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test(String(email.target.value).toLowerCase())) {
@@ -59,4 +59,6 @@
       },
     },
   }
+
+  //  && this.$root.$data.mobile
 </script>

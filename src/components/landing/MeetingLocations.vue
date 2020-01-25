@@ -32,11 +32,11 @@
 <script>
 export default {
 	methods: {
-		link(url) {
+		link: function(url) {
 			window.location.href = (url);
 		}
 	},
-  data: () => {
+  data: function() {
     return {
       info: "Every Tuesday at 7:00 PM",
       rooms: "Rooms 106 & 109",

@@ -6,15 +6,15 @@
 
 <script>
 export default {
-  props: ["link"],
+  props: ["link", "dropdown"],
   methods: {
-    routelink() {
+    routelink: function() {
       //console.log(this);
-      if (!(this.$router.currentRoute.path == this.link)) {
+      if (this.link && !(this.$router.currentRoute.path == this.link)) {
         this.$router.push(this.link);
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -28,7 +28,8 @@ export default {
 	padding-bottom: 10px;
 }
 
-#navbar .navbtn.underline:after {
+.navbtn.underline:after {
 	background: linear-gradient(to top left, #35c982, #4683FF);
 }
+
 </style>

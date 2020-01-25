@@ -3,8 +3,17 @@
 	<navbar>
 		<navbtn link="/">Home</navbtn>
 		<navbtn link="/khe">Kent Hack Enough</navbtn>
+		<navbtn link="/alumni">Alumni</navbtn>
 		<navbtn link="/contact">Contact</navbtn>
 		<navbtn link="/constitution">Constitution</navbtn>
+		<navbtn dropdown>Dropdown
+			<dropdown>
+				<button>yeet</button>
+				<button>ok</button>
+				<button>what</button>
+
+			</dropdown>
+		</navbtn>
 	</navbar>
 	<router-view />
 </div>
@@ -14,7 +23,7 @@
 <script>
 
 export default {
-	
+
 }
 </script>
 
@@ -62,6 +71,14 @@ body {
 
 .green-bg {
 	background-color: rgb(53, 201, 130);
+}
+
+.red {
+	color: rgb(251, 53, 53);
+}
+
+.red-bg {
+	background-color: rgb(251, 53, 53);
 }
 
 .rounded {
@@ -118,16 +135,18 @@ button:hover {
 	display: block;
 	height: 2px;
 	margin-left: 50%;
-	transition: width 0.3s ease 0s, margin-left 0.3s ease 0s;
+	transition: width 0.3s ease 0s, padding-right 0.3s ease 0s, margin-left 0.3s ease 0s;
 	width: 0;
 	bottom: 0;
+	padding-right: 0px;
 	background: none repeat scroll 0 0 transparent;
 	margin-top: 5px;
 	border-radius: 5vh;
 }
 
 .underline:hover:after {
-	width: calc(100% + 20px);
+	width: 100%; /*calc(100% + 20px);*/
+	padding-right: 20px;
 	margin-left: -10px;
 }
 
