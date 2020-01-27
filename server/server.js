@@ -4,7 +4,7 @@ var app = express();
 var port = CONFIG.port;
 app.use(express.json());
 declare("init", new Sequence(() => {
-  app.listen(port, () => {
+  var cb = function() {
     log.success("|[SERVER UP]| Listening on port " + port);
     global.READY_TIME = (new Date()).getTime();
     var seconds = (READY_TIME - START_TIME) / 1000;
@@ -15,7 +15,13 @@ declare("init", new Sequence(() => {
     log.blue(str);
     log(("―".repeat(str.length * 0.773)));
     log("");
-  });
+  }
+  if (global["ATTACH_APPLICATION"]) {
+    global["ATTACH_APPLICATION"].use("/hacksu", app);
+    cb();
+  } else {
+    app.listen(port, cb);
+  }
 }));
 var ready = init.checkpoint();
 
