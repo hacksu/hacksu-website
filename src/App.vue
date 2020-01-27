@@ -16,6 +16,7 @@
 		</navbtn>
 	</navbar>
 	<router-view />
+	<!-- <tooltip></tooltip> -->
 </div>
 </template>
 

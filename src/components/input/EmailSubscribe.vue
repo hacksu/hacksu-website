@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;">
   	<input id="emailsubscribe" spellcheck="false" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '30vw', 'margin': '5px', }" class="rounded widthitem" style="font-size: 2.5vh;" placeholder="email" v-on:input="validateEmail" v-on:change="validateEmail">
-    <button class="green-bg rounded widthitem emailsubbtn" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '10vw', 'margin': '5px', 'font-size': '2.5vh', }">subscribe</button>
+    <button data-tooltip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." class="green-bg rounded widthitem emailsubbtn" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '10vw', 'margin': '5px', 'font-size': '2.5vh', }">Subscribe</button>
   </div>
 </template>
 

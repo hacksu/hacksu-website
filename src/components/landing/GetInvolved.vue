@@ -1,9 +1,15 @@
 <template>
-  <div style="width: 100%; height: 85vh; overflow-y: hidden; background-color: #EBEEF0;">
+  <div style="width: 100%; padding-bottom: 5vh; overflow-y: hidden; background-color: #EBEEF0;">
   	<div style="text-align: center; margin-left: auto; margin-right: auto; margin-top: 10vh;">
 
+      <div style="text-align: center;">
+        <h2 style="font-size: 4vh; max-width: 65%; color: black; margin-left: auto; margin-right: auto;">Get Involved!</h2>
+        <p style="font-size: 2.5vh; width: 80vh; max-width: 80vw; margin-left: auto; margin-right: auto; color: black;">The best way to stay informed is to subscribe to our mailing list. <br><br> We'll let you know when we are meeting and fill you in on what is going on each week!</p>
+        <br><br>
+        <p style="font-size: 2vh; margin-left: auto; margin-right: auto; color: black; opacity: 0.5;">Subscribe to email updates</p>
 
-      <email-subscribe></email-subscribe>
+        <email-subscribe></email-subscribe>
+      </div>
 
       <modal id="modal1" style="color: black;">
         <div style="text-align: center;">
@@ -15,18 +21,6 @@
         </div>
       </modal>
 
-      <button v-on:click="" class="green rounded">test1</button>
-
-
-      <navbtn dropdown>Dropdown
-  			<dropdown>
-  				<button>yeet</button>
-  				<button>ok</button>
-  				<button>what</button>
-
-  			</dropdown>
-  		</navbtn>
-      
     </div>
   </div>
 </template>
