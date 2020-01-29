@@ -12,6 +12,7 @@ export default {
       //console.log(this);
       if (this.link && !(this.$router.currentRoute.path == this.link)) {
         this.$router.push(this.link);
+				document.getElementById("navbar").__vue__.hideSidenav();
       }
     },
   },
