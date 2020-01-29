@@ -53,8 +53,8 @@ $(document).ready(function() {
   var html = document.documentElement;
   var status = false;
   var navbar = function(first, force) {
-    console.log(html.scrollTop);
-		console.log(document.getElementsByClassName("constitution"));
+    //console.log(html.scrollTop);
+		//console.log(document.getElementsByClassName("constitution"));
 		if (document.getElementsByClassName("constitution") >= 0) {
 			force = true;
 		}

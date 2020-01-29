@@ -117,6 +117,12 @@ button:hover {
 	text-align: center;
 }
 
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ----------- Non-Retina Screens ----------- */
 @media screen and (min-device-width: 1200px) and (-webkit-min-device-pixel-ratio: 1) {
 	.laptopdesktop {

@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%;">
-  	<input id="emailsubscribe" spellcheck="false" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '30vw', 'margin': '5px', }" class="rounded widthitem" style="font-size: 2.5vh;" placeholder="email" v-on:input="validateEmail" v-on:change="validateEmail">
-    <button data-tooltip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." class="green-bg rounded widthitem emailsubbtn" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '10vw', 'margin': '5px', 'font-size': '2.5vh', }">Subscribe</button>
+  	<input spellcheck="false" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '30vw', 'margin': '5px', }" class="emailsubscribe rounded widthitem" style="font-size: 2.5vh;" placeholder="email" v-on:input="validateEmail" v-on:change="validateEmail">
+    <button class="green-bg rounded widthitem emailsubbtn" v-bind:style="{ 'width': ($app.mobile) ? '90vw' : '10vw', 'margin': '5px', 'font-size': '2.5vh', }">Subscribe</button>
   </div>
 </template>
 
@@ -12,23 +12,23 @@
   margin: 20px;
 }
 
-#emailsubscribe {
+.emailsubscribe {
   border: none;
 	outline: none;
 	padding: 1.25vh;
 	transition: transform 0.25s, filter 0.25s;
 }
 
-#emailsubscribe:hover {
+.emailsubscribe:hover {
 	transform: scale(1.1);
 	filter: brightness(120%);
 }
 
-#emailsubscribe.valid {
+.emailsubscribe.valid {
   color: rgb(53, 201, 130);
 }
 
-#emailsubscribe.invalid {
+.emailsubscribe.invalid {
   color: rgb(255, 80, 80);
 }
 </style>
@@ -42,7 +42,7 @@
     },
     methods: {
       validateEmail: function(email) {
-        console.log(email);
+        //console.log(email);
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (re.test(String(email.target.value).toLowerCase())) {
           email.target.classList.add("valid");
