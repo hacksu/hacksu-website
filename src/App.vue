@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" style="height: 100%">
 	<navbar>
 		<navbtn link="/">Home</navbtn>
 		<navbtn link="/khe">Kent Hack Enough</navbtn>
@@ -15,7 +15,7 @@
 			</dropdown>
 		</navbtn>
 	</navbar>
-	<router-view />
+	<router-view style="height: 100%" />
 	<!-- <tooltip></tooltip> -->
 </div>
 </template>
@@ -33,12 +33,17 @@ export default {
 	font-family: Arial;
 }
 
+html {
+	height: 100%;
+}
+
 body {
 	background-color: rgb(4, 16, 23);
 	overflow-x: hidden;
 	margin: 0px;
 	color: white;
 	font-family: 'Ropa Sans', sans-serif;
+	height: 100%;
 }
 
 @font-face {

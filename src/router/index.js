@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import KHE from '../views/KHE.vue'
 import Constitution from '../views/Constitution.vue'
 import Alumni from '../views/Alumni.vue'
 
@@ -11,6 +12,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/khe',
+    name: 'khe',
+    component: KHE
   },
   {
     path: '/about',

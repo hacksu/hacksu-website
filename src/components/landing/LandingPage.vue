@@ -72,7 +72,7 @@ export default {
 
 .section-landing {
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	overflow-y: hidden;
 }
 
