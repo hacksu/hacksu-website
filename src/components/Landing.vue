@@ -5,6 +5,16 @@
     <div class="hacksu-box box2" style=""></div>
 
     <div class="content">
+      <div class="buttons">
+        <a
+          v-for="(item, index) in social"
+          v-bind:title="item.title"
+          v-bind:href="item.link"
+          v-bind:style="{ 'top': ('-' + (index * 10) + 'vh'), }"
+        >
+          <img v-bind:src="item.img">
+        </a>
+      </div>
       <img class="main-logo" src="@/assets/logo.svg">
       <h1>{{ content.title }}</h1>
       <p>{{ content.body }}</p>
@@ -68,6 +78,23 @@ export default {
   .main-logo {
     width: 60vw;
     max-width: 60vh;
+  }
+  .buttons {
+    @include hide(mobile);
+    position: absolute;
+    width: 10vh;
+    right: 30px;
+    bottom: 30px;
+    background: transparent;
+    opacity: 0.25;
+    float: right;
+    a {
+
+    }
+    img {
+      @include transition;
+      width: 10vh;
+    }
   }
 }
 

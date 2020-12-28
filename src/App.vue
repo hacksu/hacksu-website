@@ -6,7 +6,7 @@
 		<Navbtn link="/contact">Contact</Navbtn>
 		<Navbtn link="/constitution">Constitution</Navbtn>
 	</Navbar>
-  <router-view/>
+  <router-view class="view"/>
 </template>
 
 <style lang="scss">

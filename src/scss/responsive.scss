@@ -1,0 +1,38 @@
+
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin hide($property) {
+  @if $property == mobile {
+    @include mobile {
+      display: none!important;
+    }
+  } @else if $property == tablet {
+    @include tablet {
+      display: none!important;
+    }
+  } @else if $property == desktop {
+    @include desktop {
+      display: none!important;
+    }
+  }
+}

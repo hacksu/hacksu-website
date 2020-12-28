@@ -1,5 +1,5 @@
 <template>
-  <button :click="routelink" class="navbtn underline">
+  <button v-on:click="routelink" class="navbtn underline">
   	<slot></slot>
   </button>
 </template>
@@ -13,7 +13,7 @@ export default {
       //console.log(this);
       if (this.link && !(this.$router.currentRoute.path == this.link)) {
         this.$router.push(this.link);
-				//document.getElementById("navbar").__vue__.hideSidenav();
+        document.querySelector("#app").classList.remove('menu')
       }
     },
   },
