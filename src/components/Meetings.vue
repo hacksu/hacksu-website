@@ -1,28 +1,25 @@
 <template>
   <div class="meetings">
-    hi
+    <h2>Meetings</h2>
+    <p class="time">{{ time }}</p>
+    <p v-if="virtual" class="location" v-html="location.virtual"></p>
+    <p v-else="virtual" class="location" v-html="location.building.details"></p>
+    <div v-if="!virtual">
+
+    </div>
+    <a v-if="discord && virtual" class="discord" v-bind:href="discord">
+      <img src="@/assets/discord-white.svg">
+    </a>
   </div>
 </template>
 
 <script>
+import { meetings as details } from '@/details';
+
 export default {
   name: 'Meetings',
   data() {
-    return {
-      content: {
-        title: "Learn. Grow. Create.",
-        body: "Hacksu teaches anyone, regardless of skill level or major, how to code.",
-				button: "Get Involved",
-      },
-      social: [ // Please don't use more than 3 here or else it may overlap with the top right hacksu box
-				{
-					title: "Github",
-					link: "https://github.com/hacksu",
-					img: require("@/assets/images/github-white.svg"),
-
-				},
-			],
-    }
+    return details;
   }
 }
 </script>
@@ -32,9 +29,42 @@ export default {
 
 .meetings {
   @include background(linear-gradient(to top left, #35c982, #4683FF));
+  @include center;
   width: 100%;
-	min-height: 100vh;
+	//min-height: 100vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
   overflow: hidden;
+
+  h2 {
+    font-size: 5vh;
+  }
+  .time, .location {
+    @include center;
+    width: 90vw;
+    max-width: 80vh;
+  }
+  .time {
+    font-size: 3.5vh;
+    margin-bottom: 1.5vh;
+  }
+  .location {
+    font-size: 2.5vh;
+    margin-top: 0px;
+  }
+  .discord {
+    @include transition;
+    @include center;
+    @include rounded;
+    display: inline-block;
+    background: transparent;
+    cursor: pointer;
+    img {
+      height: 20vmin;
+      max-width: 40vh;
+      max-height: 20vh;
+    }
+  }
 }
 
 </style>

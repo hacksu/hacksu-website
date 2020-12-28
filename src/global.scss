@@ -65,6 +65,11 @@ button, input {
   outline: none;
 }
 
+a.link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .grid {
   display: grid;
   text-align: center;

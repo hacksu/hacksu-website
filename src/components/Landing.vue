@@ -16,33 +16,21 @@
         </a>
       </div>
       <img class="main-logo" src="@/assets/logo.svg">
-      <h1>{{ content.title }}</h1>
-      <p>{{ content.body }}</p>
+      <h1>{{ title }}</h1>
+      <p>{{ body }}</p>
       <br>
-      <button>{{ content.button }}</button>
+      <button>{{ button }}</button>
     </div>
   </div>
 </template>
 
 <script>
+import { landing as details } from '@/details';
+
 export default {
   name: 'Landing',
   data() {
-    return {
-      content: {
-        title: "Learn. Grow. Create.",
-        body: "Hacksu teaches anyone, regardless of skill level or major, how to code.",
-				button: "Get Involved",
-      },
-      social: [ // Please don't use more than 3 here or else it may overlap with the top right hacksu box
-				{
-					title: "Github",
-					link: "https://github.com/hacksu",
-					img: require("@/assets/images/github-white.svg"),
-
-				},
-			],
-    }
+    return details;
   }
 }
 </script>
