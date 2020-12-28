@@ -1,6 +1,6 @@
 <template>
   <div class="navbar"
-    v-bind:class="{ 'scrolled': scrolled, 'animated': !home }"
+    v-bind:class="{ 'scrolled': scrolled, 'animated': !home && from }"
     v-bind:style="{ 'padding': padding, 'background-color': color, 'box-shadow': shadow, }"
   >
     <span class="background" v-on:click="hideMenu"></span>
@@ -26,6 +26,7 @@ export default {
       distance: 100,
       progress: 0,
       home: false,
+      from: false,
     }
   },
   computed: {
@@ -68,7 +69,17 @@ export default {
     }
   },
   watch: {
-    '$route.name': function() {
+    '$route': function(route) {
+      if (!this.from) {
+        let _this = this;
+        setTimeout(function() {
+          if (!_this.from) {
+            _this.from = route;
+          }
+        }, 300)
+      } else {
+        this.from = route;
+      }
       this.computeScrolled();
     }
   },
@@ -96,7 +107,8 @@ export default {
   padding: 30px 10px 30px 10px;
   z-index: 100;
   &.animated {
-    transition: background 0.25s, padding 0.25s;
+    //transition: background 0.25s, padding 0.25s;
+    transition: padding 0.25s;
   }
 
   &.scrolled {

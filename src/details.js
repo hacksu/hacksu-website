@@ -10,6 +10,15 @@ export const navigation = [
   ['Constitution', '/constitution'],
 ]
 
+import Alumni from '@/alumni';
+export const alumni = {
+  list: Alumni.map(o => o.export()),
+  showCurrent: true,
+  title: 'Hacksu Alumni',
+  header: `<h2>Some Text</h2>`
+};
+console.log(alumni);
+
 export const landing = {
   title: "Learn. Grow. Create.",
   body: "Hacksu teaches anyone, regardless of skill level or major, how to code.",
@@ -46,5 +55,5 @@ export const involved = {
   header: 'Subscribe to the Hacksu mailing list!',
   title: "The best way to stay informed is to subscribe to our mailing list.",
   description: "We'll let you know when we are meeting and fill you in on what is going on each week!",
-  
+
 }

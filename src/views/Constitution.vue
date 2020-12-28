@@ -21,8 +21,8 @@ export default {
   overflow-y: hidden;
 
   embed {
-    height: calc(100vh - 4vh - 30px);
-    margin-top: calc(4vh + 30px);
+    height: $navbar-height-remaining;
+    margin-top: $navbar-height;
   }
 }
 
