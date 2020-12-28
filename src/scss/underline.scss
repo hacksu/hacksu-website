@@ -1,0 +1,29 @@
+
+
+@mixin underline {
+  &:after {
+    content: "";
+    display: block;
+    height: 2px;
+    margin-left: 50%;
+    transition: width 0.3s ease 0s, padding-right 0.3s ease 0s, margin-left 0.3s ease 0s;
+    width: 0;
+    bottom: 0;
+    padding-right: 0px;
+    background: none repeat scroll 0 0 transparent;
+    margin-top: 5px;
+    border-radius: 5vh;
+  }
+  &:hover {
+    &:after {
+      width: 100%;
+      padding-right: 20px;
+      margin-left: -10px;
+      background: linear-gradient(to top left, #35c982, #4683FF);
+    }
+  }
+}
+
+.underline {
+  @include underline;
+}

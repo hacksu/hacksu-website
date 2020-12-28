@@ -1,0 +1,6 @@
+<svg width="400" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="400" height="50" rx="10" ry="10" style="fill:rgb(255,255,255);"/>
+  <rect x="0" y="125" width="400" height="50" rx="10" ry="10" style="fill:rgb(255,255,255);"/>
+  <rect x="0" y="250" width="400" height="50" rx="10" ry="10" style="fill:rgb(255,255,255);"/>
+  Sorry, your browser does not support inline SVG.
+</svg>

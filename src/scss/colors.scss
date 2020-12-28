@@ -1,0 +1,25 @@
+
+$green: rgb(53, 201, 130);
+$red: rgb(251, 53, 53);
+$white: #fff;
+
+@mixin green {
+  color: $green;
+}
+@mixin green-bg {
+  background-color: $green;
+}
+
+@mixin red {
+  color: $red;
+}
+@mixin red-bg {
+  background-color: $red;
+}
+
+@mixin white {
+  color: $white;
+}
+@mixin white-bg {
+  background-color: $white;
+}
