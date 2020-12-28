@@ -1,5 +1,5 @@
 <template>
-  <button :click="routelink" class="navbtn">
+  <button :click="routelink" class="navbtn underline">
   	<slot></slot>
   </button>
 </template>
@@ -20,12 +20,11 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .navbtn {
-  @include underline;
 	font-size: 2vh;
-	padding-left: 2vw;
-	padding-right: 2vw;
+	padding-left: 2vw!important;
+	padding-right: 2vw!important;
 	height: 100%;
 	background: none;
 	padding-bottom: 10px;

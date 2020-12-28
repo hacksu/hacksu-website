@@ -1,5 +1,6 @@
 <template>
   <div class="navbar">
+    <button class="hamburger navbtn">menu</button>
     <slot></slot>
   </div>
 </template>
@@ -21,6 +22,16 @@ export default {
   top: 0px;
   left: 0px;
   padding: 30px 10px 30px 10px;
+
+  .hamburger {
+    @include background(url('../../assets/hamburger.svg'), contain);
+    padding: 10px;
+    background-color: transparent;
+    color: transparent;
+    margin-left: 0px;
+    margin-right: 20px;
+    border-radius: 0px;
+  }
 }
 
 </style>

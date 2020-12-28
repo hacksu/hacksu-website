@@ -43,6 +43,15 @@ body {
   @include center;
 }
 
+@mixin background($img, $style: 'cover') {
+  background: {
+    image: $img;
+    repeat: no-repeat;
+    position: center;
+    size: $style;
+  }
+}
+
 
 button, input {
   @include rounded;
