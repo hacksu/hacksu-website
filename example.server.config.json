@@ -1,0 +1,5 @@
+{
+  "sengrid": {
+    "token": "run this on hacksu server to get the api key: 'cat /root/2018-Hacksu-ui-main/src/config.js | grep sendgridApiKey'"
+  }
+}

@@ -46,5 +46,5 @@ export const involved = {
   header: 'Subscribe to the Hacksu mailing list!',
   title: "The best way to stay informed is to subscribe to our mailing list.",
   description: "We'll let you know when we are meeting and fill you in on what is going on each week!",
-
+  
 }
