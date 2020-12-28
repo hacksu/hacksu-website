@@ -12,8 +12,12 @@ export default {
     routelink: function() {
       //console.log(this);
       if (this.link && !(this.$router.currentRoute.path == this.link)) {
-        this.$router.push(this.link);
-        document.querySelector("#app").classList.remove('menu')
+        if (this.link.indexOf('http') == 0) {
+          window.location.href = this.link;
+        } else {
+          this.$router.push(this.link);
+          document.querySelector("#app").classList.remove('menu')
+        }
       }
     },
   },

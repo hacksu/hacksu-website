@@ -1,6 +1,6 @@
 <template>
   <div class="navbar"
-    v-bind:class="{ 'scrolled': scrolled, }"
+    v-bind:class="{ 'scrolled': scrolled, 'animated': !home }"
     v-bind:style="{ 'padding': padding, 'background-color': color, 'box-shadow': shadow, }"
   >
     <span class="background" v-on:click="hideMenu"></span>
@@ -25,6 +25,7 @@ export default {
       offset: 0,
       distance: 100,
       progress: 0,
+      home: false,
     }
   },
   computed: {
@@ -49,8 +50,26 @@ export default {
     computeScrolled() {
       this.offset = document.firstElementChild.scrollTop;
       this.scrolled = this.offset != 0;
-      this.progress = Math.min(1, (this.offset / this.distance));
+      let home = this.$route.name == 'Home';
+      if (home && !this.home) {
+        let _this = this;
+        setTimeout(function() {
+          _this.home = _this.$route.name == 'Home';
+        }, 1000)
+      } else {
+        this.home = home;
+      }
+      if (home) {
+        this.progress = Math.min(1, (this.offset / this.distance));
+      } else {
+        this.progress = 1;
+      }
       return this.scrolled;
+    }
+  },
+  watch: {
+    '$route.name': function() {
+      this.computeScrolled();
     }
   },
   mounted() {
@@ -76,7 +95,9 @@ export default {
   left: 0px;
   padding: 30px 10px 30px 10px;
   z-index: 100;
-  //transition: background 0.25s, padding 0.25s;
+  &.animated {
+    transition: background 0.25s, padding 0.25s;
+  }
 
   &.scrolled {
     //background-color: #142027;
