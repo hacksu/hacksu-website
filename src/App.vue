@@ -11,7 +11,10 @@
 </template>
 
 <style lang="scss">
-body {
+/*body {
   background-color: #142027;
+}*/
+body {
+  @include white-bg;
 }
 </style>

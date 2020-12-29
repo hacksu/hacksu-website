@@ -1,8 +1,9 @@
 <template>
   <div class="landing">
 
-    <div class="hacksu-box box1" style=""></div>
-    <div class="hacksu-box box2" style=""></div>
+    <div class="hacksu-box box1" style=""/>
+    <div class="hacksu-box box2" style=""/>
+    <div class="background"/>
 
     <div class="content">
       <div class="buttons">
@@ -82,7 +83,17 @@ export default {
     img {
       @include transition;
       width: 10vh;
+      margin-top: 20px;
     }
+  }
+  .background {
+    position: absolute;
+    z-index: -2;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    background-color: #142027;
   }
 }
 

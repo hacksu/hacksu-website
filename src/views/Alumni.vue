@@ -3,7 +3,7 @@
     <div class="header">
       <div style="height: 5vh"/>
       <h1>{{ title }}</h1>
-      <span v-html="header"/>
+      <h3 class="description" v-html="description"/>
     </div>
     <div class="list" v-for="(row, rowIndex) in organized" v-bind:key="rowIndex">
       <h2 class="year">Class of {{ row.year }}</h2>
@@ -112,6 +112,12 @@ export default {
     padding-top: $navbar-height;
     padding-bottom: 5vh;
     background: linear-gradient(to top left, #35c982, #4683FF);
+    .description {
+      @include center;
+      width: 80vw;
+      max-width: 60vmin;
+      font-weight: 200;
+    }
   }
   .list {
     @include center;

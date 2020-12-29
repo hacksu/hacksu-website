@@ -15,7 +15,7 @@ export const alumni = {
   list: Alumni.map(o => o.export()),
   showCurrent: true,
   title: 'Hacksu Alumni',
-  header: `<h2>Some Text</h2>`
+  description: `Some Text`
 };
 console.log(alumni);
 
@@ -56,4 +56,12 @@ export const involved = {
   title: "The best way to stay informed is to subscribe to our mailing list.",
   description: "We'll let you know when we are meeting and fill you in on what is going on each week!",
 
+}
+
+export const contact = {
+  title: "Contact Us",
+  description: `If you have any questions regarding Hacksu,
+  please feel free to contact us.
+  One of us will get back to you as soon as possible.`,
+  submit: "Send",
 }

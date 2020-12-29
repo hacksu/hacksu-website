@@ -19,6 +19,7 @@ export default {
 .constitution {
   max-height: 100vh;
   overflow-y: hidden;
+  background-color: #142027;
 
   embed {
     height: $navbar-height-remaining;
