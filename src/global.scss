@@ -30,11 +30,17 @@ body {
   border-radius: 1vh;
 }
 
-@mixin transition {
+@mixin transition($scale: 1.1, $brightness: 120%, $focus: false) {
   transition: transform 0.25s, filter 0.25s;
-  &:hover {
-    transform: scale(1.1);
-    filter: brightness(120%);
+  &:not([disabled]):hover {
+    transform: scale($scale);
+    filter: brightness($brightness);
+  }
+  @if $focus == true {
+    &:not([disabled]):focus {
+      transform: scale($scale);
+      filter: brightness($brightness);
+    }
   }
 }
 
@@ -57,15 +63,23 @@ body {
 }
 
 
-button, input {
+button, input, textarea {
   @include rounded;
-  @include transition;
   @include white;
 
-  cursor: pointer;
   border: none;
   padding: 1.25vh;
   outline: none;
+}
+button {
+  @include transition;
+  cursor: pointer;
+}
+input {
+  //@include transition(1.025, 100%, true);
+}
+input, textarea {
+  color: inherit;
 }
 
 a.link {

@@ -63,5 +63,5 @@ export const contact = {
   description: `If you have any questions regarding Hacksu,
   please feel free to contact us.
   One of us will get back to you as soon as possible.`,
-  submit: "Send",
+  button: "Send",
 }
