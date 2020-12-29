@@ -117,8 +117,8 @@ export default {
   }
 
   .hamburger {
-    @include hide('tablet');
-    @include hide('desktop');
+    @include display-hide('tablet');
+    @include display-hide('desktop');
     @include background(url('../../assets/hamburger.svg'), contain);
     padding: 10px;
     background-color: transparent;

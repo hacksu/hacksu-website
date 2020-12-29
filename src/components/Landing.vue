@@ -69,7 +69,7 @@ export default {
     max-width: 60vh;
   }
   .buttons {
-    @include hide(mobile);
+    @include display-hide(mobile);
     position: absolute;
     width: 10vh;
     right: 30px;

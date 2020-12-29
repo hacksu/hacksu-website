@@ -21,7 +21,7 @@ $desktop-width: 1024px;
   }
 }
 
-@mixin hide($property) {
+@mixin display-hide($property) {
   @if $property == mobile {
     @include mobile {
       display: none!important;
@@ -33,6 +33,31 @@ $desktop-width: 1024px;
   } @else if $property == desktop {
     @include desktop {
       display: none!important;
+    }
+  }
+}
+
+@mixin display-not($property) {
+  @if $property == mobile {
+    @include tablet {
+      @content;
+    }
+    @include desktop {
+      @content;
+    }
+  } @else if $property == tablet {
+    @include mobile {
+      @content;
+    }
+    @include desktop {
+      @content;
+    }
+  } @else if $property == desktop {
+    @include mobile {
+      @content;
+    }
+    @include tablet {
+      @content;
     }
   }
 }

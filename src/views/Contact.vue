@@ -26,13 +26,25 @@ export default {
 <style scoped lang="scss">
 
 .contact {
-  @include white-bg;
+  //@include white-bg;
+  @include mobile {
+    @include white-bg;
+    min-height: 100vh;
+  }
+  @include display-not(mobile) {
+    background: linear-gradient(to top left, #35c982, #4683FF);
+    min-height: 100vh;
+  }
+  //background: linear-gradient(to top left, #35c982, #4683FF);
+  //min-height: 100vh;
   .header {
     text-align: center;
     width: 100vw;
     padding-top: $navbar-height;
     padding-bottom: 5vh;
-    background: linear-gradient(to top left, #35c982, #4683FF);
+    @include mobile {
+      background: linear-gradient(to top left, #35c982, #4683FF);
+    }
     .description {
       @include center;
       width: 80vw;
@@ -41,7 +53,11 @@ export default {
     }
   }
   .body {
+    @include white-bg;
     color: black;
+    @include mobile {
+
+    }
   }
 }
 
