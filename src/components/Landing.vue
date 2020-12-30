@@ -20,7 +20,7 @@
       <h1>{{ title }}</h1>
       <p>{{ body }}</p>
       <br>
-      <button>{{ button }}</button>
+      <button v-on:click="getInvolved">{{ button }}</button>
     </div>
   </div>
 </template>
@@ -32,7 +32,12 @@ export default {
   name: 'Landing',
   data() {
     return details;
-  }
+  },
+  methods: {
+    getInvolved() {
+      this.$el.parentElement.querySelector('.meetings').scrollIntoView();
+    }
+  },
 }
 </script>
 

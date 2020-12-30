@@ -7,7 +7,7 @@
     <div v-if="!virtual">
 
     </div>
-    <a v-if="discord && virtual" class="discord" v-bind:href="discord">
+    <a v-if="discord && virtual" class="discord" v-bind:href="discord" v-bind:title="discord">
       <img src="@/assets/discord-white.svg">
     </a>
   </div>

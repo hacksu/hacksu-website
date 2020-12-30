@@ -31,15 +31,17 @@ body {
 }
 
 @mixin transition($scale: 1.1, $brightness: 120%, $focus: false) {
-  transition: transform 0.25s, filter 0.25s;
-  &:not([disabled]):hover {
-    transform: scale($scale);
-    filter: brightness($brightness);
-  }
-  @if $focus == true {
-    &:not([disabled]):focus {
+  @include display-not(mobile) {
+    transition: transform 0.25s, filter 0.25s;
+    &:not([disabled]):hover {
       transform: scale($scale);
       filter: brightness($brightness);
+    }
+    @if $focus == true {
+      &:not([disabled]):focus {
+        transform: scale($scale);
+        filter: brightness($brightness);
+      }
     }
   }
 }

@@ -25,6 +25,15 @@ export default {
 <style scoped lang="scss">
 
 .alumni-item {
+  @include white-bg;
+  @include rounded;
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  //transform: scale(0.95);
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+  }
   display: table-cell;
   padding: 2vh;
   text-align: center;

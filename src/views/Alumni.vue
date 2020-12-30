@@ -129,6 +129,7 @@ export default {
     .group {
       @include center;
       display: table;
+      border-spacing: 20px;
     }
   }
 }
