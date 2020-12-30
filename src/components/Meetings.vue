@@ -3,10 +3,15 @@
     <h2>Meetings</h2>
     <p class="time">{{ time }}</p>
     <p v-if="virtual" class="location" v-html="location.virtual"></p>
-    <p v-else="virtual" class="location" v-html="location.building.details"></p>
-    <div v-if="!virtual">
+    <p v-else class="location" v-html="location.building.details"></p>
+    <a v-if="!virtual" class="building" v-bind:href="location.building.url">
+      <div class="photo" v-bind:style="{ 'background-image': 'url(' + location.building.image + ')'}">
 
-    </div>
+        <div class="map">
+          <button class="show-map">Show me on a map</button>
+        </div>
+      </div>
+    </a>
     <a v-if="discord && virtual" class="discord" v-bind:href="discord" v-bind:title="discord">
       <img src="@/assets/discord-white.svg">
     </a>
@@ -41,7 +46,7 @@ export default {
   }
   .time, .location {
     @include center;
-    width: 90vw;
+    width: 95vw;
     max-width: 80vh;
   }
   .time {
@@ -63,6 +68,61 @@ export default {
       height: 20vmin;
       max-width: 40vh;
       max-height: 20vh;
+    }
+  }
+  .building {
+    text-decoration: none;
+    color: inherit;
+    .photo {
+      @include rounded;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: inline-block;
+      width: 60vw;
+      height: 30vw;
+      max-width: 800px;
+      max-height: 400px;
+      overflow: hidden;
+      @include mobile {
+        width: 80vw;
+        height: 45vw;
+      }
+      .map {
+        @include background(url('../assets/taylor-map.png'));
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.25s, transform 0.25s;
+      }
+      .show-map {
+        @include green-bg;
+        position: relative;
+        transition: opacity 0.25s, transform 0.25s, filter 0.25s;
+        transform: scale(0.95);
+        top: calc(50% - 3vh);
+        min-width: 20vw;
+        font-size: 3vh;
+        //top: 20%;
+      }
+      /*@include mobile {
+        .map {
+          opacity: 1;
+          background: transparent;
+        }
+        .show-map {
+          font-size: 2vh;
+          top: 10%;
+        }
+      }*/
+      &:hover {
+        .map {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        .show-map {
+          transform: scale(1.1);
+        }
+      }
     }
   }
 }
