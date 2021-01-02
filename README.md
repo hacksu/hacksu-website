@@ -21,7 +21,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Remote Deployment
 
-
 Use the following commands to push changes to the hacksu server.
 
 ### Add Deploy Remote
