@@ -25,7 +25,7 @@ Use the following commands to push changes to the hacksu server.
 
 ### Add Deploy Remote
 ```
-git remote add live ssh://root@hacksu.com/deploy/hacksu-2021.git
+git remote add live ssh://root@hacksu.com/var/repo/hacksu-2021.git
 ```
 
 ### Deploying
