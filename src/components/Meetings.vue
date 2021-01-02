@@ -38,7 +38,7 @@ export default {
   width: 100%;
 	//min-height: 100vh;
   padding-top: 5vh;
-  padding-bottom: 5vh;
+  padding-bottom: 10vh;
   overflow: hidden;
 
   h2 {

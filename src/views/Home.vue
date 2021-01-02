@@ -2,6 +2,7 @@
   <div class="home">
     <Landing/>
     <Meetings/>
+    <Involved/>
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 // @ is an alias to /src
 import Landing from '@/components/Landing.vue'
 import Meetings from '@/components/Meetings.vue'
+import Involved from '@/components/Involved.vue'
 
 export default {
   name: 'Home',
   components: {
     Landing,
-    Meetings
+    Meetings,
+    Involved
   }
 }
 </script>
