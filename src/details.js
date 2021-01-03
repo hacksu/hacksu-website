@@ -36,7 +36,7 @@ export const landing = {
 export const meetings = {
   discord,
   time: "Every Tuesday at 7:00 PM",
-  virtual: false, //true,
+  virtual: true,
   location: {
     virtual: `Due to COVID-19, all meetings are being held virtually through
       <a class="link" href="${discord}">discord</a>.`,
