@@ -72,6 +72,9 @@ button, input, textarea {
   border: none;
   padding: 1.25vh;
   outline: none;
+  @include mobile {
+    padding: 2.5vw;
+  }
 }
 button {
   @include transition;
