@@ -101,10 +101,11 @@ export default {
 .navbar {
   position: fixed;
   width: 100vw;
-  height: 4vh;
-  @include mobile {
+  height: 38px;
+  //height: 4vh;
+  /*@include mobile {
     height: 9vw;
-  }
+  }*/
   top: 0px;
   left: 0px;
   padding: 30px 10px 30px 10px;
@@ -126,7 +127,8 @@ export default {
     padding: 10px;
     background-color: transparent;
     background-position: left center !important;
-    width: calc(4vh + 150px);
+    //width: calc(4vh + 150px);
+    width: 200px;
     font-size: 3vh;
     @include mobile {
       font-size: 6vw;

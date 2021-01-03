@@ -7,8 +7,8 @@
 @import "@/scss/scrollbar.scss";
 @import "@/scss/responsive.scss";
 
-$navbar-height: calc(4vh + 30px);
-$navbar-height-remaining: calc(100vh - 4vh - 30px);
+$navbar-height: 68px; //calc(4vh + 30px);
+$navbar-height-remaining: calc(100vh - 38px); //calc(100vh - 4vh - 30px);
 
 
 html {
@@ -27,7 +27,8 @@ body {
 
 
 @mixin rounded {
-  border-radius: 1vh;
+  //@include responsive(border-radius, 10px, 10px, 10px);
+  border-radius: 10px; //1vh;
 }
 
 @mixin transition($scale: 1.1, $brightness: 120%, $focus: false) {
@@ -70,11 +71,9 @@ button, input, textarea {
   @include white;
 
   border: none;
-  padding: 1.25vh;
+  //padding: 1.25vh;
+  @include responsive(padding, 8px, 10px, 12px);
   outline: none;
-  @include mobile {
-    padding: 2.5vw;
-  }
 }
 button {
   @include transition;

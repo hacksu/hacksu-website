@@ -46,6 +46,9 @@ export default {
 
 .landing {
   width: 100%;
+  @include display-not(mobile) {
+    height: 100vh;
+  }
 	height: 100vh;
   overflow: hidden;
 
@@ -116,7 +119,12 @@ export default {
     background-position-y: 7vh;
     background-position-x: -14vh;
     left: 0px;
-    bottom: 0px;
+    @include display-not(mobile) {
+      bottom: 0px;
+    }
+    @include mobile {
+      top: calc(100vh - 50vw);
+    }
   }
   &.box2 {
     transform: rotate(90deg);

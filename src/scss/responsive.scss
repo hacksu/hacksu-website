@@ -21,6 +21,18 @@ $desktop-width: 1024px;
   }
 }
 
+@mixin responsive($property, $mobile, $tablet, $desktop) {
+  @include mobile {
+    #{$property}: $mobile;
+  }
+  @include tablet {
+    #{$property}: $mobile;
+  }
+  @include desktop {
+    #{$property}: $desktop;
+  }
+}
+
 @mixin display-hide($property) {
   @if $property == mobile {
     @include mobile {
