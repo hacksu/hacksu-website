@@ -8,31 +8,35 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    meta: {
+      title: 'HacKSU: Helping Kent State University Learn To Code',
+    },
     component: Home
   },
   {
     path: '/alumni',
     name: 'Alumni',
+    meta: {
+      title: 'HacKSU Alumni & Former Staff',
+    },
     component: Alumni,
   },
   {
     path: '/contact',
     name: 'Contact',
+    meta: {
+      title: 'Contact HacKSU Leadership',
+    },
     component: Contact,
   },
   {
     path: '/constitution',
     name: 'Constitution',
+    meta: {
+      title: 'HacKSU Constitution & Bylaws',
+    },
     component: Constitution,
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
 ]
 
 const router = createRouter({
@@ -42,6 +46,10 @@ const router = createRouter({
     return { x: 0, y: 0 };
   },
   routes
+})
+
+router.afterEach((to) => {
+  document.title = to.meta.title || to.name || 'Hacksu';
 })
 
 export default router
