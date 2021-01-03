@@ -1,5 +1,5 @@
 <template>
-  <div class="landing">
+  <div class="landing" v-bind:style="(height) ? { 'height': height + 'px', } : {}">
 
     <div class="hacksu-box box1" style=""/>
     <div class="hacksu-box box2" style=""/>
@@ -31,13 +31,40 @@ import { landing as details } from '@/details';
 export default {
   name: 'Landing',
   data() {
-    return details;
+    return {
+      ...details,
+      height: false,
+    };
   },
   methods: {
     getInvolved() {
       this.$el.parentElement.querySelector('.meetings').scrollIntoView();
+      window.scrollBy(0, -68);
     }
   },
+  mounted() {
+    /*
+      This is to fix a weird issue with the address bar on mobile browsers
+      changing in height as you scroll, which leads to big fuckups
+      with the responsiveness of this component, as it is set to
+      100vh, or 100% of vertical height of the display....
+        ....which changes when you scroll..... great, right?
+
+      so to fix this, we manually detect the height of the browser with code,
+      which bypasses the cheap magic the address bar uses (technically, it
+      just pushes the page downard off-screen, meaning 100vh is placed
+      beyond the bottom of your screen, which is unintended side effect).
+      So, we set the height of the element to the ACTUAL height if there
+      is a mismatch between its CSS 100vh height and the actual browser height
+      (aka, window.innerHeight).
+    */
+    let landingHeight = document.querySelector('.landing').clientHeight;
+    let totalHeight = window.innerHeight;
+    if (landingHeight != totalHeight) {
+      this.height = totalHeight;
+    }
+    //this.height = [landingHeight, totalHeight]
+  }
 }
 </script>
 
@@ -46,10 +73,12 @@ export default {
 
 .landing {
   width: 100%;
-  @include display-not(mobile) {
+  /*@include display-not(mobile) {
     height: 100vh;
   }
-	height: 100vh;
+	height: 100vh;*/
+  height: 100vh;
+  //min-height: -webkit-fill-available;
   overflow: hidden;
 
   .content {
@@ -119,12 +148,13 @@ export default {
     background-position-y: 7vh;
     background-position-x: -14vh;
     left: 0px;
+    bottom: 0px;
     @include display-not(mobile) {
       bottom: 0px;
     }
-    @include mobile {
+    /*@include mobile {
       top: calc(100vh - 50vw);
-    }
+    }*/
   }
   &.box2 {
     transform: rotate(90deg);
