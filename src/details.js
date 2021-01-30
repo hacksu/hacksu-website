@@ -2,13 +2,15 @@
 
 export const discord = "https://discord.gg/rJDdvnt";
 
-export const navigation = [
-  ['Home', '/'],
-  ['Kent Hack Enough', 'https://khe.io'],
-  ['Alumni', '/alumni'],
-  ['Contact', '/contact'],
-  ['Constitution', '/constitution'],
-]
+export const navigation = {
+  default: [
+    ['Home', '/'],
+    ['Kent Hack Enough', 'https://khe.io'],
+    ['Alumni', '/alumni'],
+    ['Contact', '/contact'],
+    ['Constitution', '/constitution'],
+  ]
+}
 
 import Alumni from '@/alumni';
 export const alumni = {

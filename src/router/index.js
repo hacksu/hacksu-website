@@ -10,6 +10,7 @@ const routes = [
     name: 'Home',
     meta: {
       title: 'HacKSU: Helping Kent State University Learn To Code',
+      scrollNav: true,
     },
     component: Home
   },

@@ -1,6 +1,6 @@
 <template>
   <button v-on:click="routelink" class="navbtn underline">
-  	<slot></slot>
+    <slot></slot>
   </button>
 </template>
 

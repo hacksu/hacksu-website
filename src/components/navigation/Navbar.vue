@@ -1,8 +1,9 @@
 <template>
   <div class="navbar"
-    v-bind:class="{ 'scrolled': scrolled, 'animated': !home && from }"
+    v-bind:class="{ 'scrolled': scrolled, 'fixed': !scrollNav, 'animated': !scrollNav && from }"
     v-bind:style="{ 'padding': padding, 'background-color': color, 'box-shadow': shadow, }"
   >
+    <span class="colordetect" hidden></span>
     <span class="background" v-on:click="hideMenu"></span>
     <button class="hamburger navbtn" v-on:click="showMenu">Menu</button>
     <span class="buttons">
@@ -12,12 +13,10 @@
 </template>
 
 <script>
-import Navbtn from '@/components/navigation/Navbtn.vue'
 
 export default {
   name: 'Navbar',
   components: {
-    Navbtn,
   },
   data() {
     return {
@@ -25,8 +24,9 @@ export default {
       offset: 0,
       distance: 100,
       progress: 0,
-      home: false,
+      scrollNav: false,
       from: false,
+      //navbarColor: [20, 32, 39],
     }
   },
   computed: {
@@ -35,7 +35,14 @@ export default {
       return `${n}px 10px ${10 + n}px 10px`;
     },
     color() {
-      return `rgba(20, 32, 39, ${this.progress})`;
+      if (this.$el) {
+        let bgc = getComputedStyle(this.$el.querySelector('.colordetect')).backgroundColor;
+        let a = `rgba(${bgc.substr(4).split(')')[0]}, ${this.progress})`;
+        console.log(a);
+        return a;
+      } else {
+        return `rgba(${this.progress}, 0, 0, 0)`;
+      }
     },
     shadow() {
       return `0 5px 15px rgba(0,0,0,${0.25 * (this.progress)})`;
@@ -51,16 +58,16 @@ export default {
     computeScrolled() {
       this.offset = document.firstElementChild.scrollTop;
       this.scrolled = this.offset != 0;
-      let home = this.$route.name == 'Home';
-      if (home && !this.home) {
-        let _this = this;
+      let scrollNav = this.$route.meta.scrollNav || false;
+      if (scrollNav && !this.scrollNav) {
+        let this_ = this;
         setTimeout(function() {
-          _this.home = _this.$route.name == 'Home';
+          this_.scrollNav = this_.$route.meta.scrollNav || false;
         }, 1000)
       } else {
-        this.home = home;
+        this.scrollNav = scrollNav;
       }
-      if (home) {
+      if (scrollNav) {
         this.progress = Math.min(1, (this.offset / this.distance));
       } else {
         this.progress = 1;
@@ -102,6 +109,9 @@ export default {
   position: fixed;
   width: 100vw;
   height: 38px;
+  @include mobile {
+    text-align: left;
+  }
   //height: 4vh;
   /*@include mobile {
     height: 9vw;
@@ -115,7 +125,8 @@ export default {
     transition: padding 0.25s;
   }
 
-  &.scrolled {
+  &.scrolled, &.fixed, .colordetect {
+    //background-color: red;
     //background-color: #142027;
     //padding: 10px 10px 20px 10px;
   }
@@ -198,6 +209,23 @@ export default {
       .background {
         opacity: 0.5;
         pointer-events: all;
+      }
+    }
+  }
+}
+
+.navbar.side {
+  @include display-not(mobile) {
+    background-color: blue!important;
+    position: fixed;
+    height: 100vh;
+    width: 300px;
+    .buttons {
+      .navbtn {
+        display: block;
+        width: 100%;
+        height: 4vh;
+        text-align: center;
       }
     }
   }

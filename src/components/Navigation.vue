@@ -11,9 +11,15 @@ import Navbtn from '@/components/navigation/Navbtn.vue'
 
 export default {
   name: 'Navigation',
+  props: {
+    view: {
+      default: 'default',
+      type: String,
+    },
+  },
   data() {
     return {
-      navigation,
+      navigation: navigation[this.view],
     }
   },
   components: {
@@ -24,6 +30,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
+
+.navbar {
+  &.scrolled, &.fixed, .colordetect {
+    // NAVBAR COLOR
+    background-color: rgb(20, 32, 39);
+  }
+}
 
 </style>
