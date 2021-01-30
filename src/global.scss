@@ -7,8 +7,8 @@
 @import "@/scss/scrollbar.scss";
 @import "@/scss/responsive.scss";
 
-$navbar-height: 68px; //calc(4vh + 30px);
-$navbar-height-remaining: calc(100vh - 38px); //calc(100vh - 4vh - 30px);
+$navbar-height: 68px;
+$navbar-height-remaining: calc(100vh - 38px);
 
 
 html {

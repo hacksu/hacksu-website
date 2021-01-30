@@ -26,7 +26,6 @@ export default {
       progress: 0,
       scrollNav: false,
       from: false,
-      //navbarColor: [20, 32, 39],
     }
   },
   computed: {
@@ -38,7 +37,7 @@ export default {
       if (this.$el) {
         let bgc = getComputedStyle(this.$el.querySelector('.colordetect')).backgroundColor;
         let a = `rgba(${bgc.substr(4).split(')')[0]}, ${this.progress})`;
-        console.log(a);
+        //console.log(a);
         return a;
       } else {
         return `rgba(${this.progress}, 0, 0, 0)`;

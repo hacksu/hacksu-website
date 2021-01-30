@@ -1,6 +1,11 @@
 <template>
   <Navbar id="nav">
-    <Navbtn v-for="[text, link] in navigation" v-bind:key="text" v-bind:link="link">{{ text }}</Navbtn>
+    <Navbtn v-for="[text, link, options] in navigation"
+    v-bind:key="text"
+    v-bind:link="link"
+    v-bind:style="options ? { 'float': (options.align || 'inherit'), } : {}">
+      {{ text }}
+    </Navbtn>
   </Navbar>
 </template>
 
