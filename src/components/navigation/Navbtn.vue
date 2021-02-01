@@ -139,9 +139,17 @@ export default {
     .navbtn-dropdown-content {
       display: inline-block!important;
       box-sizing: border-box;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
       padding-top: 10px;
       @include rounded;
+      @include mobile {
+        padding-top: 0px;
+      }
+      @include display-not(mobile) {
+        .navbtn-dropdown-box {
+          margin-top: 0px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+        }
+      }
     }
   }
   @include mobile {

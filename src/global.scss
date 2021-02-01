@@ -66,7 +66,7 @@ body {
 }
 
 
-button, input, textarea {
+button, input, textarea, a.navbtn {
   @include rounded;
   @include white;
 
