@@ -3,11 +3,10 @@
     v-bind:class="{ 'scrolled': scrolled, 'fixed': !scrollNav, 'animated': !scrollNav && from }"
     v-bind:style="{ 'padding': padding, 'background-color': color, 'box-shadow': shadow, }"
   >
-    <span class="navbar-color" hidden></span>
+    <span class="colordetect" hidden></span>
     <span class="background" v-on:click="hideMenu"></span>
     <button class="hamburger navbtn" v-on:click="showMenu">Menu</button>
     <span class="buttons">
-      <button class="navbtn navbtn-back"></button>
       <slot></slot>
     </span>
   </div>
@@ -36,7 +35,7 @@ export default {
     },
     color() {
       if (this.$el) {
-        let bgc = getComputedStyle(this.$el.querySelector('.navbar-color')).backgroundColor;
+        let bgc = getComputedStyle(this.$el.querySelector('.colordetect')).backgroundColor;
         let a = `rgba(${bgc.substr(4).split(')')[0]}, ${this.progress})`;
         //console.log(a);
         return a;
@@ -46,13 +45,7 @@ export default {
     },
     shadow() {
       return `0 5px 15px rgba(0,0,0,${0.25 * (this.progress)})`;
-    },
-    dropdownOpen() {
-      if (this.$el) {
-        return this.$el.querySelector('.navbtn-dropdown.open') ? true : false;
-      }
-      return false;
-    },
+    }
   },
   methods: {
     showMenu() {
@@ -131,7 +124,7 @@ export default {
     transition: padding 0.25s;
   }
 
-  &.scrolled, &.fixed, .navbar-color {
+  &.scrolled, &.fixed, .colordetect {
     //background-color: red;
     //background-color: #142027;
     //padding: 10px 10px 20px 10px;
@@ -195,15 +188,6 @@ export default {
       height: 100vh;
     }
   }
-
-  &:not(.side) {
-    @include display-not(mobile) {
-      .navbtn-dropdown-content {
-        margin-top: 2.2rem;
-      }
-    }
-  }
-
 }
 
 @include mobile {
@@ -225,22 +209,13 @@ export default {
         opacity: 0.5;
         pointer-events: all;
       }
-      .navbtn-dropdown.open {
-        .navbtn-dropdown-content {
-          position: relative;
-          margin-left: inherit!important;
-          display: block!important;
-          .navbtn-dropdown-box {
-            background-color: initial!important;
-          }
-        }
-      }
     }
   }
 }
 
 .navbar.side {
   @include display-not(mobile) {
+    background-color: blue!important;
     position: fixed;
     height: 100vh;
     width: 300px;
@@ -250,30 +225,6 @@ export default {
         width: 100%;
         height: 4vh;
         text-align: center;
-      }
-      .navbtn-dropdown-content {
-        position: relative;
-        margin-left: inherit!important;
-      }
-    }
-  }
-}
-
-.navbar {
-  .buttons {
-    @include display-not(mobile) {
-      .navbtn-back {
-        display: none;
-      }
-    }
-    @include mobile {
-      &.dropdown-open > .navbtn {
-        display: none;
-      }
-      &:not(.dropdown-open) {
-        .navbtn-back {
-          display: none;
-        }
       }
     }
   }

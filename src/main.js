@@ -5,6 +5,6 @@ import store from './store'
 import Navigation from '@/components/Navigation.vue'
 
 const app = createApp(App)
-.use(store).use(router)
-.component('navigation', Navigation)
+  .use(store).use(router)
+  .component('navigation', Navigation)
 app.mount('#app')

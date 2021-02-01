@@ -8,7 +8,6 @@
     </Navbtn>
   </Navbar>
 </template>
-
 <script>
 import { navigation } from '@/details'
 import Navbar from '@/components/navigation/Navbar.vue'
@@ -37,16 +36,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 
-.navbar {
-  &.scrolled, &.fixed, .navbar-color {
-    // NAVBAR COLOR
+#nav {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 38px;
+  .navbar-color {
     background-color: rgb(20, 32, 39);
   }
-}
-.navbar.side {
-  &.scrolled, &.fixed, .navbar-color {
-    // NAVBAR COLOR
-    background-color: rgb(20, 32, 39)!important;
+  .navbtn {
+    @include responsive(padding, 8px, 10px, 12px);
+    @include transition;
+    font-size: 2vh;
+  	padding-left: 2vw!important;
+  	padding-right: 2vw!important;
+  	padding-bottom: 10px;
   }
 }
 

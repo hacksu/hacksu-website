@@ -73,3 +73,24 @@ $desktop-width: 1024px;
     }
   }
 }
+
+body, .detect-display {
+  @include mobile {
+    --mobile: true;
+  }
+  @include tablet {
+    --tablet: true;
+  }
+  @include desktop {
+    --desktop: true;
+  }
+  @include display-not(mobile) {
+    --not-mobile: true,
+  }
+  @include display-not(tablet) {
+    --not-tablet: true,
+  }
+  @include display-not(desktop) {
+    --not-desktop: true,
+  }
+}

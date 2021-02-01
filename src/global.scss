@@ -3,9 +3,9 @@
 
 @import "@/scss/fonts.scss";
 @import "@/scss/colors.scss";
+@import "@/scss/responsive.scss";
 @import "@/scss/underline.scss";
 @import "@/scss/scrollbar.scss";
-@import "@/scss/responsive.scss";
 
 $navbar-height: 68px;
 $navbar-height-remaining: calc(100vh - 38px);

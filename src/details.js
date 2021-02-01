@@ -9,6 +9,10 @@ export const navigation = {
     ['Alumni', '/alumni'],
     ['Contact', '/contact'],
     ['Constitution', '/constitution'],
+    ['Dropdown', [
+      ['Bruh', '/bruh'],
+      ['Sponsors', '/okay']
+    ]]
   ]
 }
 

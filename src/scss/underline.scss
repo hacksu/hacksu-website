@@ -22,6 +22,8 @@
   }
 }
 
-.underline {
-  @include underline;
+.underline:not(.dropdown-btn), .navbtn:not(.dropdown-btn):not(.hamburger) {
+  @include display-not(mobile) {
+    @include underline;
+  }
 }

@@ -38,15 +38,9 @@ export default {
 <style lang="scss">
 
 .navbar {
-  &.scrolled, &.fixed, .navbar-color {
+  &.scrolled, &.fixed, .colordetect {
     // NAVBAR COLOR
     background-color: rgb(20, 32, 39);
-  }
-}
-.navbar.side {
-  &.scrolled, &.fixed, .navbar-color {
-    // NAVBAR COLOR
-    background-color: rgb(20, 32, 39)!important;
   }
 }
 
