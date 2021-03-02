@@ -14,12 +14,24 @@ let express = require('express');
 let api = express();
 let fetch = require('node-fetch');
 
+let ipBlocklist = {
+
+}
+let fs = require('fs');
+if (fs.existsSync(`${__dirname}/ip.blocklist.json`)) {
+  ipBlocklist = require(`${__dirname}/ip.blocklist.json`);
+}
+
 const sendgrid = 'https://api.sendgrid.com/v3'
 const sendgridToken = config.sendgrid.token;
 // Subscribes an email to the mailing list
 // POST hacksu.com/api/mailinglist/subscribe
 // BODY: example@domain.com
 api.post('/mailinglist/subscribe', express.text(), (req, res) => {
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  if (ipBlocklist[ip]) {
+    return res.end();
+  }
   fetch(`${sendgrid}/contactdb/recipients`, {
     method: 'POST',
     headers: {
@@ -56,5 +68,95 @@ api.post('/mailinglist/subscribe', express.text(), (req, res) => {
     })
 })
 
+api.post('/contact', require('body-parser').json(), (req, res) => {
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  if (ipBlocklist[ip]) {
+    return res.end();
+  }
+  let submission = req.body;
+  /*
+  this.submission = {
+    subject: '',
+    name: '',
+    email: '',
+    body: '',
+  }
+  */
+  let payload = {
+    personalizations: [
+      {
+        to: [
+          {
+            email: 'hacksu@cs.kent.edu',
+            name: 'Hacksu Leaders',
+          },
+        ],
+      }
+    ],
+    from: {
+      email: 'contact-form@hacksu.com',
+      name: 'Hacksu Contact Form',
+    },
+    reply_to: {
+      email: submission.email,
+      name: submission.name,
+    },
+    subject: submission.subject,
+    content: [
+      {
+        type: 'text/plain',
+        value: `HacKSU Contact-Us Website Form
+
+        Name: ${submission.name}
+        Email: ${submission.email}
+        Subject: ${submission.subject}
+        IP Address: ${ip}
+
+        -- MESSAGE BODY --
+
+        ${submission.body}`.split('\n').map(o => o.trim()).join('\n') + `
+
+        -- END OF MESSAGE BODY --
+
+        Block ${ip} from sending more messages:
+        https://hacksu.com/api/ip-block?add=${ip}
+
+        `,
+      },
+    ],
+  };
+  fetch('https://api.sendgrid.com/v3/mail/send', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer ' + sendgridToken,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload)
+  }).then(res => res.json()).then(res => {
+    console.log(res);
+    res.json({ success: true, })
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json({ success: false, })
+  })
+})
+
+api.get('/ip-block', (req, res) => {
+  let { add, remove } = req.query;
+  if (add) {
+    ipBlocklist[add] = true;
+    fs.writeFileSync(`${__dirname}/ip.blocklist.json`, JSON.stringify(ipBlocklist))
+  } else if (remove) {
+    delete ipBlocklist[remove];
+    fs.writeFileSync(`${__dirname}/ip.blocklist.json`, JSON.stringify(ipBlocklist))
+  }
+  res.send(`<h1>Blocked IPs</h1><ul>` + Object.keys(ipBlocklist).map(o => {
+    return `<li>${o} - <a href="/ip-block?remove=${o}">Unblock</a></li>`;
+  }) + '</ul>')
+})
+
 // mount to /api on port 8000 for NGINX reverse proxy
-express().use('/api', api).listen(process.env.PORT || 8000);
+let app = express();
+app.use('/api', api);
+app.use(require('express-http-proxy')(`http://localhost:8080`));
+app.listen(process.env.PORT || 8000);

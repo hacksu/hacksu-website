@@ -3,6 +3,7 @@ node_modules
 /dist
 
 server.config.json
+ip.blocklist.json
 
 
 # local env files

@@ -85,10 +85,20 @@ export default {
       for (let x of Object.values(button.parentElement.querySelectorAll('input, textarea'))) {
         x.setAttribute('disabled', 'true')
       }
-      let success = this.success;
-      setTimeout(function() {
+      let { submission, success } = this;
+      console.log(JSON.stringify(submission));
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submission),
+      }).then(res => res.json()).then(res => {
         success();
-      }, 2000)
+      })
+      /*setTimeout(function() {
+        success();
+      }, 2000)*/
 
     },
     success() {
