@@ -3,6 +3,7 @@
     <Landing/>
     <Meetings/>
     <Involved/>
+    <SocialMedia/>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
 import Landing from '@/components/Landing.vue'
 import Meetings from '@/components/Meetings.vue'
 import Involved from '@/components/Involved.vue'
+import SocialMedia from '@/components/SocialMedia.vue'
 
 export default {
   name: 'Home',
   components: {
     Landing,
     Meetings,
-    Involved
+    Involved,
+    SocialMedia
   }
 }
 </script>
