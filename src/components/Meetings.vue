@@ -16,7 +16,7 @@
       <img src="@/assets/discord-white.svg">
     </a>
     <br>
-    <button v-on:click="virtual = !virtual" style="color: black;">
+    <button v-on:click="virtual = !virtual" style="color: black; max-width: 80vw;">
       click me to toggle between virtual or not, for debugging purposes
     </button>
   </div>

@@ -30,30 +30,30 @@ api.post('/mailinglist/subscribe', express.text(), (req, res) => {
       email: req.body,
     }])
   }).then(res => res.json())
-  .then(({ data }) => {
-    fetch(`${sendgrid}/contactdb/lists/972378/recipients/${data.persisted_recipients[0]}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sendgridToken}`
-      },
-      body: JSON.stringify([])
-    }).then(() => {
-      res.status(200).json({
-        success: true,
+    .then(({ data }) => {
+      fetch(`${sendgrid}/contactdb/lists/972378/recipients/${data.persisted_recipients[0]}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sendgridToken}`
+        },
+        body: JSON.stringify([])
+      }).then(() => {
+        res.status(200).json({
+          success: true,
+        })
+      }).catch(error => {
+        res.status(500).json({
+          success: false,
+          error: error.message,
+        })
       })
     }).catch(error => {
       res.status(500).json({
         success: false,
-        error,
+        error: error.message,
       })
     })
-  }).catch(error => {
-    res.status(500).json({
-      success: false,
-      error,
-    })
-  })
 })
 
 // mount to /api on port 8000 for NGINX reverse proxy
