@@ -4,6 +4,9 @@
       <h2>Get Involved!</h2>
       <p>{{ title }}</p>
       <p>{{ description }}</p>
+      <br>
+      <p style="opacity: 0.5;">Subscribe to our mailing list</p>
+      <input type="email" placeholder="Email"><button class="subscribe">Subscibe</button>
     </div>
   </div>
 </template>
@@ -36,6 +39,22 @@ export default {
       @include center;
       max-width: 80vw;
       font-size: 2.5vh;
+    }
+  }
+  input[type=email] {
+    font-size: 2.5vh;
+    width: 30vw;
+    margin: 5px;
+    @include mobile {
+      width: 80vw;
+    }
+  }
+  .subscribe {
+    @include green-bg;
+    font-size: 2.5vh;
+    width: 10vw;
+    @include mobile {
+      width: 80vw;
     }
   }
 }
