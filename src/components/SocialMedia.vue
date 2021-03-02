@@ -33,6 +33,13 @@ export default {
     img {
       height: 10vh;
       max-height: 15vw;
+      transition: transform 0.25s, filter 0.25s;
+    }
+    &:hover {
+      img {
+        transform: scale(1.1);
+        filter: brightness(120%);
+      }
     }
   }
 }
