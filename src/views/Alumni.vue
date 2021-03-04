@@ -83,7 +83,7 @@ export default {
             x.year += semester;
           }
           x.graduated = x.year <= ACADEMICYEAR + SEMESTER;
-          console.log(x.name, x.year, '<', ACADEMICYEAR, '+', SEMESTER);
+          //console.log(x.name, x.year, '<', ACADEMICYEAR, '+', SEMESTER);
           if (showCurrent || x.graduated) {
             years[index].list.push(x);
           }

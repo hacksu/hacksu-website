@@ -32,7 +32,7 @@ const Elizabeth = new Alumni({
   name: "Elizabeth",
   graduate: FALL + 2020,
   github: 'Elizabeth1998',
-  body: `<p>Developer</p><p>bruh</p>`
+  body: `<p>President</p><p>Sponsorship</p>`
 })
 
 const Seitz = new Alumni({

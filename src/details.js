@@ -19,7 +19,10 @@ export const alumni = {
   title: 'Hacksu Alumni',
   description: `Some Text`
 };
+window.$alumni = alumni;
 console.log(alumni);
+// Alumni who haven't been updated yet
+console.log($alumni.list.filter(o => o.graduate.includes('1990')).map(o => '@' + o.github).join('\n'));
 
 export const landing = {
   title: "Learn. Grow. Create.",
