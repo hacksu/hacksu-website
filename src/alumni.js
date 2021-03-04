@@ -199,7 +199,7 @@ const NicholasCrawford = new Alumni({
 const nletdara = new Alumni({
   name: "nletdara",
   graduate: FALL + 1990,
-  github: 'nletdare',
+  github: 'nletdara',
   body: ``
 })
 

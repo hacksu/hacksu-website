@@ -1,11 +1,11 @@
 <template>
-  <div class="alumni-item">
+  <a class="alumni-item" v-bind:href="'https://github.com/' + github" target="_blank">
     <div class="photo" v-bind:style="{ 'background-image': 'url(' + image + ')', }">Photo of {{ name }}</div>
     <h3 class="name">{{ name }}</h3>
     <p class="graduated" v-if="graduated">Graduated {{ graduate }}</p>
     <div class="body" v-html="body"/>
 
-  </div>
+  </a>
 </template>
 
 <script>
@@ -64,6 +64,8 @@ export default {
   .body {
     display: inline;
   }
+  text-decoration: none;
+  color: inherit;
 }
 
 </style>
