@@ -34,7 +34,8 @@ export default {
     transform: scale(1.05);
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
   }
-  display: table-cell;
+  //display: table-cell;
+  display: inline-block;
   padding: 2vh;
   text-align: center;
   @include mobile {

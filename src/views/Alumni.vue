@@ -62,6 +62,7 @@ export default {
       let years = {};
 
       let currentSemester = 0;
+      let showCurrent = this.showCurrent;
       for (let x of this.list) {
         let index = 'current';
         let year = currentYear;
@@ -81,8 +82,11 @@ export default {
             let semester = SEMESTERS[x.graduate.split(' ')[0]];
             x.year += semester;
           }
-          x.graduated = x.year < ACADEMICYEAR + SEMESTER;
-          years[index].list.push(x);
+          x.graduated = x.year <= ACADEMICYEAR + SEMESTER;
+          console.log(x.name, x.year, '<', ACADEMICYEAR, '+', SEMESTER);
+          if (showCurrent || x.graduated) {
+            years[index].list.push(x);
+          }
         }
       }
       years = Object.values(years).sort((a, b) => {
@@ -93,7 +97,7 @@ export default {
           return b.year - a.year;
         })
       }
-      return years;
+      return years.filter(o => o.list.length > 0);
     }
   },
   components: {
@@ -128,8 +132,13 @@ export default {
     }
     .group {
       @include center;
-      display: table;
-      border-spacing: 20px;
+      //display: table;
+      //border-spacing: 20px;
+      display: block;
+      .alumni-item {
+        vertical-align:top;
+        margin: 20px;
+      }
     }
   }
 }

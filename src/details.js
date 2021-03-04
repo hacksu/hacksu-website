@@ -12,10 +12,10 @@ export const navigation = {
   ]
 }
 
-import Alumni from '@/alumni';
+import Alumni, { ShowCurrent as ShowCurrentAlumni } from '@/alumni';
 export const alumni = {
   list: Alumni.map(o => o.export()),
-  showCurrent: true,
+  showCurrent: ShowCurrentAlumni,
   title: 'Hacksu Alumni',
   description: `Some Text`
 };
