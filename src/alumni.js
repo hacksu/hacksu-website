@@ -277,5 +277,5 @@ const CollinWerner = new Alumni({ // UPDATED
   name: "Collin Werner",
   graduate: SPRING + 2020,
   github: 'collinw9898',
-  body: `<p>Developer</p><p>Lesson Master</p><p>Legendary Shitposter</p>`
+  body: `<p>Developer</p><p>Lesson Master</p>` //<p>Legendary Shitposter</p>
 })
