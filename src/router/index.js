@@ -49,6 +49,15 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  if (to.path == '/khe.io') {
+    window.location.href = 'https://khe.io'
+  } else {
+    next();
+  }
+})
+
 router.afterEach((to) => {
   document.title = to.meta.title || to.name || 'Hacksu';
 })
