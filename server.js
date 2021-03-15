@@ -158,5 +158,16 @@ api.get('/ip-block', (req, res) => {
 // mount to /api on port 8000 for NGINX reverse proxy
 let app = express();
 app.use('/api', api);
-app.use(require('express-http-proxy')(`http://localhost:8080`));
+if (process.env.PORT) {
+  let dist = `${__dirname}/dist`;
+  let index = `${dist}/index.html`;
+  let static = express.static(dist);
+  app.use((req, res, next) => {
+    static(req, res, (req, res) => {
+      res.sendFile(index);
+    });
+  })
+} else {
+  app.use(require('express-http-proxy')(`http://localhost:8080`));
+}
 app.listen(process.env.PORT || 8000);
