@@ -93,7 +93,7 @@ const DavidSteinberg = new Alumni({ // UPDATED
 
 const ElliotFrankhouse = new Alumni({
   name: "Elliot Frankhouse",
-  graduate: FALL + 1990,
+  graduate: FALL + 2019,
   github: 'EFrankhouse',
   body: ``
 })
@@ -163,9 +163,9 @@ const TrentanTrahan = new Alumni({ // UPDATED
 
 const NicholasCrawford = new Alumni({
   name: "Nick Crawford",
-  graduate: FALL + 1990,
+  graduate: SPRING + 2018,
   github: 'NickCrawford',
-  body: ``
+  body: `<p>Developer</p>`
 })
 
 const NicLinscott = new Alumni({ // UPDATED
@@ -212,9 +212,9 @@ const VereMiller = new Alumni({
 
 const WesDelp = new Alumni({
   name: "Wes Delp",
-  graduate: FALL + 1990,
+  graduate: SPRING + 2016,
   github: 'wesdelp',
-  body: ``
+  body: `<p>Developer</p>`
 })
 
 const GabrielWeston = new Alumni({
