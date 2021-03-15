@@ -163,7 +163,7 @@ if (process.env.PORT) {
   let index = `${dist}/index.html`;
   let static = express.static(dist);
   app.use((req, res, next) => {
-    static(req, res, (req, res) => {
+    static(req, res, function() {
       res.sendFile(index);
     });
   })
