@@ -157,7 +157,13 @@ api.get('/ip-block', (req, res) => {
 
 // mount to /api on port 8000 for NGINX reverse proxy
 let app = express();
-app.use('/api', api);
+app.use('/api', (req, res, next) => {
+  console.log({
+    forwardedFor: req.headers['x-forwarded-for'],
+    remoteAddress: req.connection.remoteAddress,
+  })
+  next();
+}, api);
 if (process.env.PORT) {
   let dist = `${__dirname}/dist`;
   let index = `${dist}/index.html`;
