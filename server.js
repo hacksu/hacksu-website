@@ -159,7 +159,8 @@ api.get('/ip-block', (req, res) => {
 let app = express();
 app.use('/api', (req, res, next) => {
   console.log({
-    forwardedFor: req.headers['x-forwarded-for'],
+    headers: req.headers,
+    forwardedFor: req.get('x-forwarded-for'),
     remoteAddress: req.connection.remoteAddress,
   })
   next();
