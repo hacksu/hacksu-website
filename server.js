@@ -162,7 +162,7 @@ api.get('/ip-block', (req, res) => {
 // mount to /api on port 8000 for NGINX reverse proxy
 let app = express();
 app.use('/api', (req, res, next) => {
-  a.headers['x-forwarded-for'] = req.headers['x-forwarded-for'] :: req.headers['x-real-ip'];
+  a.headers['x-forwarded-for'] = req.headers['x-forwarded-for'] || req.headers['x-real-ip'];
   next();
 }, api);
 if (process.env.PORT) {
