@@ -206,7 +206,7 @@ const SamiGlass = new Alumni({
 const VereMiller = new Alumni({
   name: "Vere Miller",
   graduate: FALL + 2021,
-  github: 'Vere Miller',
+  github: 'vmille25',
   body: `<p>Developer</p>`
 })
 

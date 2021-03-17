@@ -144,6 +144,10 @@ api.post('/contact', require('body-parser').json(), (req, res) => {
 api.get('/ip-block', (req, res) => {
   let { add, remove } = req.query;
   if (add) {
+    if (add == '131.123.50.198') {
+      res.send('CANNOT ADD KENT STATE IP TO BLOCKLIST, THAT WOULD BE NOT GOOD...');
+      return;
+    }
     ipBlocklist[add] = true;
     fs.writeFileSync(`${__dirname}/ip.blocklist.json`, JSON.stringify(ipBlocklist))
   } else if (remove) {
@@ -158,11 +162,7 @@ api.get('/ip-block', (req, res) => {
 // mount to /api on port 8000 for NGINX reverse proxy
 let app = express();
 app.use('/api', (req, res, next) => {
-  console.log({
-    headers: req.headers,
-    forwardedFor: req.get('x-forwarded-for'),
-    remoteAddress: req.connection.remoteAddress,
-  })
+  a.headers['x-forwarded-for'] = req.headers['x-forwarded-for'] :: req.headers['x-real-ip'];
   next();
 }, api);
 if (process.env.PORT) {
