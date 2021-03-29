@@ -15,6 +15,9 @@ npm run serve
 npm run build
 ```
 
+### Website Redirects (aka short URLs)
+https://github.com/hacksu/hacksu-2021/wiki/Hacksu-Website-Redirects
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
