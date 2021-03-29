@@ -207,5 +207,7 @@ if (process.env.PORT) {
   app.use(require('express-http-proxy')(`http://localhost:8080`));
 }
 
-
-app.listen(process.env.PORT || 8000);
+let port = process.env.PORT || 8000;
+app.listen(port, function() {
+  console.log('Listening on port', port);
+});

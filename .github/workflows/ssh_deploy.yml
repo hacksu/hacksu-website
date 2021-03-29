@@ -44,6 +44,6 @@ jobs:
             echo "Building Project"
             npm run build
             echo "Restarting Application"
-            echo "pm2 restart hacksu-2021"
+            echo pm2 restart hacksu-2021
             echo "Finished"
             exit
