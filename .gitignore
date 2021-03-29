@@ -5,6 +5,8 @@ node_modules
 server.config.json
 ip.blocklist.json
 
+redirects.json
+
 
 # local env files
 .env.local
