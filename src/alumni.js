@@ -39,7 +39,7 @@ const Seitz = new Alumni({
   name: "Chris Seitz",
   graduate: FALL + 2023,
   github: 'cseitz',
-  body: `<p>Developer</p><p>bruh</p>`
+  body: `<p>Developer</p>`
 })
 
 const AlexPritt = new Alumni({ // UPDATED
