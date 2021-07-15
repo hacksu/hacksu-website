@@ -33,16 +33,16 @@ app.use('/api', (req, res, next) => {
 
 app.use(require('./redirects'));
 
-if (process.env.PORT) {
+// if (process.env.PORT) {
     let dist = `${__dirname}/../dist`;
     let index = `${dist}/index.html`;
     let serve = express.static(dist);
     app.use(serve, (req, res, next) => {
         res.sendFile(index);
     });
-} else {
-    app.use(require('express-http-proxy')(`http://localhost:8080`));
-}
+// } else {
+//     app.use(require('express-http-proxy')(`http://localhost:8080`));
+// }
 
 let port = process.env.PORT || 8000;
 app.listen(port, function () {
