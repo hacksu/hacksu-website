@@ -39,6 +39,7 @@ jobs:
           script: |
             cd /var/www/hacksu-2021
             echo "Fetching changes from Github"
+            unlink package-lock.json
             git fetch
             echo "Pulling Changes from Github"
             git pull
