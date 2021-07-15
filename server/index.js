@@ -3,7 +3,7 @@ global.config = require(__dirname + '/../server.config.json');
 let express = require('express');
 let fetch = require('node-fetch');
 
-global.LOCALHOST = true;
+global.LOCALHOST = false;
 
 let app = express();
 app.set('trust proxy', 1);
