@@ -40,9 +40,9 @@ jobs:
           echo "========== Modified Files =========="
           git diff --name-only HEAD^ HEAD
           echo "===================================="
-          if [[ grep -q "workflows" <<< $(git diff --name-only HEAD^ HEAD) ]]; then
+          if grep -q "workflows" <<< $(git diff --name-only HEAD^ HEAD); then
             echo "ok modified workflows"
-          else:
+          else
             echo "workflows not modified"
           fi
           echo "::set-output name=run_build::false"
