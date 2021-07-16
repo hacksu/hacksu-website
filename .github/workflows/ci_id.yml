@@ -40,12 +40,34 @@ jobs:
           echo "========== Modified Files =========="
           git diff --name-only HEAD^ HEAD
           echo "===================================="
-          if grep -q "workflows" <<< $(git diff --name-only HEAD^ HEAD); then
-            echo "ok modified workflows"
+          if grep -q "src" <<< $(git diff --name-only HEAD^ HEAD); then
+            echo "::set-output name=run_build::true"
           else
-            echo "workflows not modified"
+            echo "::set-output name=run_build::false"
           fi
-          echo "::set-output name=run_build::false"
+          
+        
+      - name: Deploying
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          #passphrase: ${{ secrets.KEY_PASSPHRASE }}
+          script: |
+            cd /var/www/hacksu-2021
+            echo "Fetching changes from Github"
+            unlink package-lock.json
+            git fetch
+            echo "Pulling Changes from Github"
+            git pull
+            echo "Installing Modules"
+            npm install
+            echo "Restarting Application"
+            echo pm2 restart hacksu-2021
+            echo "Finished"
+            exit
 
   build:
     name: Build
@@ -53,5 +75,18 @@ jobs:
     if: needs.deploy.outputs.run_build == 'true'
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "do the build"
+      - name: Building Vue
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          #passphrase: ${{ secrets.KEY_PASSPHRASE }}
+          script: |
+            cd /var/www/hacksu-2021
+            npm run build -- --dest "dist2"
+            ls dist2
+            rm -rf dist
+            mv dist2 dist
+            exit
