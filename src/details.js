@@ -71,5 +71,3 @@ export const contact = {
   One of us will get back to you as soon as possible.`,
   button: "Send",
 }
-
-console.log('woah')
