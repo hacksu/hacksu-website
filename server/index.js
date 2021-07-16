@@ -49,4 +49,4 @@ app.listen(port, function () {
     console.log('Listening on port', port);
 })
 
-console.log({ port })
+console.log('port', { port })
