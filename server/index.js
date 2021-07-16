@@ -48,5 +48,3 @@ let port = process.env.PORT || 8000;
 app.listen(port, function () {
     console.log('Listening on port', port);
 })
-
-console.log('port', { port })
