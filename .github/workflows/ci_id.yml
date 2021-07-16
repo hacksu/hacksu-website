@@ -39,12 +39,12 @@ jobs:
           git diff --name-only HEAD^ HEAD
           echo "===================================="
           echo "::set-output name=run_build::false"
-        
-   build:
-      name: Build
-      needs: deploy
-      if: needs.deploy.outputs.run_build == 'true'
-      runs-on: ubuntu-latest
-      steps:
-        run: |
+
+  build:
+    name: Build
+    needs: deploy
+    if: needs.deploy.outputs.run_build == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
           echo "do the build"
