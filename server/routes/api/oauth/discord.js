@@ -18,7 +18,7 @@ exports.start = async function (req, res, next) {
     params.set('scope', 'identify');
     params.set('response_type', 'token');
     params.set('redirect_uri', (
-        LOCALHOST ? 'http://' + req.get('host') : 'https://hacksu.com'
+        LOCALHOST === true ? 'http://' + req.get('host') : 'https://hacksu.com'
     ) + '/api/oauth/discord/redirect');
     res.redirect(URL_Authorize + '?' + params.toString());
 };

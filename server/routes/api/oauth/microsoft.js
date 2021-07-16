@@ -20,7 +20,7 @@ exports.start = async function (req, res, next) {
     params.set('nonce', '67890');
     params.set('response_type', 'token');
     params.set('redirect', (
-        LOCALHOST ? 'http://' + req.get('host') : 'https://hacksu.com'
+        LOCALHOST === true ? 'http://' + req.get('host') : 'https://hacksu.com'
     ) + '/api/oauth/microsoft/redirect');
     res.redirect(URL_Authorize + '?' + params.toString());
 };
