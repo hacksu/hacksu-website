@@ -3,7 +3,7 @@ global.config = require(__dirname + '/../server.config.json');
 let express = require('express');
 let fetch = require('node-fetch');
 
-global.LOCALHOST = false;
+global.LOCALHOST = require('os').hostname() == 'hacksu-com';
 
 let app = express();
 app.set('trust proxy', 1);
