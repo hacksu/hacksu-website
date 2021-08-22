@@ -1,5 +1,5 @@
 <template>
-  <Navbar id="nav">
+  <Navbar id="nav" v-if="showNavigation">
     <Navbtn v-for="[text, link, options] in navigation"
     v-bind:key="text"
     v-bind:link="link"
@@ -25,6 +25,16 @@ export default {
   data() {
     return {
       navigation: navigation[this.view],
+    }
+  },
+  computed: {
+    showNavigation() {
+      console.log(this.$route);
+      if (this.$route.fullPath == '/hotcard') {
+        console.log('hiding')
+        return false;
+      }
+      return true;
     }
   },
   components: {
