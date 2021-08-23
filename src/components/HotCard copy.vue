@@ -19,12 +19,11 @@
         </div> -->
         <img class="main-logo" src="@/assets/logo.svg">
         <h1>{{ title }}</h1>
-        <p class="main-p">{{ body }}</p>
+        <p>{{ body }}</p>
+        <br>
         <!-- <button v-on:click="getInvolved">{{ button }}</button> -->
-        <img class="qr" style="margin-top: 5px;" src="@/assets/BlastOff-QR-21c.png">
-        <p style="margin-bottom: 5px">{{ meetings }}</p>
-        <p style="margin-top: 0px; opacity: 0.5; margin-bottom: 10px;">hacksu.com</p>
-        
+        <img class="qr" src="@/assets/BlastOff-QR-21c.png">
+        <p style="">{{ meetings }}</p>
       </div>
     </div>
     <div class="landing card-back">
@@ -33,22 +32,9 @@
       <div class="hacksu-box box2" style=""/>
       <div class="background"/>
 
-      <div class="content" style="padding: 0.25in; padding-top: 0.1in;">
+      <div class="content" style="padding: 0.25in">
         <div style="float: left">
-          <h3 style="text-align: left; margin-bottom: 10px;">We'll show you how to...</h3>
-          <ul class="dashed" style="text-align: left;">
-            <li v-for="(item, index) in showcases" v-html="item" v-bind:key="item" style="margin-bottom: 5px;"></li>
-            <li class="no-before" style="padding-left: 15px">... and more!</li>
-          </ul>
-          <p style="text-align: left; margin-bottom: 5px;">Even if you have no experience, we'll show you the ropes; regardless of your major!</p>
-        </div>
-        <div style="float: left; text-align: left;">
-          <h3 style="margin-bottom: 10px;">Interested in the Career Fair?</h3>
-          <p style="margin-top: 0px;">We host resume workshop and bring in real managers to do mock interviews and give feedback on your resume!</p>
-        </div>
-        <div style="float: right; text-align: right;">
-          <h3 style="text-align: right; margin-bottom: 10px; margin-top: 5px;">Just want to socialize?</h3>
-          <p style="text-align: right; max-width: calc(0.625 * 4.5in); margin-top: 0px;">HacKSU is the go-to club for Computer Science majors! Even if you aren't a CS major, HacKSU is a place for anyone who has an interest in technology or programming!</p>
+          <h3>hi</h3>
         </div>
       </div>
     </div>
@@ -63,17 +49,10 @@ export default {
   name: 'Landing',
   data() {
     return {
-      title: "Interested in Coding?",
-      body: `HacKSU teaches anyone, regardless of skill level or major, how to code!`,
+      title: "Interested in Programming?",
+      body: `Hacksu teaches anyone, regardless of skill level or major, how to code!`,
       meetings: `Tuesdays at 7 PM`,
-      showcases: [
-        "Design a Website",
-        "Create a Mobile App",
-        "Write a Discord Bot",
-        "Host a Webserver",
-        "Debug a Program",
-        // "Improve your Resume",
-      ],
+      height: false,
     };
   },
   methods: {
@@ -116,45 +95,6 @@ export default {
   max-height: 1.5in;
 }
 
-.card-left {
-  .content {
-    padding: 0.25in;
-    text-align: left;
-    .main-logo {
-      float: left;
-      margin-top: 0px;
-    }
-    h1 {
-      float: left;
-    }
-  }
-}
-
-ul {
-  margin: 0;
-}
-ul.dashed {
-  margin-left: -25px;
-  list-style-type: none;
-}
-ul.dashed > li {
-  text-indent: 0px;
-}
-ul.dashed > li:not(.no-before):before {
-  content: "–  ";
-  text-indent: 0px;
-  padding-right: 5px;
-}
-
-.pizza-emoji {
-  background-image: url('~@/assets/pizza-emoji.png');
-  width: 10px;
-  color: rgba(0, 0, 0, 0);
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: scale(1.5);
-}
-
 .landing {
   width: 4.25in;
   /*@include display-not(mobile) {
@@ -172,7 +112,7 @@ ul.dashed > li:not(.no-before):before {
     h1 {
       font-size: calc(0.045 * 5.5in);
     }
-    .main-p {
+    p {
       @include center;
       font-size: calc(0.035 * 5.5in);
       width: 80%;
