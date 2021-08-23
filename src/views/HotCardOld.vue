@@ -6,10 +6,10 @@
 
 <script>
 // @ is an alias to /src
-import HotCardContent from '@/components/HotCard.vue'
+import HotCardContent from '@/components/HotCardOld.vue'
 
 export default {
-  name: 'HotCard',
+  name: 'HotCardOld',
   components: {
       HotCardContent
   },
@@ -17,7 +17,7 @@ export default {
     let style = document.createElement('style');
     style.innerHTML = `
         @page {
-            size: calc(4.25in + (2 * 0.125in)) calc(5.5in + (2 * 0.125in));
+            size: 4.75in 6in;
         }
     `;
     this.$el.appendChild(style);
@@ -28,12 +28,10 @@ export default {
 <style scoped lang="scss">
 
 .hot-card-root, .hot-card-root > .landing {
-    height: calc(5.5in + (2 * 0.125in))!important;
-    width: calc(4.25in + (2 * 0.125in))!important;
-    font-family: atkinson;
+    height: 6in!important;
+    width: 4.75in!important;
     // background-color: #142027;
 }
-
 
 // @media print {
 //   body {

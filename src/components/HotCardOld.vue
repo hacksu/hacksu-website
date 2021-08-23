@@ -2,14 +2,8 @@
   <div>
       <div class="landing card-front">
 
-      <div class="guidelines">
-        
-      </div>
-
-      <!-- <span style="transform: scale(2)"> -->
-      <div class="hacksu-box box1 inversed" style=""/>
-      <div class="hacksu-box box2 inversed" style=""/>
-      <!-- </span> -->
+      <div class="hacksu-box box1" style=""/>
+      <div class="hacksu-box box2" style=""/>
       <div class="background"/>
 
       <div class="content">
@@ -24,43 +18,37 @@
           </a>
         </div> -->
         <img class="main-logo" src="@/assets/logo.svg">
-        <h1 style="margin-bottom: 0px;">{{ title }}</h1>
-        <p class="main-p" style="margin-top: 5px;">{{ body }}</p>
+        <h1>{{ title }}</h1>
+        <p class="main-p">{{ body }}</p>
         <!-- <button v-on:click="getInvolved">{{ button }}</button> -->
-        <img class="qr" style="margin-top: 5px;" src="@/assets/BlastOff-QR-21d.png">
-        <p style="margin-top: 2.5px; margin-bottom: 0px; font-size: 0.85em; opacity: 0.65;">{{ discord }}</p>
-        <p style="margin-bottom: 0px; margin-top: 10px;">{{ meetings }}</p>
-        <p style="margin-bottom: 5px; margin-top: 0px;">{{ meetings2 }}</p>
-        <p style="margin-top: 0px; opacity: 0.5; font-size: 0.85em; margin-bottom: 10px;">hacksu.com</p>
+        <img class="qr" style="margin-top: 5px;" src="@/assets/BlastOff-QR-21c.png">
+        <p style="margin-bottom: 5px">{{ meetings }}</p>
+        <p style="margin-top: 0px; opacity: 0.5; margin-bottom: 10px;">hacksu.com</p>
         
       </div>
     </div>
     <div class="landing card-back">
 
-      <div class="guidelines">
-        
-      </div>
-
       <div class="hacksu-box box1" style=""/>
       <div class="hacksu-box box2" style=""/>
       <div class="background"/>
 
-      <div class="content" style="padding: 0.35in; padding-top: 0.15in;">
+      <div class="content" style="padding: 0.25in; padding-top: 0.1in;">
         <div style="float: left">
-          <h3 style="text-align: left; margin-bottom: 5px;">We'll show you how to...</h3>
+          <h3 style="text-align: left; margin-bottom: 10px;">We'll show you how to...</h3>
           <ul class="dashed" style="text-align: left;">
-            <li v-for="(item, index) in showcases" v-html="item" v-bind:key="item" style="margin-bottom: 0px;"></li>
-            <li class="no-before2" style="a-padding-left: 15px">And much more!</li>
+            <li v-for="(item, index) in showcases" v-html="item" v-bind:key="item" style="margin-bottom: 5px;"></li>
+            <li class="no-before" style="padding-left: 15px">... and more!</li>
           </ul>
-          <p style="text-align: left; margin-top: 5px; margin-bottom: 10px;">Even if you have no experience, we'll show you the ropes; regardless of your major!</p>
+          <p style="text-align: left; margin-bottom: 5px;">Even if you have no experience, we'll show you the ropes; regardless of your major!</p>
         </div>
         <div style="float: left; text-align: left;">
-          <h3 style="margin-bottom: 5px; margin-top: 10px;">Interested in the Career Fair?</h3>
-          <p style="margin-top: 0px; margin-bottom: 0px">We host a resume workshop and bring in real managers to do mock interviews and give feedback on your resume!</p>
+          <h3 style="margin-bottom: 10px;">Interested in the Career Fair?</h3>
+          <p style="margin-top: 0px;">We host resume workshop and bring in real managers to do mock interviews and give feedback on your resume!</p>
         </div>
         <div style="float: right; text-align: right;">
-          <h3 style="text-align: right; margin-bottom: 5px; margin-top: 10px;">Just want to socialize?</h3>
-          <p style="text-align: right; max-width: calc(0.625 * 4.5in); margin-top: 0px;">HacKSU is a great place to chat about coding and technology, or just hang out and play games!</p>
+          <h3 style="text-align: right; margin-bottom: 10px; margin-top: 5px;">Just want to socialize?</h3>
+          <p style="text-align: right; max-width: calc(0.625 * 4.5in); margin-top: 0px;">HacKSU is the go-to club for Computer Science majors! Even if you aren't a CS major, HacKSU is a place for anyone who has an interest in technology or programming!</p>
         </div>
       </div>
     </div>
@@ -77,15 +65,13 @@ export default {
     return {
       title: "Interested in Coding?",
       body: `HacKSU teaches anyone, regardless of skill level or major, how to code!`,
-      meetings: `Tuesdays, 7PM - 8PM`,
-      meetings2: `via Discord`,
-      discord: 'discord.gg/sfBBXCJt83',
+      meetings: `Tuesdays at 7 PM`,
       showcases: [
-        "Design a website",
-        "Create a mobile app",
-        "Write a Discord bot",
-        "Host a webserver",
-        "Debug a program",
+        "Design a Website",
+        "Create a Mobile App",
+        "Write a Discord Bot",
+        "Host a Webserver",
+        "Debug a Program",
         // "Improve your Resume",
       ],
     };
@@ -118,33 +104,12 @@ export default {
       this.height = totalHeight;
     }
     //this.height = [landingHeight, totalHeight]
-  },
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
-$bleed: 0.125in;
-$height: 5.5in;
-$width: 4.25in;
-$heightActual: calc(#{$height} + (2 * #{$bleed}));
-$widthActual: calc(#{$width} + (2 * #{$bleed}));
-
-@media print {
-    .guidelines {
-        display: none!important;
-    }
-}
-
-.guidelines {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: $width;
-  height: $height;
-  border: $bleed solid rgba(255, 0, 0, 0.25);
-}
 
 .qr {
   border-radius: 0.5em;
@@ -191,12 +156,12 @@ ul.dashed > li:not(.no-before):before {
 }
 
 .landing {
-  width: $widthActual;
+  width: 4.25in;
   /*@include display-not(mobile) {
     height: 100vh;
   }
 	height: 100vh;*/
-  height: $heightActual;
+  height: 5.5in;
   //min-height: -webkit-fill-available;
   overflow: hidden;
 
@@ -205,11 +170,11 @@ ul.dashed > li:not(.no-before):before {
     @include white;
     // margin-top: 20vh;
     h1 {
-      font-size: calc(0.045 * #{$height});
+      font-size: calc(0.045 * 5.5in);
     }
     .main-p {
       @include center;
-      font-size: calc(0.035 * #{$width});
+      font-size: calc(0.035 * 5.5in);
       width: 80%;
       max-width: 80%;
     }
@@ -221,8 +186,8 @@ ul.dashed > li:not(.no-before):before {
     }
   }
   .main-logo {
-    margin-top: calc(0.075 * #{$height});
-    height: calc(0.2 * #{$height});
+    margin-top: calc(0.075 * 5.5in);
+    height: calc(0.2 * 5.5in);
   }
   .buttons {
     @include display-hide(mobile);
@@ -247,8 +212,8 @@ ul.dashed > li:not(.no-before):before {
     z-index: -2;
     //top: 0px;
     //left: 0px;
-    height: $heightActual;
-    width: $widthActual;
+    height: 5.5in;
+    width: 4.25in;
     background-color: #142027;
   }
 }
@@ -258,45 +223,32 @@ ul.dashed > li:not(.no-before):before {
 	background-image: url(../assets/hacksu-box.png);
 	background-size: contain;
 	background-repeat: no-repeat;
-	width: calc(0.4 * #{$widthActual});
-	max-width: calc(0.5 * #{$widthActual});
-	height: calc(0.4 * #{$heightActual});
-	max-height: calc(0.5 * #{$heightActual});
+	width: calc(0.4 * 4.25in);
+	max-width: calc(0.5 * 4.25in);
+	height: calc(0.4 * 5.5in);
+	max-height: calc(0.5 * 5.5in);
 	z-index: -1;
   &.box1 {
-    background-position-y: calc(0.15 * #{$height});
-    background-position-x: calc(-0.12 * #{$height});
+    background-position-y: calc(0.15 * 5.5in);
+    background-position-x: calc(-0.12 * 5.5in);
     left: 0px;
-    top: calc(#{$heightActual} - (0.4 * #{$heightActual}));
+    top: calc(5.5in - (0.4 * 5.5in));
     /*@include mobile {
       top: calc(100vh - 50vw);
     }*/
   }
   &.box2 {
     transform: rotate(90deg);
-    background-position-x: calc(-0.07 * #{$heightActual});
-    background-position-y: calc(-0.14 *  #{$heightActual});
-    left: calc(#{$widthActual} - (0.46 * #{$widthActual}));
+    background-position-x: calc(-0.07 * 5.5in);
+    background-position-y: calc(-0.14 * 5.5in);
+    left: calc(4.25in - (0.46 * 4.25in));
     top:-30px;
-  }
-  &.inversed2 {
-    &.box1 {
-      transform: scaleX(-1);
-
-    }
-    &.box2 {
-      transform: rotate(90deg) scaleY(-1);
-      left: 10px;
-    }
   }
 }
 
 .card-back {
   overflow: hidden;
   z-index: -5;
-  .guidelines {
-    top: $heightActual;
-  }
   .background {
     z-index: -30;
   }
@@ -304,11 +256,11 @@ ul.dashed > li:not(.no-before):before {
     z-index: -20;
     &.box1 {
       left: 0px;
-      top: calc(#{$heightActual} + #{$heightActual} - (0.4 * #{$heightActual}));
+      top: calc(5.5in + 5.5in - (0.4 * 5.5in));
     }
     &.box2 {
-      left: calc(#{$widthActual} - (0.46 * #{$widthActual}));
-      top: calc(-30px + #{$heightActual});
+      left: calc(4.25in - (0.46 * 4.25in));
+      top: calc(-30px + 5in);
     }
   }
 }

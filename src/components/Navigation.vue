@@ -30,7 +30,7 @@ export default {
   computed: {
     showNavigation() {
       console.log(this.$route);
-      if (this.$route.fullPath == '/hotcard') {
+      if (this.$route.fullPath.includes('/hotcard')) {
         console.log('hiding')
         return false;
       }

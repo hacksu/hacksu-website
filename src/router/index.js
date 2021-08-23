@@ -4,6 +4,7 @@ import Alumni from '../views/Alumni.vue'
 import Contact from '../views/Contact.vue'
 import Constitution from '../views/Constitution.vue'
 import HotCard from '../views/HotCard.vue'
+import HotCardOld from '../views/HotCardOld.vue'
 
 const routes = [
   {
@@ -46,6 +47,14 @@ const routes = [
       title: 'HacKSU HotCard',
     },
     component: HotCard,
+  },
+  {
+    path: '/hotcardold',
+    name: 'Hot Card Old',
+    meta: {
+      title: 'HacKSU HotCard',
+    },
+    component: HotCardOld,
   },
 ]
 
