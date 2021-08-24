@@ -4,11 +4,12 @@ let app = express.Router();
 module.exports = app;
 
 app.get('/discord', (req, res) => {
+    const redirectUrl = req.originalUrl; //(global.LOCALHOST ? req.originalUrl : 'https://hacksu.com/api/discord')
     if (!('discord' in req.session)) {
-        return res.redirect('/api/oauth/discord?redirect=' + req.originalUrl);
+        return res.redirect('/api/oauth/discord?redirect=' + redirectUrl);
     }
     if (!('microsoft' in req.session)) {
-        return res.redirect('/api/oauth/microsoft?redirect=' + req.originalUrl);
+        return res.redirect('/api/oauth/microsoft?redirect=' + redirectUrl);
     }
     res.json({
         email: req.session.microsoft.email,
