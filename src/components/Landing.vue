@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getInvolved() {
-      this.$el.parentElement.querySelector('.meetings').scrollIntoView();
+      this.$el.parentElement.querySelector('.anchor-getInvolved').scrollIntoView();
       window.scrollBy(0, -68);
     }
   },
