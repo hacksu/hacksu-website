@@ -65,7 +65,7 @@ jobs:
             echo "Installing Modules"
             npm install
             echo "Restarting Application"
-            echo pm2 restart hacksu-2021
+            pm2 restart hacksu-2021
             echo "Finished"
             exit
 
