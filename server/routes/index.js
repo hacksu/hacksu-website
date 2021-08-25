@@ -19,3 +19,5 @@ app.get('/discord', (req, res) => {
         }
     })
 })
+
+app.get('/unsubscribe/:email', require('./api/sendgrid').unsubscribe)
