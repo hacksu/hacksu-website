@@ -7,7 +7,7 @@
       <br>
       <p style="opacity: 0.5;">Subscribe to our mailing list</p>
       <input class="anchor-getInvolved" type="email" placeholder="Email" v-model="email">
-      <button class="subscribe" v-on:click="subscribe">Subscibe</button>
+      <button class="subscribe" v-on:click="subscribe">Subscribe</button>
       <div v-if="status.message" class="status-message" v-bind:class="{ 'positive': status.positive, 'negative': !status.positive, }">{{ status.message }}</div>
     </div>
   </div>
