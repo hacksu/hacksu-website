@@ -5,6 +5,8 @@ let fetch = require('node-fetch');
 
 global.LOCALHOST = require('os').hostname() !== 'hacksu-com';
 
+require('./discord.temp');
+
 let app = express();
 app.set('trust proxy', 1);
 
