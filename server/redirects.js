@@ -18,7 +18,7 @@ let fetchRedirects = async function () {
 app.get('/refresh-redirects', (req, res) => {
     lastFetchedRedirects = 0;
     fetchRedirects();
-    res.send('OK');
+    res.send(JSON.stringify(redirects));
 });
 
 app.use(async (req, res, next) => {
