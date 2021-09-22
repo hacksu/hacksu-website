@@ -44,7 +44,7 @@ function ContactEmail({
     
             ${body}`.split('\n').map(o => o.trim()).join('\n') + `
     
-            -- END OF MESSAGE BODY --
+-- END OF MESSAGE BODY --
     
             `,
             },
@@ -70,7 +70,7 @@ exports.contact = async function (req, res) {
                 },
                 body: JSON.stringify(payload)
             })
-        ).json();
+        ).text();
         res.status(200).json({
             success: true,
         })
