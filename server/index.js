@@ -37,7 +37,7 @@ app.use(require('./redirects'));
 
 // if (process.env.PORT) {
     let dist = `${__dirname}/../dist`;
-    let index = `${dist}/index.html`;
+    let index = require('path').resolve(`${dist}/index.html`);
     let serve = express.static(dist);
     app.use(serve, (req, res, next) => {
         res.sendFile(index);
