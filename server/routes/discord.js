@@ -22,10 +22,10 @@ async function getInvite() {
         channelId: '744989171201867858'
     })).filter(o => o.maxAge != 0);
     const events = await Guild.scheduledEvents.fetch();
-    const matches = invites.map(invite => {
-        const event = events.find(evt => Math.abs(evt.scheduledStartTimestamp - invite._expiresTimestamp) <= (60 * 60 * 1000));
+    const matches = invites.map(invit => {
+        const event = events.find(evt => Math.abs(evt.scheduledStartTimestamp - invit._expiresTimestamp) <= (60 * 60 * 1000));
         return {
-            invite,
+            invite: invit,
             event,
         }
     }).filter(o => o.invite && o.event);
@@ -46,7 +46,8 @@ setInterval(function() {
 
 let invite;
 exports.discordInvite = function() {
-    return invite;
+    console.log({ invite })
+    return invite || defaultInvite;
 }
 //https://discord.gg/QhDaYmdQ?event=935693439595585576
 client.on('ready', async () => {
