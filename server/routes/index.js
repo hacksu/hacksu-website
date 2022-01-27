@@ -2,8 +2,13 @@ let express = require('express');
 let app = express.Router();
 
 module.exports = app;
+const { discordInvite } = require('./discord');
 
 app.get('/discord', (req, res) => {
+    res.redirect(discordInvite())
+})
+
+app.get('/olddiscord', (req, res) => {
     const redirectUrl = req.originalUrl; //(global.LOCALHOST ? req.originalUrl : 'https://hacksu.com/api/discord')
     if (!('discord' in req.session)) {
         return res.redirect('/api/oauth/discord?redirect=' + redirectUrl);
