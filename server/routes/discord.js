@@ -17,7 +17,7 @@ const client = new Client({
 
 const defaultInvite = 'https://discord.gg/rJDdvnt';
 async function getInvite() {
-    const Guild = client.guilds.resolve(guildId);
+    const Guild = await client.guilds.fetch(guildId);
     const invites = (await Guild.invites.fetch({
         channelId: '744989171201867858'
     })).filter(o => o.maxAge != 0);
