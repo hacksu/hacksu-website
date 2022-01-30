@@ -21,7 +21,8 @@
         <h1>{{ title }}</h1>
         <p class="main-p">{{ body }}</p>
         <!-- <button v-on:click="getInvolved">{{ button }}</button> -->
-        <img class="qr" style="margin-top: 5px;" src="@/assets/BlastOff-QR-21c.png">
+        <!-- <img class="qr" style="margin-top: 5px;" src="@/assets/BlastOff-QR-21c.png"> -->
+        <img class="qr" style="margin-top: 5px;" src="@/assets/HacKSU_Discord.png">
         <p style="margin-bottom: 5px">{{ meetings }}</p>
         <p style="margin-top: 0px; opacity: 0.5; margin-bottom: 10px;">hacksu.com</p>
         

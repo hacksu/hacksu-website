@@ -27,7 +27,8 @@
         <h1 style="margin-bottom: 0px;">{{ title }}</h1>
         <p class="main-p" style="margin-top: 5px;">{{ body }}</p>
         <!-- <button v-on:click="getInvolved">{{ button }}</button> -->
-        <img class="qr" style="margin-top: 5px;" src="@/assets/BlastOff-QR-21d.png">
+        <!-- <img class="qr" style="margin-top: 5px;" src="@/assets/BlastOff-QR-21d.png"> -->
+        <img class="qr" style="margin-top: 5px;" src="@/assets/HacKSU_Discord.png">
         <p style="margin-top: 2.5px; margin-bottom: 0px; font-size: 0.85em; opacity: 0.65;">{{ discord }}</p>
         <p style="margin-bottom: 0px; margin-top: 10px;">{{ meetings }}</p>
         <p style="margin-bottom: 5px; margin-top: 0px;">{{ meetings2 }}</p>

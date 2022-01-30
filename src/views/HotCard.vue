@@ -1,6 +1,17 @@
 <template>
   <div class="hot-card-root">
     <HotCardContent></HotCardContent>
+    <div className="hidePrint" style="position: fixed; left: 500px; top: 200px; color: black">
+      <h1>Instructions</h1>
+      <ol>
+        <li>Use Chrome</li>
+        <li>Print (Ctrl+P)</li>
+        <li>Destination: "Save as PDF" (NOT Microsoft PDF)</li>
+        <li>Uncheck Header (if applicable)</li>
+        <li>Check "Background Graphics"</li>
+        <li>Set Margins to "None"</li>
+      </ol>
+    </div>
   </div>
 </template>
 
@@ -34,6 +45,11 @@ export default {
     // background-color: #142027;
 }
 
+@media print {
+  .hidePrint {
+    display: none;
+  }
+}
 
 // @media print {
 //   body {
