@@ -17,7 +17,7 @@ export const alumni = {
   list: Alumni.map(o => o.export()),
   showCurrent: ShowCurrentAlumni,
   title: 'Hacksu Alumni',
-  description: `Some Text`
+  description: `Past and present leaders of HacKSU`
 };
 window.$alumni = alumni;
 console.log(alumni);
