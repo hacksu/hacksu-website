@@ -16,7 +16,7 @@ import Alumni, { ShowCurrent as ShowCurrentAlumni } from '@/alumni';
 export const alumni = {
   list: Alumni.map(o => o.export()),
   showCurrent: ShowCurrentAlumni,
-  title: 'Hacksu Alumni',
+  title: 'HacKSU Alumni',
   description: `Past and present leaders of HacKSU`
 };
 window.$alumni = alumni;
@@ -26,7 +26,7 @@ console.log(`PJ-Leyden, ktakattack`.split(', ').map(o => '@' + o).join('\n') + '
 
 export const landing = {
   title: "Learn. Grow. Create.",
-  body: "Hacksu teaches anyone, regardless of skill level or major, how to code.",
+  body: "HacKSU teaches anyone, regardless of skill level or major, how to code.",
   button: "Get Involved",
   social: [ // Please don't use more than 3 here or else it may overlap with the top right hacksu box
     {
@@ -53,13 +53,13 @@ export const meetings = {
     },
 
   },
-  body: "Hacksu teaches anyone, regardless of skill level or major, how to code.",
+  body: "HacKSU teaches anyone, regardless of skill level or major, how to code.",
   button: "Get Involved",
 }
 
 export const involved = {
   discord,
-  header: 'Subscribe to the Hacksu mailing list!',
+  header: 'Subscribe to the HacKSU mailing list!',
   title: "The best way to stay informed is to subscribe to our mailing list.",
   description: "We'll let you know when we are meeting and fill you in on what is going on each week!",
 
@@ -67,7 +67,7 @@ export const involved = {
 
 export const contact = {
   title: "Contact Us",
-  description: `If you have any questions regarding Hacksu,
+  description: `If you have any questions regarding HacKSU,
   please feel free to contact us.
   One of us will get back to you as soon as possible.`,
   button: "Send",
