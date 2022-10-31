@@ -2,6 +2,7 @@
   <div class="involved">
     <div class="details">
       <h2>Get Involved!</h2>
+      <div v-html="inviteSVG"></div>
       <p>{{ title }}</p>
       <p>{{ description }}</p>
       <br>
@@ -15,6 +16,7 @@
 
 <script>
 import { involved as details } from '@/details';
+import inviteSVG from "!!raw-loader!@/assets/images/discordinvite.svg";
 
 export default {
   name: 'Involved',
@@ -25,6 +27,7 @@ export default {
         positive: false,
         message: false,
       },
+      inviteSVG,
       ...details,
     };
   },
