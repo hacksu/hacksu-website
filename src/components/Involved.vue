@@ -2,7 +2,7 @@
   <div class="involved">
     <div class="details">
       <h2>Get Involved!</h2>
-      <div v-html="inviteSVG"></div>
+      <div id="invite-container" v-html="inviteSVG"></div>
       <p>{{ title }}</p>
       <p>{{ description }}</p>
       <br>
@@ -77,6 +77,10 @@ export default {
       font-size: 2.5vh;
     }
   }
+  #invite-container {
+    max-width: 95vw;
+    margin: 0 auto;
+  }
   input[type=email] {
     font-size: 2.5vh;
     width: 30vw;
@@ -104,4 +108,10 @@ export default {
   }
 }
 
+</style>
+
+<style>
+svg#discordinvite {
+  max-width: 100%;
+}
 </style>
