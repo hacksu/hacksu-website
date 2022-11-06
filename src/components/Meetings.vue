@@ -3,7 +3,10 @@
     <h2>Meetings</h2>
     <p class="time">{{ time }}</p>
     <p v-if="virtual" class="location" v-html="location.virtual"></p>
-    <p v-else class="location" v-html="location.building.details"></p>
+    <p v-else class="location">
+      <a :href="location.building.url"><b>{{location.building.name}}</b></a>
+       - {{location.building.room}}
+    </p>
     <a v-if="!virtual" class="building" v-bind:href="location.building.url">
       <div class="photo" v-bind:style="{ 'background-image': 'url(' + location.building.image + ')'}">
 
@@ -45,6 +48,9 @@ export default {
   padding-bottom: 10vh;
   overflow: hidden;
 
+  a, a:visited {
+    color: inherit;
+  }
   h2 {
     font-size: 5vh;
   }
@@ -76,7 +82,7 @@ export default {
   }
   .building {
     text-decoration: none;
-    color: inherit;
+    color: white;
     .photo {
       @include rounded;
       background-position: center;
@@ -93,7 +99,7 @@ export default {
         height: 45vw;
       }
       .map {
-        @include background(url('../assets/taylor-map.png'));
+        @include background(url('../assets/images/bowman-map.jpg'));
         height: 100%;
         opacity: 0;
         transition: opacity 0.25s, transform 0.25s;
