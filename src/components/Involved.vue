@@ -3,13 +3,22 @@
     <div class="details">
       <h2>Get Involved!</h2>
       <div id="invite-container" v-html="inviteSVG"></div>
-      <p>{{ title }}</p>
-      <p>{{ description }}</p>
-      <br>
-      <p style="opacity: 0.5;">Subscribe to our mailing list</p>
-      <input class="anchor-getInvolved" type="email" placeholder="Email" v-model="email">
-      <button class="subscribe" v-on:click="subscribe">Subscribe</button>
-      <div v-if="status.message" class="status-message" v-bind:class="{ 'positive': status.positive, 'negative': !status.positive, }">{{ status.message }}</div>
+      <h3>{{discordBlurb.title}}</h3>
+      <ul id="invite-blurb">
+        <li v-for="(description, i) in discordBlurb.descriptions" :key="i">
+          {{description}}
+        </li>
+      </ul>
+      <template v-if="showEmailSignup">
+        <hr />
+        <p>{{ emailBlurb.title }}</p>
+        <p>{{ emailBlurb.description }}</p>
+        <br>
+        <p style="opacity: 0.5;">Subscribe to our mailing list</p>
+        <input class="anchor-getInvolved" type="email" placeholder="Email" v-model="email">
+        <button class="subscribe" v-on:click="subscribe">Subscribe</button>
+        <div v-if="status.message" class="status-message" v-bind:class="{ 'positive': status.positive, 'negative': !status.positive, }">{{ status.message }}</div>
+      </template>
     </div>
   </div>
 </template>
@@ -80,6 +89,13 @@ export default {
   #invite-container {
     max-width: 95vw;
     margin: 0 auto;
+  }
+  #invite-blurb {
+    font-size: 2.5vh;
+    padding: 0;
+  }
+  hr {
+    width: 80vw;
   }
   input[type=email] {
     font-size: 2.5vh;

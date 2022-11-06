@@ -59,10 +59,20 @@ export const meetings = {
 
 export const involved = {
   discord,
-  header: 'Subscribe to the HacKSU mailing list!',
-  title: "The best way to stay informed is to subscribe to our mailing list.",
-  description: "We'll let you know when we are meeting and fill you in on what is going on each week!",
-
+  emailBlurb: {
+    header: 'Subscribe to the HacKSU mailing list!',
+    title: "The best way to stay informed is to subscribe to our mailing list.",
+    description: "We'll let you know when we are meeting and fill you in on what is going on each week!",
+  },
+  discordBlurb: {
+    title: "Join our Discord server!",
+    descriptions: [
+      "Get lesson announcements",
+      "Connect with other members and leaders",
+      "Become part of the KSU hacking community"
+    ]
+  },
+  showEmailSignup: false
 }
 
 export const contact = {
