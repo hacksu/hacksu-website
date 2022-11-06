@@ -44,4 +44,12 @@ export default {
   }
 }
 
+@media (max-width: 800px) {
+  .footer {
+    .social img {
+      height: 10vw;
+    }
+  }
+}
+
 </style>
