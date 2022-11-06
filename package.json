@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "serve2": "vue-cli-service serve --port 8060",
-    "build": "vue-cli-service build",
+    "serve": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
+    "serve2": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve --port 8060",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
     "update": "git fetch && git pull && npm run build && pm2 restart hacksu"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect-mongodb-session": "^2.4.1",
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.3",
     "discord.js": "^13.1.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
@@ -27,8 +28,8 @@
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
+    "raw-loader": "^4.0.2",
     "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "raw-loader": "^4.0.2"
+    "sass-loader": "^8.0.2"
   }
 }
