@@ -1,22 +1,17 @@
 <template>
   <div class="involved">
     <div class="details">
-      <h2>Get Involved!</h2>
-      <div id="invite-column">
-        <div id="invite-container" v-html="inviteSVG"></div>
-        <h3>{{discordBlurb.title}}</h3>
-        <ul id="invite-blurb">
-          <li v-for="(description, i) in discordBlurb.descriptions" :key="i">
-            {{description}}
-          </li>
-        </ul>
-      </div>
+      <h2 style="margin-bottom: 0px">Get Involved!</h2>
+      <template v-if="showDiscord">
+        <div class="invite-column">
+          <p style="opacity: 0.8;">{{ discordBlurb.title }}</p>
+          <div id="invite-container" v-html="inviteSVG"></div>
+        </div>
+      </template>
       <template v-if="showEmailSignup">
-        <hr />
-        <p>{{ emailBlurb.title }}</p>
-        <p>{{ emailBlurb.description }}</p>
-        <br>
-        <p style="opacity: 0.5;">Subscribe to our mailing list</p>
+        <div class="invite-column">
+          <p style="opacity: 0.8;">{{ emailBlurb.title }}</p>
+        </div>
         <input class="anchor-getInvolved" type="email" placeholder="Email" v-model="email">
         <button class="subscribe" v-on:click="subscribe">Subscribe</button>
         <div v-if="status.message" class="status-message" v-bind:class="{ 'positive': status.positive, 'negative': !status.positive, }">{{ status.message }}</div>
@@ -77,7 +72,7 @@ export default {
   @include white-bg;
   color: black;
   padding-top: 5vh;
-  padding-bottom: 5vh;
+  padding-bottom: 7vh;
   h2 {
     font-size: 4vh;
   }
@@ -88,7 +83,7 @@ export default {
       font-size: 2.5vh;
     }
   }
-  #invite-column {
+  .invite-column {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
