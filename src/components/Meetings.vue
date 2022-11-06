@@ -48,7 +48,7 @@ export default {
   padding-bottom: 10vh;
   overflow: hidden;
 
-  a:visited {
+  a, a:visited {
     color: inherit;
   }
   h2 {

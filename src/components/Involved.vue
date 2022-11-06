@@ -2,13 +2,15 @@
   <div class="involved">
     <div class="details">
       <h2>Get Involved!</h2>
-      <div id="invite-container" v-html="inviteSVG"></div>
-      <h3>{{discordBlurb.title}}</h3>
-      <ul id="invite-blurb">
-        <li v-for="(description, i) in discordBlurb.descriptions" :key="i">
-          {{description}}
-        </li>
-      </ul>
+      <div id="invite-column">
+        <div id="invite-container" v-html="inviteSVG"></div>
+        <h3>{{discordBlurb.title}}</h3>
+        <ul id="invite-blurb">
+          <li v-for="(description, i) in discordBlurb.descriptions" :key="i">
+            {{description}}
+          </li>
+        </ul>
+      </div>
       <template v-if="showEmailSignup">
         <hr />
         <p>{{ emailBlurb.title }}</p>
@@ -86,13 +88,27 @@ export default {
       font-size: 2.5vh;
     }
   }
+  #invite-column {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 450px;
+    max-width: 95%;
+    h3 {
+      margin: 10px 0;
+    }
+  }
   #invite-container {
     max-width: 95vw;
     margin: 0 auto;
   }
   #invite-blurb {
-    font-size: 2.5vh;
-    padding: 0;
+    text-align: left;
+    font-size: 1.2rem;
+    padding: 0 10px 0 30px;
+    list-style-type: disc;
+    list-style-position: outside;
+    margin: 0;
   }
   hr {
     width: 80vw;
