@@ -5,7 +5,7 @@ export const discord = "https://discord.gg/rJDdvnt";
 export const navigation = {
   default: [
     ['Home', '/'],
-    ['Kent Hack Enough', 'https://khe.io'],
+    // ['Kent Hack Enough', 'https://khe.io'],
     ['Alumni', '/alumni'],
     ['Contact', '/contact'],
     ['Constitution', '/constitution'],
