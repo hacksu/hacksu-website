@@ -5,7 +5,7 @@ export const discord = "https://discord.gg/rJDdvnt";
 export const navigation = {
   default: [
     ['Home', '/'],
-    ['Kent Hack Enough', 'https://khe.io'],
+    // ['Kent Hack Enough', 'https://khe.io'],
     ['Alumni', '/alumni'],
     ['Contact', '/contact'],
     ['Constitution', '/constitution'],
@@ -16,8 +16,8 @@ import Alumni, { ShowCurrent as ShowCurrentAlumni } from '@/alumni';
 export const alumni = {
   list: Alumni.map(o => o.export()),
   showCurrent: ShowCurrentAlumni,
-  title: 'Hacksu Alumni',
-  description: `Some Text`
+  title: 'HacKSU Alumni',
+  description: `Past and present leaders of HacKSU`
 };
 window.$alumni = alumni;
 console.log(alumni);
@@ -26,7 +26,7 @@ console.log(`PJ-Leyden, ktakattack`.split(', ').map(o => '@' + o).join('\n') + '
 
 export const landing = {
   title: "Learn. Grow. Create.",
-  body: "Hacksu teaches anyone, regardless of skill level or major, how to code.",
+  body: "HacKSU teaches anyone, regardless of skill level or major, how to code.",
   button: "Get Involved",
   social: [ // Please don't use more than 3 here or else it may overlap with the top right hacksu box
     {
@@ -41,32 +41,38 @@ export const landing = {
 export const meetings = {
   discord,
   time: "Every Tuesday at 7:00 PM",
-  virtual: true,
+  virtual: false,
   location: {
     virtual: `Due to COVID-19, all meetings are being held virtually through
       <a class="link" href="${discord}">discord</a>.`,
     building: {
-      details: '<b>Math & Science Building</b> - Room 109',
-      image: 'https://i.pinimg.com/originals/90/3d/b2/903db24fb1e148954205e4edf4faa669.jpg',
-      url: 'https://map.concept3d.com/?id=568#!m/57924?sbc/?s/math%20and%20science%20building',
+      name: "Bowman Hall",
+      room: "Room 218",
+      image: require("@/assets/images/bowman.jpg"),
+      url: 'https://map.concept3d.com/?id=568#!m/57856',
     },
 
   },
-  body: "Hacksu teaches anyone, regardless of skill level or major, how to code.",
+  body: "HacKSU teaches anyone, regardless of skill level or major, how to code.",
   button: "Get Involved",
 }
 
 export const involved = {
   discord,
-  header: 'Subscribe to the Hacksu mailing list!',
-  title: "The best way to stay informed is to subscribe to our mailing list.",
-  description: "We'll let you know when we are meeting and fill you in on what is going on each week!",
-
+  emailBlurb: {
+    header: 'Subscribe to the HacKSU mailing list!',
+    title: "We'll let you know when we are meeting and fill you in on what is going on each week!",
+  },
+  discordBlurb: {
+    title: "Join our Discord server for weekly announcements and more!",
+  },
+  showDiscord: true,
+  showEmailSignup: false,
 }
 
 export const contact = {
   title: "Contact Us",
-  description: `If you have any questions regarding Hacksu,
+  description: `If you have any questions regarding HacKSU,
   please feel free to contact us.
   One of us will get back to you as soon as possible.`,
   button: "Send",

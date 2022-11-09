@@ -1,20 +1,28 @@
 <template>
   <div class="involved">
     <div class="details">
-      <h2>Get Involved!</h2>
-      <p>{{ title }}</p>
-      <p>{{ description }}</p>
-      <br>
-      <p style="opacity: 0.5;">Subscribe to our mailing list</p>
-      <input class="anchor-getInvolved" type="email" placeholder="Email" v-model="email">
-      <button class="subscribe" v-on:click="subscribe">Subscribe</button>
-      <div v-if="status.message" class="status-message" v-bind:class="{ 'positive': status.positive, 'negative': !status.positive, }">{{ status.message }}</div>
+      <h2 style="margin-bottom: 0px">Get Involved!</h2>
+      <template v-if="showDiscord">
+        <div class="invite-column">
+          <p style="opacity: 0.8;">{{ discordBlurb.title }}</p>
+          <div id="invite-container" v-html="inviteSVG"></div>
+        </div>
+      </template>
+      <template v-if="showEmailSignup">
+        <div class="invite-column">
+          <p style="opacity: 0.8;">{{ emailBlurb.title }}</p>
+        </div>
+        <input class="anchor-getInvolved" type="email" placeholder="Email" v-model="email">
+        <button class="subscribe" v-on:click="subscribe">Subscribe</button>
+        <div v-if="status.message" class="status-message" v-bind:class="{ 'positive': status.positive, 'negative': !status.positive, }">{{ status.message }}</div>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
 import { involved as details } from '@/details';
+import inviteSVG from "!!raw-loader!@/assets/images/discordinvite.svg";
 
 export default {
   name: 'Involved',
@@ -25,6 +33,7 @@ export default {
         positive: false,
         message: false,
       },
+      inviteSVG,
       ...details,
     };
   },
@@ -63,7 +72,7 @@ export default {
   @include white-bg;
   color: black;
   padding-top: 5vh;
-  padding-bottom: 5vh;
+  padding-bottom: 7vh;
   h2 {
     font-size: 4vh;
   }
@@ -73,6 +82,31 @@ export default {
       max-width: 80vw;
       font-size: 2.5vh;
     }
+  }
+  .invite-column {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 450px;
+    max-width: 95%;
+    h3 {
+      margin: 10px 0;
+    }
+  }
+  #invite-container {
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+  #invite-blurb {
+    text-align: left;
+    font-size: 1.2rem;
+    padding: 0 10px 0 30px;
+    list-style-type: disc;
+    list-style-position: outside;
+    margin: 0;
+  }
+  hr {
+    width: 80vw;
   }
   input[type=email] {
     font-size: 2.5vh;
@@ -101,4 +135,10 @@ export default {
   }
 }
 
+</style>
+
+<style>
+svg#discordinvite {
+  max-width: 100%;
+}
 </style>

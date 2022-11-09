@@ -77,7 +77,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  document.title = to.meta.title || to.name || 'Hacksu';
+  document.title = to.meta.title || to.name || 'HacKSU';
 })
 
 export default router

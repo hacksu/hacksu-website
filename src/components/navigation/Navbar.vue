@@ -141,19 +141,16 @@ export default {
     @include display-hide('tablet');
     @include display-hide('desktop');
     @include background(url('../../assets/hamburger.svg'), contain);
-    padding: 10px;
+    padding: 4px;
     background-color: transparent;
     background-position: left center !important;
     //width: calc(4vh + 150px);
     width: 200px;
-    font-size: 3vh;
-    @include mobile {
-      font-size: 6vw;
-    }
-    line-height: 2vh;
+    font-size: 20px;
+    height: 30px;
     //color: transparent;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 12px;
     margin-right: 20px;
     border-radius: 0px;
     transition: opacity 0.05s;
