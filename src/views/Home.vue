@@ -4,7 +4,6 @@
     <Meetings/>
     <Involved/>
     <SocialMedia/>
-    <h1>Hey hacksu! Deploy lesson!</h1>
   </div>
 </template>
 
