@@ -28,7 +28,7 @@ discordinvite.svg -->
      showgrid="false"
      inkscape:zoom="1.6477815"
      inkscape:cx="195.7177"
-     inkscape:cy="85.266162"
+     inkscape:cy="85.266159"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
      inkscape:window-x="-9"
@@ -181,20 +181,19 @@ discordinvite.svg -->
      id="rect31" />
   <text
      color="#ffffff"
-     dominant-baseline="text-after-edge"
-     font-size="14px"
-     font-stretch="100%"
-     font-weight="500"
      text-rendering="optimizelegibility"
      word-spacing="0"
      fill="#ffffff"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'gg sans';-inkscape-font-specification:'gg sans';text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'gg sans Normal';-inkscape-font-specification:'gg sans Normal,  Bold';text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000"
      x="6.3709998"
-     id="text35"><tspan
+     id="text35"
+     dominant-baseline="text-after-edge"
+     font-size="14px"
+     font-stretch="100%"><tspan
        xml:space="preserve"
        x="752.47101"
        y="352.60001"
        lengthAdjust="spacingAndGlyphs"
        id="tspan33"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'gg sans Normal';-inkscape-font-specification:'gg sans Normal, '">Join</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-family:'gg sans SemiBold';-inkscape-font-specification:'gg sans SemiBold,  Bold'">Join</tspan></text>
 </svg>
