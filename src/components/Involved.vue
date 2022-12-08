@@ -134,11 +134,10 @@ export default {
     }
   }
 }
-
 </style>
 
 <style>
-svg#discordinvite {
+#invite-container svg {
   max-width: 100%;
 }
 </style>
