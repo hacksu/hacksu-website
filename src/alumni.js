@@ -130,7 +130,7 @@ const JoshuaBehler = new Alumni({ // UPDATED
   name: "Joshua Behler",
   graduate: SPRING + 2022,
   github: 'Joshua2000B',
-  body: `<p>Sponsorship</p><p>Developer</p>`
+  body: `<p>President</p><p>Sponsorship</p><p>Developer</p>`
 })
 
 const KristyConry = new Alumni({ // UPDATED
