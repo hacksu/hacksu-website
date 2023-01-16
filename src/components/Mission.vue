@@ -3,7 +3,7 @@
         <h2>🗺️ Your Field Guide to the Digital World 💾</h2>
         <div id="list-row">
             <div>
-                <h3>For Computer Science Majors</h3>
+                <h3>For Those Familiar With Coding</h3>
                 <ul>
                     <li>
                         Classes give you an background in technical concepts; we
@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <div>
-                <h3>For Everyone</h3>
+                <h3>For Those New to Coding</h3>
                 <ul>
                     <li>
                         We are all <strong>increasingly online</strong>.
