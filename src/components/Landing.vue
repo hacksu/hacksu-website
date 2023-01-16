@@ -12,6 +12,7 @@
           v-bind:title="item.title"
           v-bind:href="item.link"
           v-bind:style="{ 'top': ('-' + (index * 10) + 'vh'), }"
+          :key="item.link"
         >
           <img v-bind:src="item.img">
         </a>
@@ -20,7 +21,7 @@
       <h1>{{ title }}</h1>
       <p>{{ body }}</p>
       <br>
-      <button v-on:click="getInvolved">{{ button }}</button>
+      <button><a href="#involved">{{ button }}</a></button>
     </div>
   </div>
 </template>
@@ -35,12 +36,6 @@ export default {
       ...details,
       height: false,
     };
-  },
-  methods: {
-    getInvolved() {
-      this.$el.parentElement.querySelector('.anchor-getInvolved').scrollIntoView();
-      window.scrollBy(0, -68);
-    }
   },
   mounted() {
     /*
@@ -99,6 +94,10 @@ export default {
       font-size: 3vh;
       width: 60vw;
       max-width: 40vh;
+      a, a:visited {
+        text-decoration: none;
+        color: white;
+      }
     }
   }
   .main-logo {
@@ -114,9 +113,6 @@ export default {
     background: transparent;
     opacity: 0.25;
     float: right;
-    a {
-
-    }
     img {
       @include transition;
       width: 10vh;

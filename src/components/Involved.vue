@@ -1,5 +1,5 @@
 <template>
-  <div class="involved">
+  <div id="involved">
     <div class="details">
       <h2 style="margin-bottom: 0px">Get Involved!</h2>
       <template v-if="showDiscord">
@@ -67,7 +67,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-.involved {
+#involved {
   @include center;
   @include white-bg;
   color: black;
