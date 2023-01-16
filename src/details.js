@@ -47,7 +47,7 @@ export const meetings = {
       <a class="link" href="${discord}">discord</a>.`,
     building: {
       name: "Bowman Hall",
-      room: "Room 218",
+      room: "Room 217",
       image: require("@/assets/images/bowman.jpg"),
       url: 'https://map.concept3d.com/?id=568#!m/57856',
     },
