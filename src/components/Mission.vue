@@ -43,6 +43,9 @@
     @include center;
     h3 {
         font-size: 3.5vh;
+        @media (max-width: 1000px) {
+            font-size: 3vh;
+        }
     }
     line-height: 1.3;
     padding: 5vh 10px 7vh 10px;
@@ -51,11 +54,12 @@
 #title-row {
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 4vh;
-    width: 60vw;
+    width: 50vw;
     margin: 0 auto;
     h2 {
-        width: 100%;
+        width: max-content;
     }
     span {
         font-size: 7vh;
@@ -63,12 +67,12 @@
     * {
         margin: 0 20px;
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
         margin: unset;
         width: 100%;
-        font-size: 3.5vh;
+        font-size: 3vh;
         span {
-            font-size: 4vh;
+            font-size: 4.5vh;
         }
         * {
             margin: 0 10px;
@@ -92,7 +96,7 @@
             }
         }
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
         flex-direction: column;
         width: 100%;
         div {
