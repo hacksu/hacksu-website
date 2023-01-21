@@ -1,18 +1,22 @@
 <template>
     <div id="mission">
-        <h2>🗺️ Your Field Guide to the Digital World 💾</h2>
+        <div id="title-row">
+            <span>🗺️</span>
+            <h2>Your Field Guide to the Digital World</h2>
+            <span>💾</span>
+        </div>
         <div id="list-row">
             <div>
                 <h3>For Those New To Coding:</h3>
                 <ul>
                     <li>
-                        Learning basic programming gives you new ways to be
-                        creative and establish a presence in an increasingly
-                        digital world.
+                        Learning basic programming gives you new ways to
+                        <strong>be creative and establish a presence</strong> in
+                        an increasingly digital world.
                     </li>
                     <li>
                         At our lessons, you can explore writing code without
-                        devoting your life to computers' logic.
+                        devoting your life to learning computer logic.
                     </li>
                 </ul>
             </div>
@@ -21,8 +25,8 @@
                 <ul>
                     <li>
                         Classes teach abstract technical concepts; we show you
-                        the modern tools and technologies used by the industry
-                        in the real world.
+                        the <strong>modern tools and technologies</strong> used
+                        by the industry in the real world.
                     </li>
                     <li>
                         Plus, we bring in alumni and representatives from real
@@ -37,42 +41,67 @@
 <style lang="scss" scoped>
 #mission {
     @include center;
-    h2 {
-        font-size: 5vh;
-    }
     h3 {
         font-size: 3.5vh;
     }
-    li {
-        font-size: 1.4em;
-        margin: 20px 0;
-        &:nth-child(2n) {
-            font-size: 1.15em;
-            margin-left: 20px;
-        }
-    }
     line-height: 1.3;
-    padding-top: 5vh;
-    padding-bottom: 7vh;
-    min-height: 70vh;
+    padding: 5vh 10px 7vh 10px;
     background-image: linear-gradient(to top left, #5c2370, #242d76);
 }
-#list-row {
+#title-row {
     display: flex;
-    width: 80vw;
+    align-items: center;
+    font-size: 4vh;
+    width: 60vw;
     margin: 0 auto;
-    flex-direction: row;
+    h2 {
+        width: 100%;
+    }
+    span {
+        font-size: 7vh;
+    }
+    * {
+        margin: 0 20px;
+    }
+    @media (max-width: 800px) {
+        margin: unset;
+        width: 100%;
+        font-size: 3.5vh;
+        span {
+            font-size: 4vh;
+        }
+        * {
+            margin: 0 10px;
+        }
+    }
+}
+#list-row {
+    width: 70vw;
+    display: flex;
+    // justify-content: space-evenly;
+    margin: 0 auto;
     div {
         text-align: left;
-        width: 100%;
+        width: 45%;
         padding: 0 35px;
+        li {
+            font-size: 1.4em;
+            margin: 20px 0;
+            &:nth-child(2n) {
+                font-size: 1.3em;
+            }
+        }
     }
     @media (max-width: 800px) {
         flex-direction: column;
+        width: 100%;
         div {
-            &:not(:last-child) {
-                margin-right: unset;
-        }
+            width: unset;
+            margin: unset;
+            padding: 0 15px;
+            li {
+                margin: 10px 0;
+            }
         }
     }
 }
