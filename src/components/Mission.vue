@@ -3,47 +3,30 @@
         <h2>🗺️ Your Field Guide to the Digital World 💾</h2>
         <div id="list-row">
             <div>
-                <h3>For Those Familiar With Coding</h3>
+                <h3>For Those New To Coding:</h3>
                 <ul>
                     <li>
-                        Classes give you an background in technical concepts; we
-                        show you <strong>the technologies at work in people's
-                        lives.</strong>
+                        Learning basic programming gives you new ways to be
+                        creative and establish a presence in an increasingly
+                        digital world.
                     </li>
                     <li>
-                        While CS classes teach you the botanical science of the
-                        digital world, we show you where and how to plant new
-                        trees 🦾🌳.
-                    </li>
-                    <li>
-                        We explain the modern languages and libraries that the
-                        tech industry uses to accomplish what it accomplishes.
-                    </li>
-                    <li>
-                        Plus, we bring in alumni and representatives from real
-                        companies to tell you what they think you should know.
+                        At our lessons, you can explore writing code without
+                        devoting your life to computers' logic.
                     </li>
                 </ul>
             </div>
             <div>
-                <h3>For Those New to Coding</h3>
+                <h3>For Those Already Learning:</h3>
                 <ul>
                     <li>
-                        We are all <strong>increasingly online</strong>.
+                        Classes teach abstract technical concepts; we show you
+                        the modern tools and technologies used by the industry
+                        in the real world.
                     </li>
                     <li>
-                        As the digital world progressively encroaches on the
-                        physical one, you probably want to figure out how it
-                        works.
-                    </li>
-                    <li>
-                        But more than that - learning basic programming
-                        techniques opens the door to real creativity and a more
-                        interesting relationship with interactive technologies.
-                    </li>
-                    <li>
-                        We can help you learn how to code without devoting your
-                        life to understanding the logic of a computer.
+                        Plus, we bring in alumni and representatives from real
+                        companies to tell you what they think you should know.
                     </li>
                 </ul>
             </div>
