@@ -57,7 +57,7 @@
     justify-content: center;
     font-size: 4vh;
     width: 50vw;
-    margin: 0 auto;
+    margin: 10px auto;
     h2 {
         width: max-content;
     }
@@ -80,17 +80,26 @@
     }
 }
 #list-row {
-    width: 70vw;
+    width: 75vw;
     display: flex;
-    // justify-content: space-evenly;
-    margin: 0 auto;
+    margin: 20px auto;
     div {
         text-align: left;
         width: 45%;
-        padding: 0 35px;
+        padding: 10px 30px;
+        background-color: #0003;
+        border-radius: 15px;
+        margin: 20px;
+        h3 {
+            margin-top: 20px;
+        }
+        ul {
+            padding-left: 0px;
+            list-style-type: none;
+        }
         li {
             font-size: 1.4em;
-            margin: 20px 0;
+            margin: 30px 0;
             &:nth-child(2n) {
                 font-size: 1.3em;
             }
@@ -101,11 +110,8 @@
         width: 100%;
         div {
             width: unset;
-            margin: unset;
-            padding: 0 15px;
-            li {
-                margin: 10px 0;
-            }
+            margin: 10px;
+            padding: 20px 35px;
         }
     }
 }
