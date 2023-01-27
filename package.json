@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve2": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve --port 8060",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
+    "build": "cross-env vue-cli-service build",
     "update": "git fetch && git pull && npm run build && pm2 restart hacksu"
   },
   "dependencies": {
