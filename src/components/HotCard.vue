@@ -182,14 +182,14 @@ ul.dashed > li:not(.no-before):before {
   padding-right: 5px;
 }
 
-.pizza-emoji {
-  background-image: url('~@/assets/pizza-emoji.png');
-  width: 10px;
-  color: rgba(0, 0, 0, 0);
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform: scale(1.5);
-}
+// .pizza-emoji {
+//   background-image: url('~@/assets/pizza-emoji.png');
+//   width: 10px;
+//   color: rgba(0, 0, 0, 0);
+//   background-size: contain;
+//   background-repeat: no-repeat;
+//   transform: scale(1.5);
+// }
 
 .landing {
   width: $widthActual;
