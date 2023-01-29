@@ -3,13 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "serve2": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve --port 8060",
-    "build": "cross-env vue-cli-service build",
-    "update": "git fetch && git pull && npm run build && pm2 restart hacksu",
-    "serve-vite": "vite",
-    "build-vite": "vite build",
-    "preview-vite": "vite preview"
+    "serve": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "update": "git fetch && git pull && npm run build && pm2 restart hacksu"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
