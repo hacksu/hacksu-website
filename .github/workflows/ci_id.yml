@@ -85,7 +85,7 @@ jobs:
           #passphrase: ${{ secrets.KEY_PASSPHRASE }}
           script: |
             cd /var/www/hacksu-2021
-            npm run build -- --dest "dist2"
+            npm run build -- --outDir "dist2"
             ls dist2
             rm -rf dist
             mv dist2 dist
