@@ -37,7 +37,7 @@ export default defineConfig({
     createHtmlPlugin({
       inject: {
         data: {
-          title: 'hacksu-2021'
+          title: 'HacKSU'
         }
       }
     })
