@@ -51,11 +51,5 @@ export default defineConfig({
       }
     }
   },
-  build: {
-    rollupOptions: {
-      input: {
-        app: './public/index.html', // default
-      },
-    },
-  }
+  build: {}
 })
