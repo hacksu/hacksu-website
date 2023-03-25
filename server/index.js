@@ -20,6 +20,13 @@ app.use(
 
 app.use(require("./redirects"));
 
+let dist = `${__dirname}/../dist`;
+let index = require("path").resolve(`${dist}/index.html`);
+let serve = express.static(dist);
+app.use(serve, (req, res, next) => {
+  res.sendFile(index);
+});
+
 let port = process.env.PORT || 8000;
 app.listen(port, function () {
   console.log("Listening on port", port);
