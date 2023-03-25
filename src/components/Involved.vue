@@ -22,7 +22,7 @@
 
 <script>
 import { involved as details } from '@/details';
-import inviteSVG from "!!raw-loader!@/assets/images/discordinvite.svg";
+import inviteSVG from "@/assets/images/discordinvite.svg?raw";
 
 export default {
   name: 'Involved',

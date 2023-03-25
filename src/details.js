@@ -24,6 +24,9 @@ console.log(alumni);
 // Alumni who haven't been updated yet
 console.log(`PJ-Leyden, ktakattack`.split(', ').map(o => '@' + o).join('\n') + '\n' + $alumni.list.filter(o => o.graduate.includes('1990')).map(o => '@' + o.github).join('\n'));
 
+import bowmanImage from "@/assets/images/bowman.jpg";
+import githubImage from "@/assets/images/github-white.svg";
+
 export const landing = {
   title: "Learn. Grow. Create.",
   body: "HacKSU teaches anyone, regardless of skill level or major, how to code.",
@@ -32,7 +35,7 @@ export const landing = {
     {
       title: "Github",
       link: "https://github.com/hacksu",
-      img: require("@/assets/images/github-white.svg"),
+      img: githubImage,
 
     },
   ],
@@ -48,7 +51,7 @@ export const meetings = {
     building: {
       name: "Bowman Hall",
       room: "Room 217",
-      image: require("@/assets/images/bowman.jpg"),
+      image: bowmanImage,
       url: 'https://map.concept3d.com/?id=568#!m/57856',
     },
 

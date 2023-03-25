@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "serve2": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve --port 8060",
-    "build": "cross-env vue-cli-service build",
+    "serve": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "update": "git fetch && git pull && npm run build && pm2 restart hacksu"
   },
   "dependencies": {
@@ -23,13 +23,12 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "raw-loader": "^4.0.2",
+    "@originjs/vite-plugin-commonjs": "^1.0.1",
+    "@vitejs/plugin-vue": "^2.0.1",
+    "@vitejs/plugin-vue-jsx": "^1.3.2",
     "sass": "^1.26.5",
-    "sass-loader": "^8.0.2"
+    "vite": "^2.7.2",
+    "vite-plugin-env-compatible": "^1.1.1",
+    "vite-plugin-html": "3.2.0"
   }
 }
