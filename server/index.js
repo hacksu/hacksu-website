@@ -5,7 +5,7 @@ let express = require("express");
 let app = express();
 app.set("trust proxy", 1);
 
-// mount to / on port 8000 for NGINX reverse proxy
+// mount to / on port 8000 for reverse proxy
 app.use(require("./routes"));
 app.use(
   "/api",

@@ -8,7 +8,7 @@ function ContactEmail({ email, name, subject, body, ip }) {
       {
         to: [
           {
-            email: "mjacovet@kent.edu",
+            email: "hacksu@cs.kent.edu",
             name: "Hacksu Leaders",
           },
         ],
@@ -67,9 +67,6 @@ exports.contact = async function (req, res) {
       },
       body: JSON.stringify(payload),
     });
-    console.log(sendgridRes);
-    console.log(sendgridRes.status);
-    console.log(await sendgridRes.text());
     console.log("sent contact form, status " + sendgridRes.status);
     res.status(200).json({ success: true });
   } catch (error) {
