@@ -22,7 +22,7 @@ app.use(require("./redirects"));
 
 let dist = `${__dirname}/../dist`;
 let index = require("path").resolve(`${dist}/index.html`);
-let serve = express.static(dist);
+let serve = express.static(dist, { extensions: ["html"] });
 app.use(serve, (req, res, next) => {
   res.sendFile(index);
 });

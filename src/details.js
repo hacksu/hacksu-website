@@ -19,10 +19,10 @@ export const alumni = {
   title: 'HacKSU Alumni',
   description: `Past and present leaders of HacKSU`
 };
-window.$alumni = alumni;
+
 console.log(alumni);
 // Alumni who haven't been updated yet
-console.log(`PJ-Leyden, ktakattack`.split(', ').map(o => '@' + o).join('\n') + '\n' + $alumni.list.filter(o => o.graduate.includes('1990')).map(o => '@' + o.github).join('\n'));
+console.log(`PJ-Leyden, ktakattack`.split(', ').map(o => '@' + o).join('\n') + '\n' + alumni.list.filter(o => o.graduate.includes('1990')).map(o => '@' + o.github).join('\n'));
 
 import bowmanImage from "@/assets/images/bowman.jpg";
 import githubImage from "@/assets/images/github-white.svg";
