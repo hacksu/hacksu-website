@@ -6,9 +6,9 @@ name: CI/CD
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
   #pull_request:
-    #branches: [ master ]
+  #branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
     concurrency:
       group: automatic_deployment
       cancel-in-progress: true
-      
+
     name: Deploy
     outputs:
       run_build: ${{ steps.check_build.outputs.run_build }}
@@ -46,8 +46,7 @@ jobs:
           else
             echo "::set-output name=run_build::false"
           fi
-          
-        
+
       - name: Deploying
         uses: appleboy/ssh-action@master
         with:
@@ -85,7 +84,7 @@ jobs:
           #passphrase: ${{ secrets.KEY_PASSPHRASE }}
           script: |
             cd /var/www/hacksu-2021
-            npm run build -- --outDir "dist2"
+            npm run build  # goes to dist2 by default
             ls dist2
             rm -rf dist
             mv dist2 dist

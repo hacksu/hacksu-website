@@ -51,5 +51,8 @@ export default defineConfig({
       }
     }
   },
-  build: {}
+  build: {
+    // files are moved to dist by github actions cd
+    outDir: "dist2"
+  }
 })
