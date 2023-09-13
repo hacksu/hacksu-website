@@ -27,7 +27,7 @@ class Alumni {
   }
 }
 
-// ---------- We Are So Back ----------
+// ----------------------------------
 
 const Mitch = new Alumni({
   name: "Mitch",
