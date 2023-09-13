@@ -4,7 +4,9 @@
       <div style="height: 5vh"/>
       <h1>{{ title }}</h1>
       <h3 class="description" v-html="description"/>
+      <h3>email hacksu@cs.kent.edu</h3>
     </div>
+    <!--
     <div class="body">
       <span class="inputs">
         <p>Your Name</p>
@@ -38,6 +40,7 @@
         Message Sent!
       </span>
     </div>
+  -->
   </div>
 </template>
 

@@ -5,8 +5,10 @@
       <h1>{{ title }}</h1>
       <h3 class="description" v-html="description"/>
     </div>
+
     <div class="list" v-for="(row, rowIndex) in organized" v-bind:key="rowIndex">
-      <h2 class="year">Class of {{ row.year }}</h2>
+      <h2 v-if="row.year != 2026" class="year">Class of {{ row.year }}</h2>
+      <h2 class="year" v-else>Current Leadership</h2>
       <span class="group">
         <AlumniItem v-for="(alumni, index) in row.list" v-bind:key="index" v-bind:alumni="alumni"/>
       </span>
