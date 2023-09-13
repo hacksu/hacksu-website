@@ -40,7 +40,7 @@ const Brandon = new Alumni({
   name: "Brandon",
   graduate: FALL + 2026,
   github: 'brandonscholten',
-  body: '<p>Ruthless Bureaucrat</p>'
+  body: '<p>Vice President</p>'
 })
 
 const Anna = new Alumni({
