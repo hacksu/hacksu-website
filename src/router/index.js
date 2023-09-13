@@ -1,9 +1,12 @@
 import Home from "../views/Home.vue";
-import Alumni from "../views/Alumni.vue";
+import Alumni from "../views/Staff.vue";
 import Contact from "../views/Contact.vue";
+// import Constitution from "../views/Constitution.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
 import HotCardOld from "../views/HotCardOld.vue";
+import Events from "../views/Events.vue";
+import { meetings } from "../details";
 
 export const routes = [
   {
@@ -16,10 +19,10 @@ export const routes = [
     component: Home,
   },
   {
-    path: "/alumni",
-    name: "Alumni",
+    path: "/staff",
+    name: "Staff",
     meta: {
-      title: "HacKSU Alumni & Former Staff",
+      title: "HacKSU Alumni & Staff",
     },
     component: Alumni,
   },
@@ -54,5 +57,13 @@ export const routes = [
       title: "HacKSU HotCard",
     },
     component: HotCardOld,
+  },
+  {
+    path: '/events',
+    name: "Events",
+    meta: {
+      title: "HacKSU Events",
+    },
+    component: Events,
   },
 ];

@@ -1,30 +1,31 @@
 <template>
+  <!-- <div class="constitution">
+    <embed data-v id="embed" src="constitution.pdf" type="application/pdf" width="100%">
+  </div> -->
+  <!-- <div class="constitution">
+   <pdf src="constitution.pdf"></pdf>
+  </div> -->
   <div class="constitution">
-    <embed id="embed" type="application/pdf" width="100%" src="constitution.pdf">
-
+    <vue-pdf-embed class="embed" source="constitution.pdf" />
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
+<script setup>
 
-export default {
-  name: 'Constitution',
+import VuePdfEmbed from 'vue-pdf-embed'
 
-}
+// // @ is an alias to /src
+
+// export default {
+//   name: 'Constitution',
+
+// }
 </script>
 
 <style scoped lang="scss">
 
 .constitution {
-  max-height: 100vh;
-  overflow-y: hidden;
-  background-color: #142027;
-
-  embed {
-    height: $navbar-height-remaining;
-    margin-top: $navbar-height;
-  }
+  max-width: 1000px;
 }
 
 

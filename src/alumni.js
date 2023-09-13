@@ -28,6 +28,31 @@ class Alumni {
 }
 
 
+// current leadership ---------------
+
+const Mitch = new Alumni({
+  name: "Mitch",
+  graduate: FALL + 2026,
+  github: 'toBeOfUse',
+  body: '<p>President</p>'
+})
+
+const Brandon = new Alumni({
+  name: "Brandon",
+  graduate: FALL + 2026,
+  github: 'brandonscholten',
+  body: '<p>Vice President</p>'
+})
+
+const Anna = new Alumni({
+  name: "Anna",
+  graduate: FALL + 2026,
+  github: '',
+  body: '<p>Treasurer</p>'
+})
+
+// ----------------------------------
+
 const Elizabeth = new Alumni({
   name: "Elizabeth",
   graduate: FALL + 2020,
