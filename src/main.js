@@ -42,3 +42,5 @@ export const createApp = ViteSSG(
     console.log("hello from ssg");
   }
 );
+
+

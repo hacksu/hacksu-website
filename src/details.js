@@ -5,10 +5,11 @@ export const discord = "https://discord.gg/rJDdvnt";
 export const navigation = {
   default: [
     ['Home', '/'],
-    // ['Kent Hack Enough', 'https://khe.io'],
-    ['Alumni', '/alumni'],
+    //['Kent Hack Enough', 'https://khe.io'],
+    ['Staff', '/staff'],
     ['Contact', '/contact'],
     ['Constitution', '/constitution'],
+    ['Events', '/events'],
   ]
 }
 
@@ -16,7 +17,7 @@ import Alumni, { ShowCurrent as ShowCurrentAlumni } from '@/alumni';
 export const alumni = {
   list: Alumni.map(o => o.export()),
   showCurrent: ShowCurrentAlumni,
-  title: 'HacKSU Alumni',
+  title: 'Alumni & Staff',
   description: `Past and present leaders of HacKSU`
 };
 
@@ -24,11 +25,12 @@ console.log(alumni);
 // Alumni who haven't been updated yet
 console.log(`PJ-Leyden, ktakattack`.split(', ').map(o => '@' + o).join('\n') + '\n' + alumni.list.filter(o => o.graduate.includes('1990')).map(o => '@' + o.github).join('\n'));
 
-import bowmanImage from "@/assets/images/bowman.jpg";
+import MSBImage from "@/assets/images/msb.jpg";
 import githubImage from "@/assets/images/github-white.svg";
 
 export const landing = {
-  title: "Learn. Grow. Create.",
+  //title: "Learn. Grow. Create.",
+  title: "Learn. Grow. Create",
   body: "HacKSU teaches anyone, regardless of skill level or major, how to code.",
   button: "Get Involved",
   social: [ // Please don't use more than 3 here or else it may overlap with the top right hacksu box
@@ -49,10 +51,10 @@ export const meetings = {
     virtual: `Due to COVID-19, all meetings are being held virtually through
       <a class="link" href="${discord}">discord</a>.`,
     building: {
-      name: "Bowman Hall",
-      room: "Room 217",
-      image: bowmanImage,
-      url: 'https://map.concept3d.com/?id=568#!m/57856',
+      name: "Mathematical Sciences Building (MSB)",
+      room: "Room 228",
+      image: MSBImage,
+      url: 'https://map.concept3d.com/?id=568#!m/57924?s/',
     },
 
   },
