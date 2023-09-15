@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 style="margin: auto">2023/2024</h1>
+        <h1 style="margin: auto">2023/2024 Tentative Schedule</h1>
         <br>
         <v-data-table id="table">
             <thead>
