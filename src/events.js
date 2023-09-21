@@ -11,10 +11,11 @@ export default { //used google sheets extension to export calendar in JSON forma
                 "link": "https://github.com/hacksu/HTML-CSS"
             },
             {
-                "event": "Rovisys resume review",
+                "event": "Github lesson Python Discord Bot",
                 "date": "9/26/2023",
-                "level": "Any",
-                "presenter": "Guest"
+                "level": "Beginner",
+                "presenter": "Brandon",
+                "link": "https://github.com/hacksu/nextcord-bot"
             },
             {
                 "event": "GitHub lesson react-tutorial",
@@ -36,11 +37,10 @@ export default { //used google sheets extension to export calendar in JSON forma
                 "presenter": "Guest"
             },
             {
-                "event": "GitHub lesson How-to-Javascript",
+                "event": "resume review",
                 "date": "10/24/2023",
                 "level": "Beginner",
-                "presenter": "Mitch",
-                "link": "https://github.com/hacksu/basicjs"
+                "presenter": "TBA"
             },
             {
                 "event": "GitHub lesson flutter-app-lesson",
