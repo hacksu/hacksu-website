@@ -4,56 +4,55 @@ export default { //used google sheets extension to export calendar in JSON forma
         return {
         rows: [
             {
-                "event": "Github lesson HTML/CSS",
+                "event": "Github lession HTML/CSS",
                 "date": "9/19/2023",
                 "level": "Beginner",
                 "presenter": "Mitch",
                 "link": "https://github.com/hacksu/HTML-CSS"
             },
             {
-                "event": "Github lesson Python Discord Bot",
+                "event": "Github lesson nextcord-bot",
                 "date": "9/26/2023",
                 "level": "Beginner",
                 "presenter": "Brandon",
                 "link": "https://github.com/hacksu/nextcord-bot"
             },
             {
-                "event": "GitHub lesson react-tutorial",
+                "event": "The Tor Network",
                 "date": "10/3/2023",
-                "level": "Intermediate",
-                "presenter": "Mitch",
-                "link": "https://github.com/hacksu/react-tutorial"
+                "level": "Beginner",
+                "presenter": "Zaz, Brandon"
             },
             {
-                "event": "GitHub lesson NextJS",
+                "event": "Guest speaker from Northrup Grumen",
                 "date": "10/10/2023",
-                "level": "Intermediate",
-                "presenter": "Brandon"
+                "level": "Any",
+                "presenter": "Tony"
             },
             {
-                "event": "Collin Werner - Progressive",
+                "event": "Robotics ",
                 "date": "10/17/2023",
                 "level": "Any",
-                "presenter": "Guest"
+                "presenter": "Baily"
             },
             {
-                "event": "resume review",
+                "event": "Tour the KSU server room",
                 "date": "10/24/2023",
                 "level": "Beginner",
-                "presenter": "TBA"
+                "presenter": "Roy "
             },
             {
                 "event": "GitHub lesson flutter-app-lesson",
                 "date": "10/31/2023",
                 "level": "Beginner",
-                "presenter": "Brandon",
+                "presenter": "Mitch",
                 "link": "https://github.com/hacksu/flutter-app-lesson"
             },
             {
-                "event": "Roy Heath III - server management",
+                "event": "GitHub lesson next-js",
                 "date": "11/7/2023",
-                "level": "Any",
-                "presenter": "Guest"
+                "level": "Intermediate",
+                "presenter": "Brandon"
             },
             {
                 "event": "GitHub lesson How-to-discord-bot",
