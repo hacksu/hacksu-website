@@ -5,11 +5,11 @@
         <v-data-table id="table">
             <thead>
                 <tr>
-                    <th v-for="col in columns" v-bind:key = "col">{{col}}</th>
+                    <th style="min-width: 150px" v-for="col in columns" v-bind:key = "col">{{col}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="row in rows" v-bind:key = "row">
+                <tr v-for="row in rows" v-bind:key = "row" >
                      <td v-for="col in columns" v-bind:key = "col">
                          <a v-if="row.link && row[col][1] == 't'" .href = "row[col]">{{row[col]}}</a>
                          <p v-else>{{row[col]}}</p>

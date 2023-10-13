@@ -30,49 +30,46 @@ export default { //used google sheets extension to export calendar in JSON forma
                 "presenter": "Tony"
             },
             {
-                "event": "Robotics ",
+                "event": "Tour the machne room!!!",
                 "date": "10/17/2023",
                 "level": "Any",
+                "presenter": "Roy Heath III"
+            },
+            {
+                "event": "RSM - industry advice",
+                "date": "10/24/2023",
+                "level": "any",
+                "presenter": "Josh Gatka, Ian Mulhern, Trevor Murphy, Trevor Ryan, David Garlak"
+            },
+            {
+                "event": "ROS - Robot Operating System",
+                "date": "10/31/2023",
+                "level": "any",
                 "presenter": "Baily"
             },
             {
-                "event": "Tour the KSU server room",
-                "date": "10/24/2023",
-                "level": "Beginner",
-                "presenter": "Roy "
-            },
-            {
-                "event": "GitHub lesson flutter-app-lesson",
-                "date": "10/31/2023",
-                "level": "Beginner",
-                "presenter": "Mitch",
-                "link": "https://github.com/hacksu/flutter-app-lesson"
-            },
-            {
-                "event": "GitHub lesson next-js",
+                "event": "cookie clicker - basic interactive webpage",
                 "date": "11/7/2023",
-                "level": "Intermediate",
-                "presenter": "Brandon"
+                "level": "beginner",
+                "presenter": "TBA"
             },
             {
-                "event": "GitHub lesson How-to-discord-bot",
+                "event": "cookie clicker - discord login API",
                 "date": "11/14/2023",
-                "level": "Intermediate",
-                "presenter": "Mitch",
-                "link": "https://github.com/hacksu/Python-Discord-Bot"
+                "level": "attended pt 1",
+                "presenter": "TBA"
             },
             {
-                "event": "GitHub lesson python-SQL-lesson",
+                "event": "cookie clicker - mongoDB",
                 "date": "11/21/2023",
-                "level": "Intermediate",
-                "presenter": "Brandon",
-                "link": "https://github.com/hacksu/Python-SQL-Lesson"
+                "level": "attended pt 2",
+                "presenter": "TBA"
             },
             {
-                "event": "Dr. Nesterenko - research and academia",
+                "event": "cookie clicker - CSS/sockets",
                 "date": "11/28/2023",
-                "level": "Any",
-                "presenter": "Guest"
+                "level": "attended pt 3",
+                "presenter": "TBA"
             },
             {
                 "event": "GitHub lesson express-guestbook",
