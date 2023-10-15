@@ -41,14 +41,16 @@ export default function setUpAuth(app){
     }));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.get('/discord-login', passport.authenticate('discord'), function(req, res) {});
+    app.get('/discord-login', passport.authenticate('discord'));
     app.get('/discord-callback',
         passport.authenticate('discord', { failureRedirect: '/' }),
         function(req, res) { res.redirect('/info') } // auth success
     );
     app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
+        req.logout(function(err) {
+            if (err) { return next(err); }
+            res.redirect('/');
+        });
     });
     app.get('/info', function(req, res) {
         if (req.isAuthenticated()) res.json(req.user);
