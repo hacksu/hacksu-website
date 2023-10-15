@@ -22,10 +22,12 @@ export default {
   },
   computed: {
     image(){
-      if (this.github){
-        return `https://github.com/${this.github}.png`
+      if (this.photo){
+        return this.photo;
+      } else if (this.github){
+        return `https://github.com/${this.github}.png`;
       } else {
-        return this.photo || "";
+        return "";
       }
     },
     graduate(){

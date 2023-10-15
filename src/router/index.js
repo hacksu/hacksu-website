@@ -6,6 +6,7 @@ import HotCard from "../views/HotCard.vue";
 import Events from "../views/Events.vue";
 import Redirects from "../views/Redirects.vue";
 import Admin from "../views/Admin.vue";
+import EditStaff from "../views/EditStaff.vue";
 
 export const routes = [
   {
@@ -69,6 +70,14 @@ export const routes = [
     path: "/redirects",
     name: "Redirects", 
     component: Redirects,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/edit-staff",
+    name: "Edit Staff", 
+    component: EditStaff,
     meta: {
       admin: true
     }

@@ -12,7 +12,7 @@ describeClass(
     Entity(
         "redirects",
         {
-            allowApiRead: true,
+            allowApiRead: r => r.user && r.user.isLeader,
             allowApiCrud: r => r.user && r.user.isLeader,
             id: r => r.urlSlug
         }

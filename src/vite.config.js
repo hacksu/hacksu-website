@@ -28,5 +28,10 @@ export default defineConfig({
   build: {
     // files are moved to dist by github actions cd
     outDir: "dist2"
+  },
+  server: {
+    watch: {
+      ignored: ["db/*.json"]
+    }
   }
 })

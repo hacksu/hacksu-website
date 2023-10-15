@@ -3,6 +3,7 @@
         <h2>Admin Stuff</h2>
         <ul>
             <li><a href="/redirects">Redirect Links</a></li>
+            <li><a href="/edit-staff">Staff Page Editor</a></li>
         </ul>
     </div>
 </template>

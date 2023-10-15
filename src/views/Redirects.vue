@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { remult } from "remult";
 import { Redirect } from "../../db/entities.js";
 
@@ -37,7 +37,10 @@ const destInput = ref("");
 let redirects = ref([]);
 const repo = remult.repo(Redirect);
 onMounted(() => {
-    repo.find().then(r => redirects.value = r);
+    onUnmounted(
+        repo.liveQuery()
+            .subscribe(info => (redirects.value = info.applyChanges(redirects.value)))    
+    );
 });
 
 const error = ref("");
@@ -45,7 +48,7 @@ const error = ref("");
 const addNew = () => {
     if (slugInput.value.trim() && destInput.value.trim()){
         repo.insert({urlSlug: slugInput.value, destination: destInput.value})
-            .then(() => window.location.reload())
+            .then(() => { slugInput.value = destInput.value = "" })
             .catch((e) => error.value = e.message);
     } else {
         error.value = "Empty fields not allowed";
@@ -54,7 +57,6 @@ const addNew = () => {
 
 const remove = (r) => {
     repo.delete(r)
-        .then(() => window.location.reload())
         .catch((e) => error.value = e.message);
 }
 
