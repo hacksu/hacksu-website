@@ -5,11 +5,11 @@ export const discord = "https://discord.gg/rJDdvnt";
 export const navigation = {
   default: [
     ['Home', '/'],
-    //['Kent Hack Enough', 'https://khe.io'],
     ['Staff', '/staff'],
     ['Contact', '/contact'],
     ['Constitution', '/constitution'],
     ['Events', '/events'],
+    ['Admin', '/admin', {align: "right"}]
   ]
 }
 

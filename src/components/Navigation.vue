@@ -1,9 +1,12 @@
 <template>
   <Navbar id="nav" v-if="showNavigation">
-    <Navbtn v-for="[text, link, options] in navigation"
-    v-bind:key="text"
-    v-bind:link="link"
-    v-bind:style="options ? { 'float': (options.align || 'inherit'), } : {}">
+    <Navbtn v-for="[text, link, options], i in navigation"
+      :key="text"
+      :link="link"
+      :external="!!options?.external"
+      :style="options ? 
+        { 'float': (options.align || 'inherit'),
+          marginRight: (options.align == 'right' ? '40px' : '') } : {}">
       {{ text }}
     </Navbtn>
   </Navbar>
@@ -48,6 +51,7 @@ export default {
 <style lang="scss">
 
 .navbar {
+  box-sizing: border-box;
   &.scrolled, &.fixed, .navbar-color {
     // NAVBAR COLOR
     background-color: rgb(20, 32, 39);

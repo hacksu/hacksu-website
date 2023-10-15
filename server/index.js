@@ -1,5 +1,3 @@
-// global.config = require(__dirname + "/../server.config.json");
-
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -8,12 +6,29 @@ const __dirname = path.dirname(__filename);
 
 import express from "express";
 import { createServer as createViteServer } from 'vite';
+import { remult } from "remult";
+import { remultExpress } from "remult/remult-express"
 
 import setUpAuth from "./auth.js";
+import { Redirect } from '../db/entities.js';
 
 let app = express();
 
 setUpAuth(app);
+
+const db = remultExpress({ entities: [Redirect] });
+app.use(db);
+app.use("*", db.withRemult, (res, req, next) => {
+  remult.repo(Redirect)
+    .findFirst({urlSlug: res.originalUrl.substring(1)})
+    .then(result => {
+      if (result){
+        req.redirect(result.destination);
+      } else {
+        next();
+      }
+    });
+});
 
 // app.set("trust proxy", 1);
 // app.use(require("./routes"));
@@ -27,8 +42,6 @@ setUpAuth(app);
 //   },
 //   require("./routes/api")
 // );
-
-// app.use(require("./redirects"));
 
 if (process.env.NODE_ENV == "production"){
   // serve static files from the dist directory (`npm run build` will put the frontend there)

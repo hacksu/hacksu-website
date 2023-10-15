@@ -23,7 +23,6 @@ passport.use(new DiscordStrategy({
         { headers: {"Authorization": "Bearer " + accessToken } }
     ).then(async res => {
         const membership = await res.json();
-        console.log("membership", membership);
         if (membership && membership.roles) {
             if (membership.roles.includes("632637403454111769")){
                 return done(null, {...profile, isLeader: true});
@@ -44,7 +43,7 @@ export default function setUpAuth(app){
     app.get('/discord-login', passport.authenticate('discord'));
     app.get('/discord-callback',
         passport.authenticate('discord', { failureRedirect: '/' }),
-        function(req, res) { res.redirect('/info') } // auth success
+        function(req, res) { res.redirect('/admin') } // auth success
     );
     app.get('/logout', function(req, res) {
         req.logout(function(err) {

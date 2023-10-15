@@ -4,6 +4,8 @@ import Contact from "../views/Contact.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
 import Events from "../views/Events.vue";
+import Redirects from "../views/Redirects.vue";
+import Admin from "../views/Admin.vue";
 
 export const routes = [
   {
@@ -55,4 +57,20 @@ export const routes = [
     },
     component: Events,
   },
+  {
+    path: "/admin",
+    name: "Admin Stuff",
+    component: Admin,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/redirects",
+    name: "Redirects", 
+    component: Redirects,
+    meta: {
+      admin: true
+    }
+  }
 ];
