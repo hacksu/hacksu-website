@@ -66,10 +66,12 @@ export default {
     clean() {
       if (this.$el) {
         let body = this.$el.querySelector('.body');
-        body.classList.remove('respond');
-        body.querySelector('.response').classList.remove('ready');
-        for (let x of Object.values(this.$el.querySelectorAll('input, textarea, button'))) {
-          x.removeAttribute('disabled');
+        if (body){
+          body.classList.remove('respond');
+          body.querySelector('.response').classList.remove('ready');
+          for (let x of Object.values(this.$el.querySelectorAll('input, textarea, button'))) {
+            x.removeAttribute('disabled');
+          }
         }
       }
       this.status = false;
