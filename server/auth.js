@@ -55,4 +55,17 @@ export default function setUpAuth(app){
         if (req.isAuthenticated()) res.json(req.user);
         else res.send('not logged in :(');
     });
+    // pre-emptive redirecting of unauthenticated users away from admin-only
+    // routes. these routes should track those in src/router/index.js. this is
+    // not super important, since the allowApi* checks in entities.js should
+    // prevent unauthorized db access anyway, but it looks more secure.
+    for (const route of ["/admin", "/redirects", "/edit-staff"]){
+        app.get(route, (req, res, next) => {
+            if (req.isAuthenticated() && req.user?.isLeader){
+                return next();
+            } else {
+                return res.redirect("/discord-login");
+            }
+        });
+    }
 }
