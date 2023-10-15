@@ -1,12 +1,9 @@
 import Home from "../views/Home.vue";
 import Alumni from "../views/Staff.vue";
 import Contact from "../views/Contact.vue";
-// import Constitution from "../views/Constitution.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
-import HotCardOld from "../views/HotCardOld.vue";
 import Events from "../views/Events.vue";
-import { meetings } from "../details";
 
 export const routes = [
   {
@@ -49,14 +46,6 @@ export const routes = [
       title: "HacKSU HotCard",
     },
     component: HotCard,
-  },
-  {
-    path: "/hotcardold",
-    name: "Hot Card Old",
-    meta: {
-      title: "HacKSU HotCard",
-    },
-    component: HotCardOld,
   },
   {
     path: '/events',

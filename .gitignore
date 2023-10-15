@@ -3,6 +3,8 @@ node_modules
 /dist
 /dist2
 
+.vite-ssg-temp
+
 server.config.json
 ip.blocklist.json
 
