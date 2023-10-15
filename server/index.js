@@ -3,12 +3,19 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 import express from "express";
-import { createServer as createViteServer } from 'vite'
+import { createServer as createViteServer } from 'vite';
+
+import setUpAuth from "./auth.js";
 
 let app = express();
-// app.set("trust proxy", 1);
 
+setUpAuth(app);
+
+// app.set("trust proxy", 1);
 // app.use(require("./routes"));
 // app.use(
 //   "/api",
@@ -22,9 +29,6 @@ let app = express();
 // );
 
 // app.use(require("./redirects"));
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV == "production"){
   // serve static files from the dist directory (`npm run build` will put the frontend there)
