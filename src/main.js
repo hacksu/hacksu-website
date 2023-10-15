@@ -39,8 +39,5 @@ export const createApp = ViteSSG(
         document.title = to.meta.title || to.name || "HacKSU";
       });
     }
-    console.log("hello from ssg");
   }
 );
-
-

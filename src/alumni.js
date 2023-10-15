@@ -67,21 +67,21 @@ const Seitz = new Alumni({
   body: `<p>President</p><p>Developer</p>`
 })
 
-const AlexPritt = new Alumni({ // UPDATED
+const AlexPritt = new Alumni({
   name: "Alex Pritt",
   graduate: FALL + 2020,
   github: 'alexpritt',
   body: `<p>Developer</p>`
 })
 
-const BenHollan = new Alumni({ // UPDATED
+const BenHollan = new Alumni({
   name: "Ben Holland",
   graduate: SPRING + 2019,
   github: 'bhollan5',
   body: `<p>Developer</p><p>Lesson Master</p><p>CSS Respecter</p>`
 })
 
-const KaitlinCochran = new Alumni({ // UPDATED
+const KaitlinCochran = new Alumni({
   name: "Katie Cochran",
   graduate: SPRING + 2023,
   github: 'bmvcbr',
@@ -95,21 +95,21 @@ const SamBruner = new Alumni({
   body: `<p>Developer</p><p>Food Coordinator</p>`
 })
 
-const CamdemFullmer = new Alumni({ // UPDATED
+const CamdemFullmer = new Alumni({
   name: "Camden Fullmer",
   graduate: SPRING + 2014,
   github: 'camdenfullmer',
   body: `<p>HacKSU Founder</p>`
 })
 
-const DanielGur = new Alumni({ // UPDATED
+const DanielGur = new Alumni({
   name: "Daniel Gur",
   graduate: SPRING + 2014,
   github: 'danielgur',
   body: `<p>HacKSU Founder</p>`
 })
 
-const DavidSteinberg = new Alumni({ // UPDATED
+const DavidSteinberg = new Alumni({
   name: "David Steinberg",
   graduate: SPRING + 2013,
   github: 'davidsteinberg',
@@ -130,35 +130,35 @@ const GabeAbdullah = new Alumni({
   body: `<p>Leader</p>`
 })
 
-const IsaacPark = new Alumni({ // UPDATED
+const IsaacPark = new Alumni({
   name: "Isaac Park",
   graduate: SPRING + 2017,
   github: 'IAPark',
   body: `<p>Developer</p><p>Leader</p>`
 })
 
-const JakeTobin = new Alumni({ // UPDATED
+const JakeTobin = new Alumni({
   name: "Jake Tobin",
   graduate: FALL + 2015,
   github: 'JakeTobin',
   body: `<p>Developer</p><p>Sponsorship</p>`
 })
 
-const JTRaber = new Alumni({ // UPDATED
+const JTRaber = new Alumni({
   name: "JT Raber",
   graduate: SPRING + 2023,
   github: 'JMANN240',
   body: `<p>Marketing</p>`
 })
 
-const JoshuaBehler = new Alumni({ // UPDATED
+const JoshuaBehler = new Alumni({
   name: "Joshua Behler",
   graduate: SPRING + 2022,
   github: 'Joshua2000B',
   body: `<p>President</p><p>Sponsorship</p><p>Developer</p>`
 })
 
-const KristyConry = new Alumni({ // UPDATED
+const KristyConry = new Alumni({
   name: "Kristi Conry",
   graduate: FALL + 2020,
   github: 'ktakattack',
@@ -172,14 +172,14 @@ const MackenzieKinzel = new Alumni({
   body: `<p>Leader</p><p>Marketing</p><p>Food Coordinator</p>`
 })
 
-const MikeZrimsek = new Alumni({ // UPDATED
+const MikeZrimsek = new Alumni({
   name: "Mike Zrimsek",
   graduate: SPRING + 2017,
   github: 'mzrimsek',
   body: `<p>Developer</p>`
 })
 
-const TrentanTrahan = new Alumni({ // UPDATED
+const TrentanTrahan = new Alumni({
   name: "Trentan Trahan",
   graduate: SPRING + 2022,
   github: 'Natnert',
@@ -193,7 +193,7 @@ const NicholasCrawford = new Alumni({
   body: `<p>Developer</p>`
 })
 
-const NicLinscott = new Alumni({ // UPDATED
+const NicLinscott = new Alumni({
   name: "Nic Linscott",
   graduate: SPRING + 2016,
   github: 'nlinscott',
@@ -214,7 +214,7 @@ const RobinBonatesta = new Alumni({
   body: `<p>Leader</p>`
 })
 
-const PJLeyden = new Alumni({ // UPDATED
+const PJLeyden = new Alumni({
   name: "P.J. Leyden",
   graduate: FALL + 2019,
   github: 'PJ-Leyden',
@@ -249,7 +249,7 @@ const GabrielWeston = new Alumni({
   body: `<p>Developer</p><p>Logistics</p>`
 })
 
-const CollinWerner = new Alumni({ // UPDATED
+const CollinWerner = new Alumni({
   name: "Collin Werner",
   graduate: SPRING + 2020,
   github: 'collinw9898',
