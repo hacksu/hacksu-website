@@ -38,6 +38,8 @@ export class StaffMember {
     photo;
     /** @type {string[]} */
     titles;
+    /** @type {string} */
+    link;
 }
 
 describeClass(
@@ -58,6 +60,7 @@ describeClass(
         }),
         github: Fields.string(),
         photo: Fields.string(),
+        link: Fields.string(),
         titles: Fields.json()
     }
 )

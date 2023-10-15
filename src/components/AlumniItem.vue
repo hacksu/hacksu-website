@@ -1,13 +1,13 @@
 <template>
-  <a class="alumni-item" v-bind:href="github ? 'https://github.com/' + github : ''" target="_blank">
-    <div class="photo" v-bind:style="{ 'background-image': 'url(' + image + ')', }">Photo of {{ name }}</div>
+  <component :is="(github || link) ? 'a' : 'div'" class="alumni-item"
+      :href="link ? link : github ? 'https://github.com/' + github : ''" target="_blank">
+    <div class="photo" :style="{ 'background-image': 'url(' + image + ')', }"></div>
     <h3 class="name">{{ name }}</h3>
     <p class="graduated" v-if="graduate">Graduated {{ graduate }}</p>
     <div class="body">
       <p v-for="title in titles">{{ title }}</p>
     </div>
-
-  </a>
+  </component>
 </template>
 
 <script>
