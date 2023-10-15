@@ -5,6 +5,8 @@ node_modules
 
 .vite-ssg-temp
 
+db/*.json
+
 server.config.json
 ip.blocklist.json
 

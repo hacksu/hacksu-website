@@ -13,18 +13,6 @@ export const navigation = {
   ]
 }
 
-import Alumni, { ShowCurrent as ShowCurrentAlumni } from '@/alumni';
-export const alumni = {
-  list: Alumni.map(o => o.export()),
-  showCurrent: ShowCurrentAlumni,
-  title: 'Alumni & Staff',
-  description: `Past and present leaders of HacKSU`
-};
-
-console.log(alumni);
-// Alumni who haven't been updated yet
-console.log(`PJ-Leyden, ktakattack`.split(', ').map(o => '@' + o).join('\n') + '\n' + alumni.list.filter(o => o.graduate.includes('1990')).map(o => '@' + o.github).join('\n'));
-
 import MSBImage from "@/assets/images/msb.jpg";
 import githubImage from "@/assets/images/github-white.svg";
 

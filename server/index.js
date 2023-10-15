@@ -10,13 +10,13 @@ import { remult } from "remult";
 import { remultExpress } from "remult/remult-express"
 
 import setUpAuth from "./auth.js";
-import { Redirect } from '../db/entities.js';
+import { Redirect, StaffMember } from '../db/entities.js';
 
 let app = express();
 
 setUpAuth(app);
 
-const db = remultExpress({ entities: [Redirect] });
+const db = remultExpress({ entities: [Redirect, StaffMember] });
 app.use(db);
 app.use("*", db.withRemult, (res, req, next) => {
   remult.repo(Redirect)

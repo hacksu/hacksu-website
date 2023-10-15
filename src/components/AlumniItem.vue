@@ -1,9 +1,11 @@
 <template>
-  <a class="alumni-item" v-bind:href="'https://github.com/' + github" target="_blank">
+  <a class="alumni-item" v-bind:href="github ? 'https://github.com/' + github : ''" target="_blank">
     <div class="photo" v-bind:style="{ 'background-image': 'url(' + image + ')', }">Photo of {{ name }}</div>
     <h3 class="name">{{ name }}</h3>
-    <p class="graduated" v-if="graduated">Graduated {{ graduate }}</p>
-    <div class="body" v-html="body"/>
+    <p class="graduated" v-if="graduate">Graduated {{ graduate }}</p>
+    <div class="body">
+      <p v-for="title in titles">{{ title }}</p>
+    </div>
 
   </a>
 </template>
@@ -17,6 +19,20 @@ export default {
   },
   data() {
     return this.alumni;
+  },
+  computed: {
+    image(){
+      if (this.github){
+        return `https://github.com/${this.github}.png`
+      } else {
+        return this.photo || "";
+      }
+    },
+    graduate(){
+      if (this.gradYear <= new Date().getFullYear()){
+        return this.gradTerm + " " + this.gradYear;
+      } else return null;
+    }
   }
 }
 </script>

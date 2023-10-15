@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { remult } from "remult";
 import { Redirect } from "../../db/entities.js";
 
@@ -36,7 +36,9 @@ const destInput = ref("");
 
 let redirects = ref([]);
 const repo = remult.repo(Redirect);
-repo.find().then(r => redirects.value = r);
+onMounted(() => {
+    repo.find().then(r => redirects.value = r);
+});
 
 const error = ref("");
 

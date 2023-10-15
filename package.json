@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "serve": "cross-env NODE_ENV=production node server/index.js",
-    "dev": "nodemon --watch server --watch db --ignore 'db/*.json' server/index.js",
+    "dev": "nodemon --watch server --watch db --ignore *.json server/index.js",
     "build": "vite-ssg build",
     "preview": "vite preview",
     "update": "git fetch && git pull && npm run build && pm2 restart hacksu"

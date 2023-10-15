@@ -2,14 +2,16 @@
   <div class="alumni">
     <div class="header">
       <div style="height: 5vh"/>
-      <h1>{{ title }}</h1>
-      <h3 class="description" v-html="description"/>
+      <h1>Alumni & Staff</h1>
+      <h3 class="description">
+        Past and present leaders of HacKSU
+      </h3>
     </div>
     <div class="list" v-for="(row, rowIndex) in organized" v-bind:key="rowIndex">
       <h2 v-if="row.year != 2026" class="year">Class of {{ row.year }}</h2>
       <h2 class="year" v-else>Current Leadership</h2>
       <span class="group">
-        <AlumniItem v-for="(alumni, index) in row.list" v-bind:key="index" v-bind:alumni="alumni"/>
+        <AlumniItem v-for="(alumni, index) in row.staff" :key="index" :alumni="alumni"/>
       </span>
     </div>
 
@@ -17,89 +19,47 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import { alumni as details } from '@/details'
+import { remult } from "remult";
 import AlumniItem from '@/components/AlumniItem.vue'
+import { StaffMember } from "../../db/entities";
 
-const DAY = 24 * 60 * 60 * 1000;
-const MONTH = 30 * DAY;
-
-const TODAY = new Date(new Date().getTime() + 0 * MONTH);
-const currentYear = TODAY.getFullYear();
-let ACADEMICYEAR = TODAY.getFullYear();
-
-
-const SEMESTERS = {
-  Fall: 0.3,
-  Spring: 0.6,
-  Summer: 0,
+function withinTermComparator(s1, s2){
+  const terms = ["Spring", "Summer", "Fall"];
+  return terms.indexOf(s1.gradTerm) - terms.indexOf(s2.gradTerm);
 }
-const SEMESTER = SEMESTERS[(() => {
-  let month = TODAY.getMonth();
-  let day = TODAY.getDate();
-  if (day > 22) {
-    month = (month + 1) % 12;
-    ACADEMICYEAR++;
-  }
-  if (month < 4) {
-    ACADEMICYEAR--;
-    return "Spring"
-  } else if (month < 7) {
-    return "Summer"
-  } else {
-    return "Fall"
-  }
-})()];
-
-console.log(`${ACADEMICYEAR} - ${ACADEMICYEAR + 1}, `, SEMESTER);
 
 export default {
   name: 'Alumni',
-  data() {
-    return details;
+  data () {
+    return {
+      staff: []
+    };
   },
   computed: {
-    organized() {
-      let years = {};
-
-      let currentSemester = 0;
-      let showCurrent = this.showCurrent;
-      for (let x of this.list) {
-        let index = 'current';
-        let year = currentYear;
-        if (x.graduate) {
-          index = String(x.graduate).split(' ').pop();
-          year = Number(index);
-        }
-        if (index) {
-          if (!(index in years)) {
-            years[index] = {
-              year: year,
-              list: [],
-            }
-          }
-          x.year = year;
-          if (x.graduate && x.graduate.indexOf(' ') > 0) {
-            let semester = SEMESTERS[x.graduate.split(' ')[0]];
-            x.year += semester;
-          }
-          x.graduated = x.year <= ACADEMICYEAR + SEMESTER;
-          //console.log(x.name, x.year, '<', ACADEMICYEAR, '+', SEMESTER);
-          if (showCurrent || x.graduated) {
-            years[index].list.push(x);
-          }
+    organized(){
+      const years = [];
+      for (const s of this.staff){
+        if (years[s.gradYear]){
+          years[s.gradYear].push(s);
+        } else {
+          years[s.gradYear] = [s];
         }
       }
-      years = Object.values(years).sort((a, b) => {
-        return b.year - a.year;
-      })
-      for (let x of years) {
-        x.list.sort((a, b) => {
-          return b.year - a.year;
-        })
+      const groups = [];
+      for (const year of Object.keys(years).sort().reverse()){
+        groups.push({
+          year,
+          staff: years[year].sort(withinTermComparator)
+        });
       }
-      return years.filter(o => o.list.length > 0);
+      return groups;
     }
+  },
+  mounted(){
+    const repo = remult.repo(StaffMember);
+    repo.find().then(staff => {
+      this.staff = staff;
+    });
   },
   components: {
     AlumniItem,

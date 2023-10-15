@@ -18,7 +18,46 @@ describeClass(
         }
     ),
     {
-        urlSlug: Fields.string({}),
+        urlSlug: Fields.string(),
         destination: Fields.string()
+    }
+);
+
+export class StaffMember {
+    /** @type {number} */
+    id;
+    /** @type {string} */
+    name;
+    /** @type {number} */
+    gradYear;
+    /** @type {"Spring" | "Summer" | "Fall"} */
+    gradTerm;
+    /** @type {string | undefined} */
+    github;
+    /** @type {string | undefined} */
+    photo;
+    /** @type {string[]} */
+    titles;
+}
+
+describeClass(
+    StaffMember,
+    Entity(
+        "staff",
+        {
+            allowApiRead: true,
+            allowApiCrud: r=> r.user && r.user.isLeader
+        },
+    ),
+    {
+        id: Fields.uuid(),
+        name: Fields.string(),
+        gradYear: Fields.integer(),
+        gradTerm: Fields.string({
+            validate: t => ["Spring", "Summer", "Fall"].includes(t)
+        }),
+        github: Fields.string(),
+        photo: Fields.string(),
+        titles: Fields.json()
     }
 )
