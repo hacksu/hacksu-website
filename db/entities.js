@@ -1,7 +1,4 @@
-import { Entity, Fields, describeClass } from "remult";
-import MarkdownIt from "markdown-it";
-
-const md = MarkdownIt();
+import { Entity, Fields, describeClass, isBackend } from "remult";
 
 export class Redirect {
     /** @type {string} */
@@ -87,6 +84,8 @@ export class Event {
     descriptionHTML;
 }
 
+let md;
+
 describeClass(
     Event,
     Entity(
@@ -94,8 +93,13 @@ describeClass(
         {
             allowApiRead: true,
             allowApiCrud: r=> r.user && r.user.isLeader,
-            saving: event => {
-                event.descriptionHTML = md.render(event.descriptionMD || "");
+            saving: async event => {
+                if (isBackend()){
+                    if (!md) {
+                        md = (await import("markdown-it")).default();
+                    }
+                    event.descriptionHTML = md.render(event.descriptionMD || "");
+                }
             }
         },
     ),
