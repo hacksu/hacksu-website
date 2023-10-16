@@ -1,7 +1,6 @@
 <template>
   <div class="staff">
     <div class="header">
-      <div style="height: 5vh"/>
       <h1>Alumni & Staff</h1>
       <h3 class="description">
         Past and present leaders of HacKSU
@@ -22,7 +21,7 @@
 
 <script>
 import { remult } from "remult";
-import StaffCard from '@/components/StaffMember.vue'
+import StaffCard from '@/components/StaffCard.vue'
 import { StaffMember } from "../../db/entities";
 
 function withinTermComparator(s1, s2){
@@ -78,7 +77,7 @@ export default {
     text-align: center;
     width: 100vw;
     padding-top: $navbar-height;
-    padding-bottom: 5vh;
+    height: 20vh;
     background: linear-gradient(to top left, #35c982, #4683FF);
     .description {
       @include center;

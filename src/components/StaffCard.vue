@@ -13,7 +13,7 @@
 <script>
 
 export default {
-  name: 'StaffMember',
+  name: 'StaffCard',
   props: {
     staff: Object,
   },
