@@ -99,7 +99,7 @@ export default {
         height: 45vw;
       }
       .map {
-        @include background(url('../assets/images/bowman-map.jpg'));
+        // @include background(url('../assets/images/bowman-map.jpg'));
         height: 100%;
         opacity: 0;
         transition: opacity 0.25s, transform 0.25s;

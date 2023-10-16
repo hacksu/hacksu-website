@@ -1,16 +1,8 @@
-// import { createApp } from 'vue'
-// import App from './App.vue'
-import { routes } from "./router";
-// import store from './store'
-// import Navigation from '@/components/Navigation.vue'
-
-// const app = createApp(App)
-//   .use(store).use(router)
-//   .component('navigation', Navigation)
-// app.mount('#app')
-
 import { ViteSSG } from "vite-ssg";
+
+import { routes } from "./router";
 import App from "./App.vue";
+
 import { loggedIn, attemptedLogin } from "./globals.js";
 
 // `export const createApp` is required instead of the original `createApp(App).mount('#app')`

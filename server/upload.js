@@ -18,8 +18,7 @@ const upload = multer({ storage });
 
 export default function setUpUpload(app){
     app.use("/photo-upload", upload.single("photo"), async (req, res) => {
-        console.log("file:", req.file);
-        // resize file to make it smaller
+        // resize photo to make it smaller
         let buffer = await sharp(req.file.path)
             .resize(800, 800, {
                 fit: sharp.fit.inside,

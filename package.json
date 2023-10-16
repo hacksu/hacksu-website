@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "cross-env NODE_ENV=production node server/index.js",
     "dev": "nodemon --watch server --watch db --ignore \"db/*.json\" server/index.js",
-    "build": "vite-ssg build",
+    "build": "vite-ssg build -c src/vite.config.js",
     "preview": "vite preview",
     "update": "git fetch && git pull && npm run build && pm2 restart hacksu"
   },
