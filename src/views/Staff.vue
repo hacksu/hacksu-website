@@ -1,5 +1,5 @@
 <template>
-  <div class="alumni">
+  <div class="staff">
     <div class="header">
       <div style="height: 5vh"/>
       <h1>Alumni & Staff</h1>
@@ -8,10 +8,12 @@
       </h3>
     </div>
     <div class="list" v-for="(row, rowIndex) in organized" v-bind:key="rowIndex">
-      <h2 v-if="row.year != 2026" class="year">Class of {{ row.year }}</h2>
+      <h2 v-if="row.year != 'current'" class="year">
+        Class of {{ row.year }}
+      </h2>
       <h2 class="year" v-else>Current Leadership</h2>
       <span class="group">
-        <AlumniItem v-for="(alumni, index) in row.staff" :key="index" :alumni="alumni"/>
+        <StaffCard v-for="(staff, index) in row.staff" :key="index" :staff="staff"/>
       </span>
     </div>
 
@@ -20,7 +22,7 @@
 
 <script>
 import { remult } from "remult";
-import AlumniItem from '@/components/AlumniItem.vue'
+import StaffCard from '@/components/StaffMember.vue'
 import { StaffMember } from "../../db/entities";
 
 function withinTermComparator(s1, s2){
@@ -29,7 +31,7 @@ function withinTermComparator(s1, s2){
 }
 
 export default {
-  name: 'Alumni',
+  name: 'Staff',
   data () {
     return {
       staff: []
@@ -39,10 +41,11 @@ export default {
     organized(){
       const years = [];
       for (const s of this.staff){
-        if (years[s.gradYear]){
-          years[s.gradYear].push(s);
+        const year = s.gradYear <= new Date().getFullYear() ? s.gradYear : 'current';
+        if (years[year]){
+          years[year].push(s);
         } else {
-          years[s.gradYear] = [s];
+          years[year] = [s];
         }
       }
       const groups = [];
@@ -62,14 +65,14 @@ export default {
     });
   },
   components: {
-    AlumniItem,
+    StaffCard,
   }
 }
 </script>
 
 <style scoped lang="scss">
 
-.alumni {
+.staff {
   @include white-bg;
   .header {
     text-align: center;
@@ -96,7 +99,7 @@ export default {
       //display: table;
       //border-spacing: 20px;
       display: block;
-      .alumni-item {
+      .staff-item {
         vertical-align:top;
         margin: 20px;
       }

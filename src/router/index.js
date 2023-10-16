@@ -1,5 +1,5 @@
 import Home from "../views/Home.vue";
-import Alumni from "../views/Staff.vue";
+import Staff from "../views/Staff.vue";
 import Contact from "../views/Contact.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
@@ -24,7 +24,7 @@ export const routes = [
     meta: {
       title: "HacKSU Alumni & Staff",
     },
-    component: Alumni,
+    component: Staff,
   },
   {
     path: "/contact",

@@ -1,5 +1,5 @@
 <template>
-  <component :is="(github || link) ? 'a' : 'div'" class="alumni-item"
+  <component :is="(github || link) ? 'a' : 'div'" class="staff-item"
       :href="link ? link : github ? 'https://github.com/' + github : ''" target="_blank">
     <div class="photo" :style="{ 'background-image': 'url(' + image + ')', }"></div>
     <h3 class="name">{{ name }}</h3>
@@ -13,12 +13,12 @@
 <script>
 
 export default {
-  name: 'AlumniItem',
+  name: 'StaffMember',
   props: {
-    alumni: Object,
+    staff: Object,
   },
   data() {
-    return this.alumni;
+    return this.staff;
   },
   computed: {
     image(){
@@ -42,7 +42,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-.alumni-item {
+.staff-item {
   @include white-bg;
   @include rounded;
   transition: transform 0.25s, box-shadow 0.25s;
