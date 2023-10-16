@@ -2,10 +2,7 @@
     <div>
         <p style="margin: 100px 30px 0 30px; max-width: 600px">
             <h2>Staff Page Editor</h2>
-            If no website link is provided, a GitHub profile link will be used. If
-            no photo URL is provided, a GitHub profile picture will be used. Blank
-            titles will be removed, so just clear them and save to get rid of them.
-            Add a new staff using the blank form at the beginning.
+            
         </p>
         <div id="edit-staff-container">
             <div class="person" v-for="staff, j in staffToDisplay" :key="staff.id">
@@ -20,7 +17,12 @@
                 <label><span>Grad Year: </span><input type="number" v-model="staff.gradYear" /></label>
                 <label><span>Github Username: </span><input type="string" v-model="staff.github" /></label>
                 <label><span>Website: </span><input type="string" v-model="staff.link" /></label>
-                <label><span>Photo URL: </span><input type="string" v-model="staff.photo" /></label>
+                <label>
+                    <span>Photo URL: </span>
+                    <input type="string" v-model="staff.photo" />
+                    <button @click="() => upload(j)" class="upload-button" title="Upload photo">📂</button>
+                    <input type="file" ref="fileUpload" style="display:none" accept="image/jpeg,image/png" />
+                </label>
                 Titles:
                 <input type="text" v-for="title, i in staff.titles" v-model="staff.titles[i]" :key="i" />
                 <input type="text" v-model="newTitles[j]" placeholder="Add title..." />
@@ -101,6 +103,27 @@ const remove = (staff, j) => {
     }
 }
 
+const fileUpload = ref(null);
+watch(fileUpload, (inputs) => {
+    for (let i=0; i<inputs.length; ++i){
+        inputs[i].onchange = () => {
+            console.log("change listener");
+            const data = new FormData();
+            data.append("photo", inputs[i].files[0]);
+            fetch("/photo-upload", { method: "POST", body: data })
+                .then(async (res) => {
+                    const path = await res.text();
+                    staffToDisplay.value[i].photo = path;
+                });
+        };
+    }
+}, { deep: true });
+const upload = (i) => {
+    if (fileUpload.value[i]){
+        fileUpload.value[i].click();
+    }
+};
+
 </script>
 
 <style scoped lang="scss">
@@ -130,5 +153,18 @@ input {
 label span {
     flex-shrink: 0;
     margin-right: 15px;
+}
+button, button:hover {
+    color: black;
+    border: 1px solid darkgray;
+    transition: none;
+}
+.upload-button {
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

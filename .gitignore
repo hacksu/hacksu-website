@@ -5,6 +5,9 @@ node_modules
 
 .vite-ssg-temp
 
+public/staff-photos/*
+!public/staff-photos/.gitkeep
+
 db/*.json
 
 server.config.json

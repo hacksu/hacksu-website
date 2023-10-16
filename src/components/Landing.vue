@@ -21,7 +21,7 @@
       <h1>{{ title }}</h1>
       <p>{{ body }}</p>
       <br>
-      <button><a href="#involved">{{ button }}</a></button>
+      <button id="get-involved"><a href="#involved">{{ button }}</a></button>
     </div>
   </div>
 </template>
@@ -75,6 +75,10 @@ export default {
   height: 100vh;
   //min-height: -webkit-fill-available;
   overflow: hidden;
+
+  #get-involved {
+    @include transition;
+  }
 
   .content {
     @include center;

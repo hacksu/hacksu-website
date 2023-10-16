@@ -10,11 +10,13 @@ import { remult } from "remult";
 import { remultExpress } from "remult/remult-express"
 
 import setUpAuth from "./auth.js";
+import setUpUpload from "./upload.js";
 import { Redirect, StaffMember } from '../db/entities.js';
 
 let app = express();
 
 setUpAuth(app);
+setUpUpload(app);
 
 const db = remultExpress({ entities: [Redirect, StaffMember] });
 app.use(db);
@@ -45,8 +47,8 @@ app.use("*", db.withRemult, (res, req, next) => {
 
 if (process.env.NODE_ENV == "production"){
   // serve static files from the dist directory (`npm run build` will put the frontend there)
-  let serve = express.static(dist, { extensions: ["html"] });
-  app.use(serve);
+  app.use(express.static(path.resolve(__dirname, "../dist/"), { extensions: ["html"] }));
+  app.use(express.static(path.resolve(__dirname, "../public/")));
 } else {
   // serve live-updated pages with vite
   const vite = await createViteServer({

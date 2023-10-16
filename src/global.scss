@@ -76,7 +76,6 @@ button, input, textarea, a.navbtn, a.social {
   outline: none;
 }
 button {
-  @include transition;
   cursor: pointer;
 }
 input {
