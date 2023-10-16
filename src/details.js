@@ -1,17 +1,4 @@
-
-
 export const discord = "https://discord.gg/rJDdvnt";
-
-export const navigation = {
-  default: [
-    ['Home', '/'],
-    ['Staff', '/staff'],
-    ['Contact', '/contact'],
-    ['Constitution', '/constitution'],
-    ['Events', '/events'],
-    ['Login', '/admin', {align: "right"}]
-  ]
-}
 
 import MSBImage from "@/assets/images/msb.jpg";
 import githubImage from "@/assets/images/github-white.svg";

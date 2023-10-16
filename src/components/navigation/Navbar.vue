@@ -259,6 +259,10 @@ export default {
 .navbar {
   .buttons {
     @include display-not(mobile) {
+      width: 100%;
+      display: flex;
+      padding: 0 30px;
+      box-sizing: border-box;
       .navbtn-back {
         display: none;
       }

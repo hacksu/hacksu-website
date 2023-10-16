@@ -11,6 +11,7 @@ import { routes } from "./router";
 
 import { ViteSSG } from "vite-ssg";
 import App from "./App.vue";
+import { loggedIn, attemptedLogin } from "./globals.js";
 
 // `export const createApp` is required instead of the original `createApp(App).mount('#app')`
 export const createApp = ViteSSG(
@@ -28,8 +29,8 @@ export const createApp = ViteSSG(
   ({ app, router, routes, isClient, initialState }) => {
     if (isClient) {
       router.beforeEach((to, from, next) => {
-        if (to.path == "/khe.io") {
-          window.location.href = "https://khe.io";
+        if (to.meta?.admin && !loggedIn.value && attemptedLogin.value){
+          window.location.href = "/discord-login";
         } else {
           next();
         }

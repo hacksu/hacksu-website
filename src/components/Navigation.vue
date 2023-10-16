@@ -1,44 +1,44 @@
 <template>
   <Navbar id="nav" v-if="showNavigation">
-    <Navbtn v-for="[text, link, options] in navigation"
+    <Navbtn v-for="[text, link, options] in buttons"
       :key="text"
       :link="link"
       :external="!!options?.external"
-      :style="options ? 
-        { 'float': (options.align || 'inherit'),
-          marginRight: (options.align == 'right' ? '40px' : '') } : {}">
+      :style="options?.style || {}">
       {{ text }}
     </Navbtn>
   </Navbar>
 </template>
 
 <script>
-import { navigation } from '@/details'
-import Navbar from '@/components/navigation/Navbar.vue'
-import Navbtn from '@/components/navigation/Navbtn.vue'
+import Navbar from '@/components/navigation/Navbar.vue';
+import Navbtn from '@/components/navigation/Navbtn.vue';
+import { loggedIn } from "../globals.js";
 
 export default {
   name: 'Navigation',
-  props: {
-    view: {
-      default: 'default',
-      type: String,
-    },
-  },
-  data() {
-    return {
-      navigation: navigation[this.view],
-    }
-  },
   computed: {
     showNavigation() {
-      console.log(this.$route);
       if (this.$route.fullPath.includes('/hotcard')) {
-        console.log('hiding')
+        console.log('hiding navbar')
         return false;
       }
       return true;
-    }
+    },
+    buttons(){
+      const buttons = [
+          ['Home', '/'],
+          ['Staff', '/staff'],
+          ['Contact', '/contact'],
+          ['Constitution', '/constitution'],
+          ['Events', '/events'],
+          [(loggedIn.value ? 'Admin' : 'Login'), '/admin', {style: {marginLeft: "auto"}}]
+        ];
+        if (loggedIn.value){  
+          buttons.push(["Log Out", "/logout", {external: true}]);
+        }
+        return buttons;
+      }
   },
   components: {
     Navbar,
