@@ -117,6 +117,7 @@ export default {
   height: 55px;
   @include mobile {
     text-align: left;
+    height: 77px;
   }
   //height: 4vh;
   /*@include mobile {
