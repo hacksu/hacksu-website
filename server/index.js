@@ -11,21 +11,26 @@ import { remultExpress } from "remult/remult-express"
 
 import setUpAuth from "./auth.js";
 import setUpUpload from "./upload.js";
+import setUpLogging from "./log.js";
 import { Redirect, StaffMember, Event } from '../db/entities.js';
 
 let app = express();
 
 setUpAuth(app);
 setUpUpload(app);
+setUpLogging(app);
 
+// set up db:
 const db = remultExpress({ entities: [Redirect, StaffMember, Event] });
 app.use(db);
-app.use("*", db.withRemult, (res, req, next) => {
+
+// set up redirects:
+app.use("*", db.withRemult, (req, res, next) => {
   remult.repo(Redirect)
-    .findFirst({urlSlug: res.originalUrl.substring(1)})
+    .findFirst({urlSlug: req.originalUrl.substring(1)})
     .then(result => {
       if (result){
-        req.redirect(result.destination);
+        res.redirect(result.destination);
       } else {
         next();
       }

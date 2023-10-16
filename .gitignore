@@ -3,6 +3,8 @@ node_modules
 /dist
 /dist2
 
+audit-log.txt
+
 .vite-ssg-temp
 
 public/staff-photos/*

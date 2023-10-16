@@ -95,7 +95,7 @@ describeClass(
             allowApiRead: true,
             allowApiCrud: r=> r.user && r.user.isLeader,
             saving: event => {
-                event.descriptionHTML = md.render(event.descriptionMD);
+                event.descriptionHTML = md.render(event.descriptionMD || "");
             }
         },
     ),
