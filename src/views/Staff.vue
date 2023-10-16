@@ -77,18 +77,23 @@ export default {
     text-align: center;
     width: 100vw;
     padding-top: $navbar-height;
-    height: 20vh;
+    height: 19vh;
+    font-size: 1.3em;
     background: linear-gradient(to top left, #35c982, #4683FF);
+    h1 {
+      margin: 0.5em auto 0.2em;
+    }
     .description {
       @include center;
-      width: 80vw;
-      max-width: 60vmin;
-      font-weight: 200;
+      width: 90%;
+      font-weight: normal;
+      font-size: 0.8em;
     }
   }
   .list {
     @include center;
     color: black;
+    // background-color: white;
     max-width: 90vw;
     .year {
       text-align: left;

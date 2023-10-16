@@ -43,7 +43,9 @@ export default {
 <style scoped lang="scss">
 
 .staff-item {
-  @include white-bg;
+  // @include white-bg;
+  background-color: #dfdfdf;
+  border: 1px dotted #bbb;
   @include rounded;
   transition: transform 0.25s, box-shadow 0.25s;
   cursor: pointer;
@@ -54,7 +56,7 @@ export default {
   }
   //display: table-cell;
   display: inline-block;
-  padding: 2vh;
+  padding: 5vh 4vh;
   text-align: center;
   @include mobile {
     @include center;
