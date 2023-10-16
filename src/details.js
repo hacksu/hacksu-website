@@ -9,7 +9,7 @@ export const navigation = {
     ['Contact', '/contact'],
     ['Constitution', '/constitution'],
     ['Events', '/events'],
-    ['Admin', '/admin', {align: "right"}]
+    ['Login', '/admin', {align: "right"}]
   ]
 }
 

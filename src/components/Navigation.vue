@@ -1,6 +1,6 @@
 <template>
   <Navbar id="nav" v-if="showNavigation">
-    <Navbtn v-for="[text, link, options], i in navigation"
+    <Navbtn v-for="[text, link, options] in navigation"
       :key="text"
       :link="link"
       :external="!!options?.external"

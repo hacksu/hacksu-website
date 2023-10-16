@@ -4,7 +4,7 @@ export class Redirect {
     /** @type {string} */
     urlSlug;  // i.e. "discord"
     /** @type {string} */
-    destination  // i.e. "https://discord.gg/..."
+    destination;  // i.e. "https://discord.gg/..."
 }
 
 describeClass(
@@ -63,4 +63,4 @@ describeClass(
         link: Fields.string(),
         titles: Fields.json()
     }
-)
+);
