@@ -28,7 +28,7 @@
                 <input type="text" v-model="newTitles[j]" placeholder="Add title..." />
                 <div style="display: flex; justify-content: space-evenly; gap: 10px">
                     <button style="width:100%" @click="update(staff, j)">
-                        💾{{ confirmation.has(j) ? ' ✅' : "" }}
+                        {{j==0 ? "➕" : "💾"}}{{ confirmation.has(j) ? ' ✅' : "" }}
                     </button>
                     <button style="width:100%" v-if="j!==0" @click="remove(staff, j)">
                         🗑️

@@ -4,6 +4,7 @@
         <ul>
             <li><router-link to="/redirects">Redirect Links</router-link></li>
             <li><router-link to="/edit-staff">Staff Page Editor</router-link></li>
+            <li><router-link to="/edit-events">Events Editor</router-link></li>
         </ul>
     </div>
 </template>

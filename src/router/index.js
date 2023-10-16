@@ -7,6 +7,7 @@ import Events from "../views/Events.vue";
 import Redirects from "../views/Redirects.vue";
 import Admin from "../views/Admin.vue";
 import EditStaff from "../views/EditStaff.vue";
+import EditEvents from "../views/EditEvents.vue";
 
 export const routes = [
   {
@@ -78,6 +79,14 @@ export const routes = [
     path: "/edit-staff",
     name: "Edit Staff", 
     component: EditStaff,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/edit-events",
+    name: "Edit Events", 
+    component: EditEvents,
     meta: {
       admin: true
     }
