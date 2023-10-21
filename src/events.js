@@ -39,7 +39,7 @@ export default { //used google sheets extension to export calendar in JSON forma
                 "event": "RSM - industry advice - click link submit resume!",
                 "date": "10/24/2023",
                 "level": "any",
-                "presenter": "Josh Gatka, Ian Mulhern, Trevor Murphy, Trevor Ryan, David Garlak"
+                "presenter": "Josh Gatka, Ian Mulhern, Trevor Murphy, Trevor Ryan, David Garlak",
                 "link": "https://docs.google.com/forms/d/e/1FAIpQLScV693OV0Kd1pXBd646wQ38w1IJyAJVaIeDNJ4ZmsH6qVvuqA/viewform?usp=sf_link"
             },
             {
