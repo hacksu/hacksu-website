@@ -32,10 +32,12 @@ export default {
           ['Contact', '/contact'],
           ['Constitution', '/constitution'],
           ['Events', '/events'],
-          [(loggedIn.value ? 'Admin' : 'Login'), '/admin', {style: {marginLeft: "auto"}}]
+          //[(loggedIn.value ? 'Admin' : 'Login'), '/login', {style: {marginLeft: "auto"}}]
         ];
         if (loggedIn.value){  
-          buttons.push(["Log Out", "/logout", {external: true}]);
+          buttons.push(["Admin", "/login", {style: {marginLeft: "auto"}}],
+                       ["Log Out", "/logout", {external: true}],
+                       );
         }
         return buttons;
       }

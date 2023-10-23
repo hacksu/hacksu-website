@@ -76,7 +76,7 @@ export const routes = [
     }
   },
   {
-    path: "/edit-staff",
+    path: "/admin/staff",
     name: "Edit Staff", 
     component: EditStaff,
     meta: {
@@ -84,7 +84,7 @@ export const routes = [
     }
   },
   {
-    path: "/edit-events",
+    path: "/admin/events",
     name: "Edit Events", 
     component: EditEvents,
     meta: {
