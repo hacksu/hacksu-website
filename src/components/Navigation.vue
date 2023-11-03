@@ -35,7 +35,7 @@ export default {
           //[(loggedIn.value ? 'Admin' : 'Login'), '/login', {style: {marginLeft: "auto"}}]
         ];
         if (loggedIn.value){  
-          buttons.push(["Admin", "/login", {style: {marginLeft: "auto"}}],
+          buttons.push(["Admin", "/admin", {style: {marginLeft: "auto"}}],
                        ["Log Out", "/logout", {external: true}],
                        );
         }
