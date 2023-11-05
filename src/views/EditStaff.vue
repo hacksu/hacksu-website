@@ -26,6 +26,7 @@
                 Titles:
                 <input type="text" v-for="title, i in staff.titles" v-model="staff.titles[i]" :key="i" />
                 <input type="text" v-model="newTitles[j]" placeholder="Add title..." />
+                <label><span>Current Leadership</span><input type="checkbox" v-model="staff.isCurrent"></label>
                 <div style="display: flex; justify-content: space-evenly; gap: 10px">
                     <button style="width:100%" @click="update(staff, j)">
                         {{j==0 ? "➕" : "💾"}}{{ confirmation.has(j) ? ' ✅' : "" }}

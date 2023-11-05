@@ -1,5 +1,6 @@
 import Home from "../views/Home.vue";
-import Staff from "../views/Staff.vue";
+import Alumni from "../views/Alumni.vue";
+import Leadership from "../views/Leadership.vue";
 import Contact from "../views/Contact.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
@@ -8,6 +9,8 @@ import Redirects from "../views/Redirects.vue";
 import Admin from "../views/Admin.vue";
 import EditStaff from "../views/EditStaff.vue";
 import EditEvents from "../views/EditEvents.vue";
+import EditNotes from "../views/EditNotes.vue";
+import Meetings from "../views/Meetings.vue"
 
 export const routes = [
   {
@@ -20,12 +23,20 @@ export const routes = [
     component: Home,
   },
   {
-    path: "/staff",
-    name: "Staff",
+    path: "/alumni",
+    name: "Alumni",
     meta: {
-      title: "HacKSU Alumni & Staff",
+      title: "HacKSU Alumni",
     },
-    component: Staff,
+    component: Alumni,
+  },
+  {
+    path: "/leadership",
+    name: "Leadership",
+    meta: {
+      title: "HacKSU Leadership"
+    },
+    component: Leadership
   },
   {
     path: "/contact",
@@ -87,6 +98,22 @@ export const routes = [
     path: "/admin/events",
     name: "Edit Events", 
     component: EditEvents,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/admin/notes",
+    name: "Edit Notes",
+    component: EditNotes,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/admin/meetings",
+    name: "Meetings",
+    component: Meetings,
     meta: {
       admin: true
     }

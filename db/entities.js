@@ -40,6 +40,8 @@ export class StaffMember {
     titles;
     /** @type {string} */
     link;
+    /** @type {boolean} */
+    isCurrent;
 }
 
 describeClass(
@@ -61,7 +63,8 @@ describeClass(
         github: Fields.string(),
         photo: Fields.string(),
         link: Fields.string(),
-        titles: Fields.json()
+        titles: Fields.json(),
+        isCurrent: Fields.boolean()
     }
 );
 
@@ -84,7 +87,7 @@ export class Event {
     descriptionHTML;
 }
 
-let md;
+let md_event;
 
 describeClass(
     Event,
@@ -98,7 +101,7 @@ describeClass(
                     if (!md) {
                         md = (await import("markdown-it")).default();
                     }
-                    event.descriptionHTML = md.render(event.descriptionMD || "");
+                    event.descriptionHTML = md_event.render(event.descriptionMD || "");
                 }
             }
         },
@@ -112,5 +115,46 @@ describeClass(
         link: Fields.string(),
         descriptionMD: Fields.string(),
         descriptionHTML: Fields.string()
+    }
+);
+
+export class Note {
+    /** @type {string} */
+    id;
+    /** @type {string} */
+    title;
+    /** @type {string} */
+    date;
+    /** @type {string} */
+    notesMD;
+    /** @type {string} */
+    notesHTML;
+}
+
+let md_note;
+
+describeClass(
+    Note,
+    Entity(
+        "notes",
+        {
+            allowApiRead: true,
+            allowApiCrud: r=> r.user && r.user.isLeader,
+            saving: async note => {
+                if (isBackend()) {
+                    if (!md_note) {
+                        md_note = (await import("markdown-it")).default();
+                    }
+                    note.notesHTML = md_note.render(note.notesMD || "");
+                }
+            }
+        },
+    ),
+    {
+        id: Fields.uuid(),
+        title: Fields.string(),
+        date: Fields.string(),
+        notesMD: Fields.string(),
+        notesHTML: Fields.string()
     }
 );

@@ -1,9 +1,9 @@
 <template>
   <div class="staff">
     <div class="header">
-      <h1>Alumni & Staff</h1>
+      <h1>Alumni</h1>
       <h3 class="description">
-        Past and present leaders of HacKSU
+        Past leaders of HacKSU
       </h3>
     </div>
     <div class="list" v-for="(row, rowIndex) in organized" v-bind:key="rowIndex">
@@ -12,7 +12,9 @@
       </h2>
       <h2 class="year" v-else>Current Leadership</h2>
       <span class="group">
-        <StaffCard v-for="(staff, index) in row.staff" :key="index" :staff="staff"/>
+        <div>
+          <StaffCard v-for="(staff, index) in row.staff" :key="index" :staff="staff"/>
+        </div>
       </span>
     </div>
 
@@ -59,8 +61,8 @@ export default {
   },
   mounted(){
     const repo = remult.repo(StaffMember);
-    repo.find().then(staff => {
-      this.staff = staff;
+    repo.find({where: {isCurrent:false}}).then(staff => {
+      this.staff = staff; 
     });
   },
   components: {
