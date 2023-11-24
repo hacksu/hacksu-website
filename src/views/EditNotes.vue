@@ -65,6 +65,7 @@ const update = (note, j) => {
         if (j == 0) {
             Object.assign(newNote, repo.create());
         }
+        location.reload(true);
     }).catch((e) => {
         alert("Error updating note: " + e.message);
     })

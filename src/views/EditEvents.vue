@@ -66,8 +66,10 @@ const update = (event, j) => {
         if (j == 0){
             Object.assign(newEvent, repo.create());
         }
+        location.reload(true);
     }).catch((e) => {
         alert("Error updating event: " + e.message);
+        alert("e: " + e);
     })
 };
 

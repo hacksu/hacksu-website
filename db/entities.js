@@ -98,8 +98,8 @@ describeClass(
             allowApiCrud: r=> r.user && r.user.isLeader,
             saving: async event => {
                 if (isBackend()){
-                    if (!md) {
-                        md = (await import("markdown-it")).default();
+                    if (!md_event) {
+                        md_event = (await import("markdown-it")).default();
                     }
                     event.descriptionHTML = md_event.render(event.descriptionMD || "");
                 }
