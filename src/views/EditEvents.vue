@@ -35,10 +35,10 @@ const confirmation = ref(new Set());
 
 const repo = remult.repo(Event);
 
-const newEvent = reactive(repo.create());
+const newEvent = ref(repo.create());
 
 const eventsToDisplay = computed(() => {
-    return [newEvent].concat(events.value);
+    return [newEvent.value].concat(events.value);
 });
 
 let unsubscribe;
@@ -56,7 +56,7 @@ onUnmounted(() => {
 const update = (event, j) => {
     let update;
     if (j == 0){
-        update = repo.insert(newEvent);
+        update = repo.insert(newEvent.value);
     } else {
         update = repo.update(event.id, event);
     }
@@ -64,11 +64,12 @@ const update = (event, j) => {
         confirmation.value.add(j);
         setTimeout(() => confirmation.value.delete(j), 3000);
         if (j == 0){
-            Object.assign(newEvent, repo.create());
+            newEvent.value = repo.create();
+            // Object.assign(newEvent, repo.create());
         }
-        location.reload(true);
+        // location.reload(true);
     }).catch((e) => {
-        alert("Error updating event: " + e.message);
+        alert("Error updating event: " + e);
         alert("e: " + e);
     })
 };
