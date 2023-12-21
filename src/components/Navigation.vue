@@ -32,7 +32,7 @@ export default {
           ['Alumni', '/alumni'],
           ['Contact', '/contact'],
           ['Constitution', '/constitution'],
-          ['Events', '/events'],
+          ['Meetings', '/meetings'],
           //[(loggedIn.value ? 'Admin' : 'Login'), '/login', {style: {marginLeft: "auto"}}]
         ];
         if (loggedIn.value){  

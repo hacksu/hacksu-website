@@ -4,13 +4,13 @@ import Leadership from "../views/Leadership.vue";
 import Contact from "../views/Contact.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
-import Events from "../views/Events.vue";
+import Meetings from "../views/Meetings.vue";
 import Redirects from "../views/Redirects.vue";
 import Admin from "../views/Admin.vue";
 import EditStaff from "../views/EditStaff.vue";
 import EditEvents from "../views/EditEvents.vue";
 import EditNotes from "../views/EditNotes.vue";
-import Meetings from "../views/Meetings.vue"
+import AdminMeetings from "../views/AdminMeetings.vue"
 
 export const routes = [
   {
@@ -63,14 +63,14 @@ export const routes = [
     component: HotCard,
   },
   {
-    path: '/events',
-    name: "Events",
+    path: '/meetings',
+    name: "Meetings",
     meta: {
-      title: "HacKSU Events",
+      title: "HacKSU Meetings",
     },
-    component: Events,
+    component: Meetings,
   },
-  {
+  { 
     path: "/admin",
     name: "Admin Stuff",
     component: Admin,
@@ -112,8 +112,8 @@ export const routes = [
   },
   {
     path: "/admin/meetings",
-    name: "Meetings",
-    component: Meetings,
+    name: "Admin Meetings",
+    component: AdminMeetings,
     meta: {
       admin: true
     }
