@@ -30,14 +30,15 @@ export default {
           ['Home', '/'],
           ['Leadership', '/leadership'],
           ['Contact', '/contact'],
-          ['Constitution', '/constitution'],
+        //   ['Constitution', '/constitution'],
           ['Meetings', '/meetings'],
           //[(loggedIn.value ? 'Admin' : 'Login'), '/login', {style: {marginLeft: "auto"}}]
         ];
         if (loggedIn.value){  
-          buttons.push(["Admin", "/admin", {style: {marginLeft: "auto"}}],
-                       ["Log Out", "/logout", {external: true}],
-                       );
+            buttons.push(
+                ["Admin", "/admin", {style: {marginLeft: "auto"}}],
+                ["Log Out", "/logout", {external: true}],
+            );
         }
         return buttons;
       }
