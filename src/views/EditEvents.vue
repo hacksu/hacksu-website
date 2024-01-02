@@ -7,7 +7,10 @@
             <div class="event" v-for="event, j in eventsToDisplay" :key="event.id">
                 <label><span>Title: </span><input type="text" v-model="event.title" /></label>
                 <label><span>Date: </span><input type="date" v-model="event.date" /></label>
-                <label><span>Description: </span><textarea v-model="event.descriptionMD" /></label>
+                <label style="flex-direction: column;">
+                    <span>Markdown Description:</span>
+                    <textarea v-model="event.descriptionMD" />
+                </label>
                 <label><span>Presenter: </span><input type="text" v-model="event.presenter" /></label>
                 <label><span>Link: </span><input type="text" v-model="event.link" /></label>
                 <div style="display: flex; justify-content: space-evenly; gap: 10px">
@@ -112,5 +115,9 @@ button, button:hover {
     color: black;
     border: 1px solid darkgray;
     transition: none;
+}
+textarea {
+    width: 300px;
+    height: 100px;
 }
 </style>

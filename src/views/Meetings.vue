@@ -1,25 +1,19 @@
 <template>
-    <div class="container">
-        <h1 style="margin: auto">Meetings, Gatherings, Presentations, & Events</h1>
-        <br>
-        <div class="event" v-for="event, i in events" :key="event.id"
-            :style="{backgroundColor: randomColor(i)}">
-            <div style="display: flex; flex-direction: column; width: 100%">
-                <component :is="event.link ? 'a' : 'span'" v-if="event.link"
-                    :href="event.link" target="_blank">
+    <div class="event-page-container">
+        <div class="event-container" v-for="event, i in events" :key="event.id">
+            <div class="event">
+                <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank">
+                    <img class="external-link" v-if="event.link.startsWith('https://github.com')"
+                        style="height: 30px" src="@/assets/images/github-white.svg" />
+                    <img v-else-if="event.link" style="height: 26px" src="@/assets/external-link.svg" />
                     <h2>{{ event.title }}</h2>
                 </component>
-                <div v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
-                <p>{{
-                    [formatDate(event.date), event.presenter]
-                        .filter(s => s).join(' - ')
-                }}</p>
+                <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
+                <div class="event-footer">
+                    <p><strong>{{formatDate(event.date)}}</strong></p>
+                    <p>Presented by <strong>{{ event.presenter }}</strong></p>
+                </div>
             </div>
-            <a v-if="event.link" :href="event.link" target="_blank">
-                <img v-if="event.link.startsWith('https://github.com')"
-                    style="height: 50px" src="@/assets/images/github-white.svg" />
-                <img v-else style="height: 40px" src="@/assets/external-link.svg" />
-            </a>
         </div>
     </div>
 </template>
@@ -35,38 +29,15 @@ onMounted(() => {
         .then(e => (events.value = e));
 });
 const formatDate = (dateString) => {
-    return new Date(dateString + "T19:00:00").toLocaleDateString();
-}
-
-const colors = ["#37bf94", "#a250c1", "#1079c5"];
-// adapted from https://stackoverflow.com/a/19303725/3962267
-function randomColor(index) {
-    const x = Math.sin(index) * 10000;
-    const randomIshNumber = x - Math.floor(x);  // in [0, 1)?
-    return colors[Math.floor(randomIshNumber*(colors.length-1))];
+    return new Date(dateString + "T19:00:00")
+        .toLocaleDateString("en-us", {month: "long", day: "numeric", year: "numeric"});
 }
 </script>
 <style scoped lang="scss">
 * {
     box-sizing: border-box;
 }
-.event {
-    background-color: #a250c1;
-    width: 100%;
-    border-radius: 5000px;
-    padding: 15px 30px 15px 50px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    max-width: 750px;
-    h2 {
-        margin: 5px 0;
-    }
-    &:deep(p) {
-        margin: 5px 0;
-    }
-}
-.container{
+.event-page-container {
     background: linear-gradient(to top left, #35c982, #4683FF);
     min-height: 100vh;
     padding: 100px;
@@ -75,7 +46,50 @@ function randomColor(index) {
     }
     overflow: auto;
 }
-a {
-    color: white;
+.event-container {
+    background: linear-gradient(90deg, rgb(155, 76, 187) 0%, rgb(157, 77, 185) 24%, rgb(161, 78, 194) 32%, rgb(171, 82, 203) 100%); 
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    max-width: 500px;
+    box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.15);
+    padding: 16px 24px;
+}
+.event {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &:deep(a:visited) {
+        color: white;
+    }
+    h2 {
+        display: inline;
+        font-size: 26px;
+        margin: 0;
+    }
+}
+.event-title {
+    margin: 12px 0 8px;
+    // text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+// .event-text {
+// }
+.event-footer {
+    display:flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    & > p {
+        padding: 4px;
+        margin: 2px -4px;
+    }
+}
+.external-link {
+    margin-right: 10px;
+}
+strong {
+    font-weight: 600;
 }
 </style>
