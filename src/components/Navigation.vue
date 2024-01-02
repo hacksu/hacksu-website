@@ -28,10 +28,10 @@ export default {
     buttons(){
       const buttons = [
           ['Home', '/'],
+          ['Meetings', '/meetings'],
           ['Leadership', '/leadership'],
           ['Contact', '/contact'],
         //   ['Constitution', '/constitution'],
-          ['Meetings', '/meetings'],
           //[(loggedIn.value ? 'Admin' : 'Login'), '/login', {style: {marginLeft: "auto"}}]
         ];
         if (loggedIn.value){  

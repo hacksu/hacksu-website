@@ -1,7 +1,7 @@
 <template>
     <div class="event-page-container">
         <div v-for="label, i in groupedEvents.keys()" :key="label">
-            <h2>{{ (i > 0 ? "Archive: " : "") + label }}</h2>
+            <h1 style="text-align: center;">{{ label + " Meetings" + (i > 0 ? " (Archive) " : "") }}</h1>
             <div class="event-list-container">
                 <div class="event-container" v-for="event, i in groupedEvents.get(label)" :key="event.id"
                         ref="containers" :style="{transform: translations[i] || 'unset'}">
@@ -61,7 +61,13 @@ onMounted(() => {
         });
 });
 const groupedEvents = computed(() => {
+    // create a map which will store ordered key-value pairs, where the key is
+    // the name of the semester and the value is an array of events from that
+    // semester
     const result = new Map();
+
+    // iterate through the events (which are fetched in reverse chronological
+    // order) and create groups based on the semesters that they fall into
     for (const event of events.value){
         const date = new Date(event.date);
         const label = (date.getMonth() < 6 ? "Spring" : "Fall") + " " + date.getFullYear();
@@ -71,12 +77,16 @@ const groupedEvents = computed(() => {
             result.get(label).push(event);
         }
     }
+
+    // reverse the order of events within each group to make them
+    // forward-chronological within each semester
+    result.forEach(value => value.reverse());
     
-    console.log(result);
     return result;
 });
+
 const formatDate = (dateString) => {
-    return new Date(dateString + "T19:00:00")
+    return new Date(dateString + "T19:00:00")  // that day at 7pm
         .toLocaleDateString("en-us", {month: "long", day: "numeric", year: "numeric"});
 }
 </script>
@@ -88,7 +98,7 @@ const formatDate = (dateString) => {
 .event-page-container {
     background: linear-gradient(to top left, #35c982, #4683FF);
     min-height: 100vh;
-    padding: 100px;
+    padding: 60px 100px 100px 100px;
     @media (max-width: 700px){
         padding: 100px 10px;
     }
