@@ -76,8 +76,6 @@ export class Event {
     /** @type {string} */
     date;
     /** @type {string} */
-    subtitle;
-    /** @type {string} */
     presenter;
     /** @type {string} */
     link;
@@ -110,7 +108,6 @@ describeClass(
         id: Fields.uuid(),
         title: Fields.string(),
         date: Fields.string(),
-        subtitle: Fields.string(),
         presenter: Fields.string(),
         link: Fields.string(),
         descriptionMD: Fields.string(),

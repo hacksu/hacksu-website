@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 style="margin: auto">Schedule of Meetings & Events (2023-2024)</h1>
+        <h1 style="margin: auto">Meetings, Gatherings, Presentations, & Events</h1>
         <br>
         <div class="event" v-for="event, i in events" :key="event.id"
             :style="{backgroundColor: randomColor(i)}">
@@ -11,7 +11,7 @@
                 </component>
                 <div v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
                 <p>{{
-                    [event.subtitle, formatDate(event.date), event.presenter]
+                    [formatDate(event.date), event.presenter]
                         .filter(s => s).join(' - ')
                 }}</p>
             </div>

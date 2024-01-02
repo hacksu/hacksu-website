@@ -6,93 +6,29 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development
+
+This uses Vite to create a development server.
+
 ```
 npm run dev
 ```
 
 ### Compiles and minifies for production
+
+This step uses vite-ssg to save the site's content as HTML. Keep this step in mind when developing the site; if you write code in a Vue component that directly accesses objects that are provided by a browser, like `window`, this step will crash, since this initial build is not run in a browser. You can usually move code that accesses browser-y stuff to a callback like `onMounted` to avoid this.
+
 ```
 npm run build
 ```
 
-### Website Redirects (aka short URLs)
-https://github.com/hacksu/hacksu-2021/wiki/Hacksu-Website-Redirects
+### Editing Content
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-## Remote Deployment
-
-Use the following commands to push changes to the hacksu server.
-
-### Add Deploy Remote
-```
-git remote add live ssh://root@hacksu.com/var/repo/hacksu-2021.git
-```
-
-### Deploying
-```
-git push live master
-```
+Go to https://hacksu.com/login (or http://localhost:8000/login if you're developing the site) to log in. If you have the "Member" role in the HacKSU Discord, you'll be given access to the admin pages and be able to edit the site's content.
 
 ### db folder
 
-The DB folder should have the following structure for entities.js to store `Redirect`, 
-`StaffMember`, and `Event` objects in JSON format. This folder acts of the database for site content which changes often.
+The DB folder stores JSON files that act as the database for the site's content, which changes often. "entities.js" stores the schema for the objects that will be stored in these files. You should be able to update the database through the admin interface without needing to create or modify these files directly. However, if this site is migrated to another server, transferring the .json files from the old server to the new one is a good idea. (They are not committed to GitHub or git, as they aren't part of the source code and change regularly.)
 
-```
-db
-├── entities.js
-├── events.json
-├── redirects.json
-└── staff.json
-```
-
-Below are examples of each JSON file.
-
-events.json:
-```
-[
-    {
-        "id": "some-auto-generated-id",
-        "title": "Event Title",
-        "date": "yyyy-mm-dd",
-        "subtitle": "Event Subtitle",
-        "presenter": "John Doe",
-        "link": "https://some-relevant-link",
-        "description": "",
-        "descriptionMD": "**HTML.**",
-        "descriptionHTML": "<p><strong>HTML.</strong></p>\n"
-  },
-]
-```
-redirects.json
-```
-[
-    {
-        "urlSlug": "discord",
-        "destination": "https://discord.gg/JNeBC2Y"
-    }
-]
-```
-staff.json
-```
-[
-    {
-        "id": "some-auto-generated-id",
-        "name": "James Corn",
-        "gradTerm": "Fall",
-        "gradYear": "2026",
-        "github": "github-username",
-        "photo": "link-to-photo",
-        "titles": [
-            "Supreme Overlord"
-        ],
-        "link": ""
-    },
-]
-```
 ## Server Configuration
 
 In order for the site to work properly, a server.config.json file must be present in the root directory. An example configuration file is provided below:

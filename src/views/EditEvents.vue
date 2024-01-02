@@ -7,7 +7,6 @@
             <div class="event" v-for="event, j in eventsToDisplay" :key="event.id">
                 <label><span>Title: </span><input type="text" v-model="event.title" /></label>
                 <label><span>Date: </span><input type="date" v-model="event.date" /></label>
-                <label><span>Subtitle: </span><input type="text" v-model="event.subtitle" /></label>
                 <label><span>Description: </span><textarea v-model="event.descriptionMD" /></label>
                 <label><span>Presenter: </span><input type="text" v-model="event.presenter" /></label>
                 <label><span>Link: </span><input type="text" v-model="event.link" /></label>
