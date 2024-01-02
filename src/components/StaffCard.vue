@@ -44,8 +44,8 @@ export default {
 
 .staff-item {
   // @include white-bg;
-  background-color: #dfdfdf;
-  border: 1px dotted #bbb;
+  background-color: #fff;
+  border: 1px dotted #999;
   @include rounded;
   transition: transform 0.25s, box-shadow 0.25s;
   cursor: pointer;

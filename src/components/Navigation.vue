@@ -29,7 +29,6 @@ export default {
       const buttons = [
           ['Home', '/'],
           ['Leadership', '/leadership'],
-          ['Alumni', '/alumni'],
           ['Contact', '/contact'],
           ['Constitution', '/constitution'],
           ['Meetings', '/meetings'],

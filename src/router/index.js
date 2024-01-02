@@ -1,5 +1,4 @@
 import Home from "../views/Home.vue";
-import Alumni from "../views/Alumni.vue";
 import Leadership from "../views/Leadership.vue";
 import Contact from "../views/Contact.vue";
 import Constitution from "../views/Constitution.vue";
@@ -23,20 +22,12 @@ export const routes = [
     component: Home,
   },
   {
-    path: "/alumni",
-    name: "Alumni",
-    meta: {
-      title: "HacKSU Alumni",
-    },
-    component: Alumni,
-  },
-  {
     path: "/leadership",
     name: "Leadership",
     meta: {
-      title: "HacKSU Leadership"
+      title: "HacKSU Leadership",
     },
-    component: Leadership
+    component: Leadership,
   },
   {
     path: "/contact",
