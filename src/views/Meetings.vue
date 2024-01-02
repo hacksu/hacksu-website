@@ -1,20 +1,22 @@
 <template>
     <div class="event-page-container">
-        <h1 class="page-title">HacKSU Meetings</h1>
-        <div class="event-list-container">
-            <div class="event-container" v-for="event, i in events" :key="event.id"
-                    ref="containers" :style="{transform: translations[i] || 'unset'}">
-                <div class="event">
-                    <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank">
-                        <img class="external-link" v-if="event.link.startsWith('https://github.com')"
-                            style="height: 30px" src="@/assets/images/github-white.svg" />
-                        <img v-else-if="event.link" style="height: 26px" src="@/assets/external-link.svg" />
-                        <h2>{{ event.title }}</h2>
-                    </component>
-                    <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
-                    <div class="event-footer">
-                        <p><strong>{{formatDate(event.date)}}</strong></p>
-                        <p style="text-align: right">Presented by <strong>{{ event.presenter }}</strong></p>
+        <div v-for="label, i in groupedEvents.keys()" :key="label">
+            <h2>{{ (i > 0 ? "Archive: " : "") + label }}</h2>
+            <div class="event-list-container">
+                <div class="event-container" v-for="event, i in groupedEvents.get(label)" :key="event.id"
+                        ref="containers" :style="{transform: translations[i] || 'unset'}">
+                    <div class="event">
+                        <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank">
+                            <img class="external-link" v-if="event.link.startsWith('https://github.com')"
+                                style="height: 30px" src="@/assets/images/github-white.svg" />
+                            <img v-else-if="event.link" style="height: 26px" src="@/assets/external-link.svg" />
+                            <h2>{{ event.title }}</h2>
+                        </component>
+                        <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
+                        <div class="event-footer">
+                            <p><strong>{{formatDate(event.date)}}</strong></p>
+                            <p style="text-align: right">Presented by <strong>{{ event.presenter }}</strong></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,11 +54,26 @@ const backgroundSize = computed(() => {
 const events = ref([]);
 const repo = remult.repo(Event);
 onMounted(() => {
-    repo.find({orderBy: {date: "asc"}})
+    repo.find({orderBy: {date: "desc"}})
         .then(e => {
             events.value = e;
             nextTick(updateContainerPositions);
         });
+});
+const groupedEvents = computed(() => {
+    const result = new Map();
+    for (const event of events.value){
+        const date = new Date(event.date);
+        const label = (date.getMonth() < 6 ? "Spring" : "Fall") + " " + date.getFullYear();
+        if (!result.has(label)){
+            result.set(label, [event]);
+        } else {
+            result.get(label).push(event);
+        }
+    }
+    
+    console.log(result);
+    return result;
 });
 const formatDate = (dateString) => {
     return new Date(dateString + "T19:00:00")
