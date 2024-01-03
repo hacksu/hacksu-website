@@ -37,7 +37,7 @@ export default function setUpUpload(app){
 
     const eventFolderName = "event-photos";
     const maxEventPhotoWidth = 1000;
-    const eventPhotoAR = 5;
+    const eventPhotoAR = 2.5;
     app.use("/event-photo-upload", makePhotoReceiver(eventFolderName), async (req, res) => {
         // resize photo to make sure it's 5:1 and no wider than 1000 pixels
 

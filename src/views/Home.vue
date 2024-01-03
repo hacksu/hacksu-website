@@ -3,7 +3,7 @@
     <Landing/>
     <Mission/>
     <Meetings/>
-    <Involved/>
+    <!-- <Involved/> -->
     <SocialMedia/>
   </div>
 </template>
@@ -13,7 +13,7 @@
 import Landing from '@/components/Landing.vue'
 import Mission from '@/components/Mission.vue'
 import Meetings from '@/components/Location.vue'
-import Involved from '@/components/Involved.vue'
+// import Involved from '@/components/Involved.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 
 export default {
@@ -22,7 +22,7 @@ export default {
     Landing,
     Mission,
     Meetings,
-    Involved,
+    // Involved,
     SocialMedia
   }
 }
