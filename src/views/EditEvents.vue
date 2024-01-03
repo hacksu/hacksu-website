@@ -7,7 +7,7 @@
             <div class="event" v-for="event, j in eventsToDisplay" :key="event.id">
                 <div class="cover-photo-preview"
                     :style="event.photo ? {backgroundImage: `url(${event.photo})`} : {backgroundColor: '#333'}">
-                    <button @click="() => upload(j)" class="add-photo" v-if="!event.photo">+</button>
+                    <button @click="() => choosePhoto(j)" class="add-photo" v-if="!event.photo">+</button>
                     <button @click="event.photo = ''" class="remove-photo" v-if="event.photo">x</button>
                     <input type="file" ref="fileUpload" style="display:none" accept="image/jpeg,image/png" />
                 </div>
@@ -29,6 +29,19 @@
                 </div>
             </div>
         </div>
+        <dialog ref="cropModal">
+            <div>
+                <h2>Crop:</h2>
+                <cropper
+                    ref="cropperComponent"
+                    v-if="imagePreview"
+                    class="cropper"
+                    :src="imagePreview"
+                    :stencil-props="{ aspectRatio: 2.5 }"
+                ></cropper>
+                <button @click="() => cropDoneCallback()">Save</button>
+            </div>
+        </dialog>
     </div>
 </template>
 
@@ -36,6 +49,9 @@
 import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import { remult } from "remult";
 import { Event } from "../../db/entities.js";
+
+import { Cropper } from 'vue-advanced-cropper';
+import 'vue-advanced-cropper/dist/style.css';
 
 const events = ref([]);
 
@@ -86,24 +102,49 @@ const remove = (event, j) => {
     }
 }
 
+const cropModal = ref(null);
+const cropperComponent = ref(null);
+const imagePreview = ref("");
+const cropDoneCallback = ref(null);
+
+function crop(url, resultCallback){
+    imagePreview.value = url;
+    cropModal.value?.showModal();
+    console.log("setting cropDoneCallback");
+    cropDoneCallback.value = () => {
+        console.log("cropDoneCallback called");
+        cropDoneCallback.value = null;
+        imagePreview.value = "";
+        cropperComponent.value.getResult().canvas.toBlob(resultCallback);
+        cropModal.value.close();
+    };
+
+}
+
+const uploadPhoto = async (photoFile) => {
+    const data = new FormData();
+    data.append("photo", photoFile);
+    return await fetch("/event-photo-upload", { method: "POST", body: data })
+        .then(async (res) => {
+            const path = await res.text();
+            return path;
+        });
+};
+
 const fileUpload = ref(null);
 watch(fileUpload, (inputs) => {
-    for (let i=0; i<inputs.length; ++i){
+    for (let i = 0; i<inputs.length; ++i){
         inputs[i].onchange = () => {
-            const data = new FormData();
-            data.append("photo", inputs[i].files[0]);
-            fetch("/event-photo-upload", { method: "POST", body: data })
-                .then(async (res) => {
-                    const path = await res.text();
-                    eventsToDisplay.value[i].photo = path;
-                });
+            const url = URL.createObjectURL(inputs[i].files[0]);
+            crop(url, async (result) => {
+                eventsToDisplay.value[i].photo = await uploadPhoto(result);
+            });
         };
     }
 }, { deep: true });
-const upload = (i) => {
-    if (fileUpload.value[i]){
-        fileUpload.value[i].click();
-    }
+
+const choosePhoto = (i) => {
+    fileUpload.value[i]?.click();
 };
 </script>
 
@@ -117,7 +158,7 @@ const upload = (i) => {
     flex-wrap: wrap;
 }
 .cover-photo-preview {
-    padding-bottom: 20%;
+    padding-bottom: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,5 +215,9 @@ button, button:hover {
 textarea {
     width: 300px;
     height: 100px;
+}
+.cropper {
+    width: 600px;
+    max-height: 600px;
 }
 </style>
