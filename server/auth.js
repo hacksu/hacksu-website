@@ -60,7 +60,7 @@ export default function setUpAuth(app){
     // routes. these routes should track those in src/router/index.js. this is
     // not super important, since the allowApi* checks in entities.js should
     // prevent unauthorized db access anyway, but it looks more secure this way
-    for (const route of ["/login", "/redirects", "/edit-staff", "/edit-events", "/audit-log"]){
+    for (const route of ["/login", "/admin/*", "/audit-log"]){
         app.get(route, (req, res, next) => {
             if (req.isAuthenticated() && req.user?.isLeader){
                 return next();
