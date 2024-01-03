@@ -5,6 +5,7 @@
             <div class="event-list-container">
                 <div class="event-container" v-for="event, i in groupedEvents.get(label)" :key="event.id"
                         ref="containers" :style="{transform: translations[i] || 'unset'}">
+                    <img v-if="event.photo" :src="event.photo" class="event-cover-photo" />
                     <div class="event">
                         <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank">
                             <img class="external-link" v-if="event.link.startsWith('https://github.com')"
@@ -13,7 +14,7 @@
                             <h2>{{ event.title }}</h2>
                         </component>
                         <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
-                        <div class="event-footer">
+                        <div class="event-footer">  
                             <p><strong>{{formatDate(event.date)}}</strong></p>
                             <p style="text-align: right">Presented by <strong>{{ event.presenter }}</strong></p>
                         </div>
@@ -29,6 +30,8 @@ import { remult } from "remult";
 import { Event } from "../../db/entities.js";
 
 const sineWavePeriod = 1500;
+// TODO: IDEA: make this reactive and based on scroll position. might be hard to
+// update container positions based on it in a performant way
 const sineWaveWidth = 200;
 const containers = ref([]);
 const translations = ref([]);
@@ -36,6 +39,8 @@ function updateContainerPositions(){
     if (window.innerWidth < 800) {
         return;
     } else if (containers.value && containers.value.length){
+        // TODO: go group by group somehow. really just need to update `start`
+        // after we go through all the containers in each group
         translations.value = [];
         const start = containers.value[0].getBoundingClientRect().top;
         for (const cont of containers.value){
@@ -118,16 +123,21 @@ const formatDate = (dateString) => {
     opacity: 0.975;
     border-radius: 15px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     margin: 0 auto 80px auto;
     &:first-of-type {
         margin-top: 50px;
     }
     max-width: 500px;
     box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.15);
-    padding: 16px 24px;
+    padding-bottom: 16px;
+    overflow: hidden;
 }
 .event {
+    &>* {
+        padding: 0 24px;
+    }
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -140,6 +150,9 @@ const formatDate = (dateString) => {
         font-size: 1.5rem;
         margin: 0;
     }
+}
+.event-cover-photo {
+    width: 100%;
 }
 .event-title {
     margin: 12px 0 8px;

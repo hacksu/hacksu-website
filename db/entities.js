@@ -83,6 +83,8 @@ export class Event {
     descriptionMD;
     /** @type {string} */
     descriptionHTML;
+    /** @type {string | undefined} */
+    photo;
 }
 
 let md_event;
@@ -111,7 +113,8 @@ describeClass(
         presenter: Fields.string(),
         link: Fields.string(),
         descriptionMD: Fields.string(),
-        descriptionHTML: Fields.string()
+        descriptionHTML: Fields.string(),
+        photo: Fields.string()
     }
 );
 

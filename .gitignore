@@ -10,6 +10,9 @@ audit-log.txt
 public/staff-photos/*
 !public/staff-photos/.gitkeep
 
+public/event-photos/*
+!public/event-photos/.gitkeep
+
 db/*.json
 
 server.config.json

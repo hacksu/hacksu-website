@@ -108,10 +108,9 @@ const fileUpload = ref(null);
 watch(fileUpload, (inputs) => {
     for (let i=0; i<inputs.length; ++i){
         inputs[i].onchange = () => {
-            console.log("change listener");
             const data = new FormData();
             data.append("photo", inputs[i].files[0]);
-            fetch("/photo-upload", { method: "POST", body: data })
+            fetch("/staff-photo-upload", { method: "POST", body: data })
                 .then(async (res) => {
                     const path = await res.text();
                     staffToDisplay.value[i].photo = path;
