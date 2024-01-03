@@ -1,15 +1,16 @@
 <template>
-	<div class="event-container" :style="color ? {backgroundColor: color} : {}">
+	<div class="event-container" :style="background ? {background} : {}">
         <div class="cover-photo" v-if="event.photo" :style="{backgroundImage: `url(${event.photo})`}" />
         <div class="event">
             <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank">
                 <img class="external-link" v-if="event.link.startsWith('https://github.com')"
                     style="height: 30px" src="@/assets/images/github-white.svg" />
                 <img v-else-if="event.link" style="height: 26px;margin-right:10px" src="@/assets/external-link.svg" />
-                <h2>{{ (showDetails ? "Our next meeting: " : "") +   event.title }}</h2>
+                <h2>{{ (solo ? "Our next meeting: " : "") +   event.title }}</h2>
             </component>
-            <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
-            <div class="event-footer" v-if="showDetails" >
+            <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"
+                :style="solo ? {maxHeight: '125px', overflowY: 'scroll'} : {}"></div>
+            <div class="event-footer" v-if="solo" >
                 <span><strong>{{formatDate(event.date)}}</strong> at 7:00 PM</span>
                 <strong>MSB 228</strong>
             </div>
@@ -22,7 +23,7 @@
 </template>
 
 <script setup>
-defineProps(["event", "showDetails", "color"]);
+defineProps(["event", "solo", "background"]);
 
 const formatDate = (dateString) => {
     return new Date(dateString + "T19:00:00")  // that day at 7pm
@@ -77,8 +78,12 @@ const formatDate = (dateString) => {
     display: flex;
     align-items: center;
 }
-// .event-text {
-// }
+.event-text {
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+}
 .event-footer {
     display:flex;
     justify-content: space-between;

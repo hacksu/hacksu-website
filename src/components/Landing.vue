@@ -29,7 +29,7 @@
             <span style="text-align: right; font-size: 3rem;font-variant: small-caps;">Come<br />to</span>
             <img style="height: 150px" src="@/assets/logo.svg">
         </div>
-        <MeetingCard :event="nextEvent" :showDetails="true" color="#207a51" style="margin-top: 40px" />
+        <MeetingCard :event="nextEvent" :solo="true" background="rgb(34, 40, 113)" style="margin: 40px auto" />
       </template>
     </div>
   </div>
@@ -125,7 +125,7 @@ export default {
   .content {
     @include center;
     @include white;
-    margin-top: 15vh;
+    margin-top: 10vh;
     h1 {
       font-size: 6vh;
     }
