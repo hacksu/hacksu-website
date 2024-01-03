@@ -118,12 +118,11 @@ function crop(url, resultCallback){
         cropperComponent.value.getResult().canvas.toBlob(resultCallback);
         cropModal.value.close();
     };
-
 }
 
-const uploadPhoto = async (photoFile) => {
+const uploadPhoto = async (photoFile, name) => {
     const data = new FormData();
-    data.append("photo", photoFile);
+    data.append("photo", photoFile, name);
     return await fetch("/event-photo-upload", { method: "POST", body: data })
         .then(async (res) => {
             const path = await res.text();
@@ -135,9 +134,12 @@ const fileUpload = ref(null);
 watch(fileUpload, (inputs) => {
     for (let i = 0; i<inputs.length; ++i){
         inputs[i].onchange = () => {
+            const fileName = inputs[i].files[0].name;
             const url = URL.createObjectURL(inputs[i].files[0]);
             crop(url, async (result) => {
-                eventsToDisplay.value[i].photo = await uploadPhoto(result);
+                eventsToDisplay.value[i].photo = await uploadPhoto(
+                    result, fileName
+                );
             });
         };
     }
