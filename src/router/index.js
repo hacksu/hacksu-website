@@ -70,7 +70,7 @@ export const routes = [
     }
   },
   {
-    path: "/redirects",
+    path: "/admin/redirects",
     name: "Redirects", 
     component: Redirects,
     meta: {
