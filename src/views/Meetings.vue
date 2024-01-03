@@ -5,12 +5,12 @@
             <div class="event-list-container">
                 <div class="event-container" v-for="event, i in groupedEvents.get(label)" :key="event.id"
                         ref="containers" :style="{transform: translations[i] || 'unset'}">
-                    <img v-if="event.photo" :src="event.photo" class="event-cover-photo" />
+                    <div class="cover-photo" v-if="event.photo" :style="{backgroundImage: `url(${event.photo})`}" />
                     <div class="event">
                         <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank">
                             <img class="external-link" v-if="event.link.startsWith('https://github.com')"
                                 style="height: 30px" src="@/assets/images/github-white.svg" />
-                            <img v-else-if="event.link" style="height: 26px" src="@/assets/external-link.svg" />
+                            <img v-else-if="event.link" style="height: 26px;margin-right:10px" src="@/assets/external-link.svg" />
                             <h2>{{ event.title }}</h2>
                         </component>
                         <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"></div>
@@ -39,12 +39,28 @@ function updateContainerPositions(){
     if (window.innerWidth < 800) {
         return;
     } else if (containers.value && containers.value.length){
-        // TODO: go group by group somehow. really just need to update `start`
-        // after we go through all the containers in each group
         translations.value = [];
-        const start = containers.value[0].getBoundingClientRect().top;
+        // the y-coordinate that the sine wave starts at is the same as the top
+        // edge of the first event container
+        let start = containers.value[0].getBoundingClientRect().top;
+        // we need to keep track of the group of events that we're in as we
+        // iterate through them, since the y-coordinate of the top edge of the
+        // current sine wave is given by the top edge of the container in the
+        // current group
+        let groupIndex = 0;
+        let indexWithinGroup = 0;
         for (const cont of containers.value){
             const contRect = cont.getBoundingClientRect();
+            const currentGroupKey = Array.from(groupedEvents.value.keys())[groupIndex];
+            if (indexWithinGroup == groupedEvents.value.get(currentGroupKey).length){
+                // if we've passed the end of the current group, go to the next
+                // one and set `start` anew
+                indexWithinGroup = 0;
+                ++groupIndex;
+                start = contRect.top;
+            } else {
+                ++indexWithinGroup;
+            }
             const pos = contRect.top + contRect.height/2 - start;
             const waveOffset = -Math.sin((pos / sineWavePeriod) * (Math.PI * 2)) * (sineWaveWidth / 2);
             translations.value.push(`translateX(${waveOffset}px)`);
@@ -151,8 +167,11 @@ const formatDate = (dateString) => {
         margin: 0;
     }
 }
-.event-cover-photo {
+.cover-photo {
     width: 100%;
+    padding-bottom: 20%;
+    background-size: cover;
+    background-position: center;
 }
 .event-title {
     margin: 12px 0 8px;
