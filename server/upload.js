@@ -30,7 +30,7 @@ export default function setUpUpload(app){
                 fit: sharp.fit.inside,
                 withoutEnlargement: true,
             }).toBuffer();
-        sharp(buffer).toFile(req.file.path);
+        await sharp(buffer).toFile(req.file.path);
         // reply with the path to the file
         res.send(`/${staffFolderName}/`+req.file.filename);
     });
@@ -50,7 +50,7 @@ export default function setUpUpload(app){
         const buffer = await sharp(req.file.path)
             .resize(targetWidth, targetHeight)
             .toBuffer();
-        sharp(buffer).toFile(req.file.path);
+        await sharp(buffer).toFile(req.file.path);
         // reply with the path to the file
         res.send(`/${eventFolderName}/`+req.file.filename);
     });
