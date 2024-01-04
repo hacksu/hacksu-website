@@ -17,7 +17,7 @@
           <img v-bind:src="item.img">
         </a>
       </div>
-      <template v-if="!nextEvent">
+      <template v-if="true || !nextEvent">
         <img class="main-logo" src="@/assets/logo.svg">
         <h1 style="margin: 15px 0">{{ title }}</h1>
         <p>{{ body }}</p>
@@ -101,6 +101,9 @@ export default {
 #invite-container {
   max-width: 95vw;
   margin: 0 auto;
+  &:deep(svg) {
+    max-width: 100%;
+  }
 }
 
 .no-mobile {
