@@ -2,7 +2,7 @@
 	<div class="event-container" :style="background ? {background} : {}">
         <div class="cover-photo" v-if="event.photo" :style="{backgroundImage: `url(${event.photo})`}" />
         <div class="event">
-            <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank">
+            <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank" style="color:white">
                 <img class="external-link" v-if="event.link.startsWith('https://github.com')"
                     style="height: 30px" src="@/assets/images/github-white.svg" />
                 <img v-else-if="event.link" style="height: 26px;margin-right:10px" src="@/assets/external-link.svg" />

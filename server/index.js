@@ -37,7 +37,10 @@ app.use("*", db.withRemult, (req, res, next) => {
     });
 });
 
-// app.set("trust proxy", 1);
+// needed so this app knows it's behind a https reverse proxy when creating
+// callback urls for oauth. also for receiving ip addresses i guess
+app.set("trust proxy", 1);
+
 // app.use(require("./routes"));
 // app.use(
 //   "/api",

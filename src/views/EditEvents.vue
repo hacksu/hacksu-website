@@ -39,7 +39,7 @@
                     :src="imagePreview"
                     :stencil-props="{ aspectRatio: 2.5 }"
                 ></cropper>
-                <button @click="() => cropDoneCallback()">Save</button>
+                <button @click="() => cropDoneCallback()">Crop</button>
             </div>
         </dialog>
     </div>
