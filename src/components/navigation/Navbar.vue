@@ -114,9 +114,10 @@ export default {
 .navbar {
   position: fixed;
   width: 100vw;
-  height: 38px;
+  height: 55px;
   @include mobile {
     text-align: left;
+    height: 77px;
   }
   //height: 4vh;
   /*@include mobile {
@@ -124,7 +125,7 @@ export default {
   }*/
   top: 0px;
   left: 0px;
-  padding: 30px 10px 30px 10px;
+  padding: 30px 10px;
   z-index: 100;
   &.animated {
     //transition: background 0.25s, padding 0.25s;
@@ -259,6 +260,10 @@ export default {
 .navbar {
   .buttons {
     @include display-not(mobile) {
+      width: 100%;
+      display: flex;
+      padding: 0 30px;
+      box-sizing: border-box;
       .navbtn-back {
         display: none;
       }

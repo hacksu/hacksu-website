@@ -1,12 +1,15 @@
 import Home from "../views/Home.vue";
-import Alumni from "../views/Staff.vue";
+import Leadership from "../views/Leadership.vue";
 import Contact from "../views/Contact.vue";
-// import Constitution from "../views/Constitution.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
-import HotCardOld from "../views/HotCardOld.vue";
-import Events from "../views/Events.vue";
-import { meetings } from "../details";
+import Meetings from "../views/Meetings.vue";
+import Redirects from "../views/Redirects.vue";
+import Admin from "../views/Admin.vue";
+import EditStaff from "../views/EditStaff.vue";
+import EditEvents from "../views/EditEvents.vue";
+import EditNotes from "../views/EditNotes.vue";
+import AdminMeetings from "../views/AdminMeetings.vue"
 
 export const routes = [
   {
@@ -19,12 +22,12 @@ export const routes = [
     component: Home,
   },
   {
-    path: "/staff",
-    name: "Staff",
+    path: "/leadership",
+    name: "Leadership",
     meta: {
-      title: "HacKSU Alumni & Staff",
+      title: "HacKSU Leadership",
     },
-    component: Alumni,
+    component: Leadership,
   },
   {
     path: "/contact",
@@ -51,19 +54,59 @@ export const routes = [
     component: HotCard,
   },
   {
-    path: "/hotcardold",
-    name: "Hot Card Old",
+    path: '/meetings',
+    name: "Meetings",
     meta: {
-      title: "HacKSU HotCard",
+      title: "HacKSU Meetings",
     },
-    component: HotCardOld,
+    component: Meetings,
+  },
+  { 
+    path: "/admin",
+    name: "Admin Stuff",
+    component: Admin,
+    meta: {
+      admin: true
+    }
   },
   {
-    path: '/events',
-    name: "Events",
+    path: "/admin/redirects",
+    name: "Redirects", 
+    component: Redirects,
     meta: {
-      title: "HacKSU Events",
-    },
-    component: Events,
+      admin: true
+    }
   },
+  {
+    path: "/admin/staff",
+    name: "Edit Staff", 
+    component: EditStaff,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/admin/events",
+    name: "Edit Events", 
+    component: EditEvents,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/admin/notes",
+    name: "Edit Notes",
+    component: EditNotes,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/admin/meetings",
+    name: "Admin Meetings",
+    component: AdminMeetings,
+    meta: {
+      admin: true
+    }
+  }
 ];

@@ -70,7 +70,6 @@
 
 <script>
 import { landing as details } from '@/details';
-import BlastOffQR from '@/assets/BlastOff-QR-21b.png';
 
 export default {
   name: 'Landing',

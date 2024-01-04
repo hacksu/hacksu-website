@@ -1,6 +1,3 @@
-
-
-
 @import "@/scss/fonts.scss";
 @import "@/scss/colors.scss";
 @import "@/scss/responsive.scss";
@@ -76,7 +73,6 @@ button, input, textarea, a.navbtn, a.social {
   outline: none;
 }
 button {
-  @include transition;
   cursor: pointer;
 }
 input {

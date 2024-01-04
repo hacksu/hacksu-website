@@ -3,6 +3,18 @@ node_modules
 /dist
 /dist2
 
+audit-log.txt
+
+.vite-ssg-temp
+
+public/staff-photos/*
+!public/staff-photos/.gitkeep
+
+public/event-photos/*
+!public/event-photos/.gitkeep
+
+db/*.json
+
 server.config.json
 ip.blocklist.json
 

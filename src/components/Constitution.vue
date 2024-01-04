@@ -1,6 +1,6 @@
 <template>
   <div class="constitution">
-    <embed id="embed" type="application/pdf" width="100%" src="constitution.pdf">
+    <embed id="embed" type="application/pdf" width="100%" src="/constitution.pdf">
 
   </div>
 </template>

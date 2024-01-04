@@ -1,7 +1,8 @@
 <template>
-  <router-link v-if="!dropdown" v-bind:to="link" class="navbtn underline">
+  <component :is="external ? 'a' : 'router-link'" v-if="!dropdown"
+      :href="link" :to="link" class="navbtn underline">
     <slot></slot>
-  </router-link>
+  </component>
   <span class="navbtn-dropdown" v-else
   @mouseover="calculate"
   @mouseleave="calculate"
@@ -27,7 +28,7 @@
 <script>
 export default {
   name: 'Navbtn',
-  props: ["link"],
+  props: ["link", "external"],
   data() {
     return {
       open: false,

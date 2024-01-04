@@ -1,22 +1,40 @@
 <template>
-  <a class="alumni-item" v-bind:href="'https://github.com/' + github" target="_blank">
-    <div class="photo" v-bind:style="{ 'background-image': 'url(' + image + ')', }">Photo of {{ name }}</div>
+  <component :is="(github || link) ? 'a' : 'div'" class="staff-item"
+      :href="link ? link : github ? 'https://github.com/' + github : ''" target="_blank">
+    <div class="photo" :style="{ 'background-image': 'url(' + image + ')', }"></div>
     <h3 class="name">{{ name }}</h3>
-    <p class="graduated" v-if="graduated">Graduated {{ graduate }}</p>
-    <div class="body" v-html="body"/>
-
-  </a>
+    <p class="graduated" v-if="graduate">Graduated {{ graduate }}</p>
+    <div class="body">
+      <p v-for="title in titles">{{ title }}</p>
+    </div>
+  </component>
 </template>
 
 <script>
 
 export default {
-  name: 'AlumniItem',
+  name: 'StaffCard',
   props: {
-    alumni: Object,
+    staff: Object,
   },
   data() {
-    return this.alumni;
+    return this.staff;
+  },
+  computed: {
+    image(){
+      if (this.photo){
+        return this.photo;
+      } else if (this.github){
+        return `https://github.com/${this.github}.png`;
+      } else {
+        return "";
+      }
+    },
+    graduate(){
+      if (this.gradYear <= new Date().getFullYear()){
+        return this.gradTerm + " " + this.gradYear;
+      } else return null;
+    }
   }
 }
 </script>
@@ -24,8 +42,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-.alumni-item {
-  @include white-bg;
+.staff-item {
+  // @include white-bg;
+  background-color: #fff;
+  border: 1px dotted #999;
   @include rounded;
   transition: transform 0.25s, box-shadow 0.25s;
   cursor: pointer;
@@ -36,7 +56,7 @@ export default {
   }
   //display: table-cell;
   display: inline-block;
-  padding: 2vh;
+  padding: 5vh 4vh;
   text-align: center;
   @include mobile {
     @include center;

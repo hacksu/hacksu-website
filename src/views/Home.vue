@@ -3,7 +3,7 @@
     <Landing/>
     <Mission/>
     <Meetings/>
-    <Involved/>
+    <!-- <Involved/> -->
     <SocialMedia/>
   </div>
 </template>
@@ -12,8 +12,8 @@
 // @ is an alias to /src
 import Landing from '@/components/Landing.vue'
 import Mission from '@/components/Mission.vue'
-import Meetings from '@/components/Meetings.vue'
-import Involved from '@/components/Involved.vue'
+import Meetings from '@/components/Location.vue'
+// import Involved from '@/components/Involved.vue'
 import SocialMedia from '@/components/SocialMedia.vue'
 
 export default {
@@ -22,7 +22,7 @@ export default {
     Landing,
     Mission,
     Meetings,
-    Involved,
+    // Involved,
     SocialMedia
   }
 }
