@@ -44,7 +44,7 @@ export default function setUpUpload(app){
         // get metadata to figure out edge lengths:
         const metadata = await sharp(req.file.path).metadata();
         const targetHeight = Math.min(Math.round(maxEventPhotoWidth / eventPhotoAR), metadata.height);
-        const targetWidth = targetHeight * eventPhotoAR;
+        const targetWidth = Math.round(targetHeight * eventPhotoAR);
 
         // Resize and crop the image
         const buffer = await sharp(req.file.path)
