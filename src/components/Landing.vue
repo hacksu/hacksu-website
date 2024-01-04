@@ -26,15 +26,13 @@
       </template>
       <template v-else>
         <div class="event-welcome">
-            <span style="text-align: right; font-size: 3rem;font-variant: small-caps;">Come<br />to</span>
+            <span style="text-align: right; font-size: 3rem;font-variant: small-caps;">Come <br class="no-mobile" />to</span>
             <img style="height: 150px" src="@/assets/logo.svg">
         </div>
-        <div style="margin: 20px auto 0 auto; display:flex;flex-direction: column;align-items: center;width:fit-content">
-            <MeetingCard :event="nextEvent" :solo="true" background="rgb(34, 40, 113)" style="margin:0" />
-            <a href="https://hacksu.com/discord" style="color: white;margin: 16px 0; font-size: 0.8rem; display:flex; align-items: flex-end; gap: 4px;">
-                <img style="height: 0.8rem" src="@/assets/small-discord-logo-2024.svg"> Visit our Discord for more!
-            </a>
-        </div>
+        <MeetingCard :event="nextEvent" :solo="true" background="rgb(34, 40, 113)" style="margin: 0 10px" />
+        <a href="https://hacksu.com/discord" style="color: white;margin: 16px 0; font-size: 0.8rem; display:flex; align-items: flex-end; gap: 4px;">
+            <img style="height: 0.8rem" src="@/assets/small-discord-logo-2024.svg"> Visit our Discord for more!
+        </a>
       </template>
     </div>
   </div>
@@ -105,18 +103,33 @@ export default {
   margin: 0 auto;
 }
 
+.no-mobile {
+    @media (max-width: 800px) {
+        display: none;
+    }
+}
+
 .event-welcome {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100px;
+    flex-shrink: 1;
+    img {
+        min-height: 80px;
+        flex-shrink: 1;
+    }
     gap: 18px;
-    // background-color: #0002;
-    // border: 1px dashed white;
     width: 450px;
     margin: 0 auto;
     padding: 10px 40px;
     border-radius: 10px;
+    @media (max-width: 800px) {
+        flex-direction: column;
+        width: min-content;
+    }
 }
+
 
 .landing {
   width: 100%;
@@ -130,7 +143,13 @@ export default {
   .content {
     @include center;
     @include white;
-    margin-top: 10vh;
+    padding-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
     h1 {
       font-size: 6vh;
     }

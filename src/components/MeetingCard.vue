@@ -9,7 +9,7 @@
                 <h2>{{ (solo ? "Our next meeting: " : "") +   event.title }}</h2>
             </component>
             <div class="event-text" v-if="event.descriptionHTML" v-html="event.descriptionHTML"
-                :style="solo ? {maxHeight: '125px', overflowY: 'scroll'} : {}"></div>
+                :style="solo ? {overflowY: 'scroll'} : {}"></div>
             <div class="event-footer" v-if="solo" >
                 <span><strong>{{formatDate(event.date)}}</strong> at 7:00 PM</span>
                 <strong>MSB 228</strong>
@@ -48,6 +48,12 @@ const formatDate = (dateString) => {
     padding-bottom: 16px;
     overflow: hidden;
     text-align: left;
+
+    // allow this item to shrink to less than its natural height when necessary;
+    // the .event-text element inside the .event element will then shrink and
+    // become scrollable due to tose elements' css
+    min-height: 0;
+    flex-shrink: 1;
 }
 .event {
     &>* {
@@ -55,6 +61,12 @@ const formatDate = (dateString) => {
     }
     display: flex;
     flex-direction: column;
+
+    // allow this item to shrink to less than its natural height when necessary;
+    // the .event-text element will shrink and become scrollable due to its css
+    min-height: 0;
+    flex-shrink: 1;
+
     width: 100%;
     font-size: 1rem;
     &:deep(a:visited) {
@@ -83,6 +95,10 @@ const formatDate = (dateString) => {
     &::-webkit-scrollbar {
         width: 6px;
     }
+    // allow this element to shrink when necessary, causing the text inside it
+    // to scroll
+    min-height: 0;
+    flex-shrink: 1;
 }
 .event-footer {
     display:flex;
