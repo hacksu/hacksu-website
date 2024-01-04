@@ -29,7 +29,12 @@
             <span style="text-align: right; font-size: 3rem;font-variant: small-caps;">Come<br />to</span>
             <img style="height: 150px" src="@/assets/logo.svg">
         </div>
-        <MeetingCard :event="nextEvent" :solo="true" background="rgb(34, 40, 113)" style="margin: 40px auto" />
+        <div style="margin: 20px auto 0 auto; display:flex;flex-direction: column;align-items: center;width:fit-content">
+            <MeetingCard :event="nextEvent" :solo="true" background="rgb(34, 40, 113)" style="margin:0" />
+            <a href="https://hacksu.com/discord" style="color: white;margin: 16px 0; font-size: 0.8rem; display:flex; align-items: flex-end; gap: 4px;">
+                <img style="height: 0.8rem" src="@/assets/small-discord-logo-2024.svg"> Visit our Discord for more!
+            </a>
+        </div>
       </template>
     </div>
   </div>
