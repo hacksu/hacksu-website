@@ -1,5 +1,4 @@
 <template>
-<!-- TODO: make visible navbar header less tall on mobile -->
   <div class="navbar"
     v-bind:class="{ 'scrolled': scrolled, 'fixed': !scrollNav, 'animated': !scrollNav && from }"
     v-bind:style="{ 'padding': padding, 'background-color': color, 'box-shadow': shadow, }"
@@ -15,7 +14,7 @@
 </template>
 
 <script>
-
+// TODO: make navbar header thing less tall on mobile
 export default {
   name: 'Navbar',
   components: {
