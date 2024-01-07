@@ -61,7 +61,7 @@ export default {
   },
   mounted(){
     const repo = remult.repo(StaffMember);
-    repo.find({where: {isCurrent:false}}).then(staff => {
+    repo.find().then(staff => {
       this.staff = staff; 
     });
   },
