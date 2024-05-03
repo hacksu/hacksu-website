@@ -151,7 +151,7 @@ export default {
     }
   }
   .main-logo {
-    width: 40vw;
+    width: 25vw;
     @media (max-width: 800px) {
         width: 60vw;
     }
