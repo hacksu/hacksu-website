@@ -60,7 +60,7 @@ jobs:
             echo "Pulling Changes from Github"
             git pull
             echo "Installing Modules"
-            npm install
+            yarn install
             echo "Restarting Application"
             pm2 restart hacksu-2021
             echo "Finished"
@@ -82,7 +82,7 @@ jobs:
           #passphrase: ${{ secrets.KEY_PASSPHRASE }}
           script: |
             cd /var/www/hacksu-2021
-            npm run build  # goes to dist2 by default
+            yarn build  # goes to dist2 by default
             ls dist2
             rm -rf dist
             mv dist2 dist
