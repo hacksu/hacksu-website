@@ -6,7 +6,7 @@
         Present & Past Leadership of HacKSU
       </h3>
     </div>
-    <div class="list" v-for="(row, rowIndex) in organized" v-bind:key="rowIndex">
+    <div class="list" v-for="(row, rowIndex) in organized" :key="rowIndex">
       <h2 v-if="row.year != 'current'" class="year">
         Class of {{ row.year }}
       </h2>
@@ -40,9 +40,10 @@ export default {
   },
   computed: {
     organized(){
+      // TODO: use isCurrent!
       const years = [];
       for (const s of this.staff){
-        const year = s.gradYear <= new Date().getFullYear() ? s.gradYear : 'current';
+        const year = s.isCurrent ? 'current' : s.gradYear;
         if (years[year]){
           years[year].push(s);
         } else {
