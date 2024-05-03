@@ -3,9 +3,8 @@ import { ViteSSG } from "vite-ssg";
 import { routes } from "./router";
 import App from "./App.vue";
 
-import { loggedIn, attemptedLogin } from "./globals.js";
+import { loggedIn, attemptedLogin, showingNavigationMenu } from "./globals.js";
 
-// `export const createApp` is required instead of the original `createApp(App).mount('#app')`
 export const createApp = ViteSSG(
   // the root component
   App,
@@ -26,6 +25,9 @@ export const createApp = ViteSSG(
         } else {
           next();
         }
+      });
+      router.afterEach(() => {
+        showingNavigationMenu.value = false;
       });
     }
   }

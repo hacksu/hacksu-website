@@ -1,11 +1,10 @@
 <template>
   <div class="navbar"
-    v-bind:class="{ 'scrolled': scrolled, 'fixed': !scrollNav, 'animated': !scrollNav && from }"
-    v-bind:style="{ 'padding': padding, 'background-color': color, 'box-shadow': shadow, }"
+    :class="{ 'scrolled': scrolled, 'fixed': !scrollNav, 'animated': !scrollNav && from }"
+    :style="{ 'padding': padding, 'background-color': color, 'box-shadow': shadow, }"
   >
-    <span class="navbar-color" hidden></span>
     <span class="background" v-on:click="hideMenu"></span>
-    <button class="hamburger navbtn" v-on:click="showMenu">Menu</button>
+    <button class="hamburger" v-on:click="showMenu">Menu</button>
     <span class="buttons">
       <button class="navbtn navbtn-back"></button>
       <slot></slot>
@@ -14,11 +13,8 @@
 </template>
 
 <script>
-// TODO: make navbar header thing less tall on mobile
+import { showingNavigationMenu } from "../../globals.js";
 export default {
-  name: 'Navbar',
-  components: {
-  },
   data() {
     return {
       scrolled: false,
@@ -31,14 +27,17 @@ export default {
   },
   computed: {
     padding() {
-      let n = 30 * (1 - this.progress) + 10 * this.progress
+      let scaleFactor = 1;
+      if (window && window.innerHeight && window.innerHeight < 700) {
+        scaleFactor = 0.5;
+      }
+      let n = (30 * scaleFactor) * (1 - this.progress) + (10 * scaleFactor) * this.progress
       return `${n}px 10px ${10 + n}px 10px`;
     },
     color() {
       if (this.$el) {
-        let bgc = getComputedStyle(this.$el.querySelector('.navbar-color')).backgroundColor;
+        let bgc = "rgb(20, 32, 39)";
         let a = `rgba(${bgc.substr(4).split(')')[0]}, ${this.progress})`;
-        //console.log(a);
         return a;
       } else {
         return `rgba(${this.progress}, 0, 0, 0)`;
@@ -56,10 +55,10 @@ export default {
   },
   methods: {
     showMenu() {
-      document.querySelector("#app").classList.add('menu');
+      showingNavigationMenu.value = true;
     },
     hideMenu() {
-      document.querySelector("#app").classList.remove('menu');
+      showingNavigationMenu.value = false;
     },
     computeScrolled() {
       this.offset = document.firstElementChild.scrollTop;
@@ -117,7 +116,6 @@ export default {
   height: 55px;
   @include mobile {
     text-align: left;
-    height: 77px;
   }
   //height: 4vh;
   /*@include mobile {
@@ -132,26 +130,16 @@ export default {
     transition: padding 0.25s;
   }
 
-  &.scrolled, &.fixed, .navbar-color {
-    //background-color: red;
-    //background-color: #142027;
-    //padding: 10px 10px 20px 10px;
-  }
-
   .hamburger {
     @include display-hide('tablet');
     @include display-hide('desktop');
     @include background(url('../../assets/hamburger.svg'), contain);
-    padding: 4px;
     background-color: transparent;
     background-position: left center !important;
-    //width: calc(4vh + 150px);
-    width: 200px;
-    font-size: 20px;
-    height: 30px;
+    width: 175px;
+    font-size: 15px;
     //color: transparent;
     margin-left: 10px;
-    margin-top: 12px;
     margin-right: 20px;
     border-radius: 0px;
     transition: opacity 0.05s;
@@ -205,7 +193,7 @@ export default {
 }
 
 @include mobile {
-  #app.menu {
+  #navigation.menu {
     .buttons {
       opacity: 1;
       pointer-events: all;

@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: make this go away when a link is clicked -->
   <Navbar id="nav" v-if="showNavigation">
     <Navbtn v-for="[text, link, options] in buttons"
       :key="text"
@@ -31,8 +32,6 @@ export default {
           ['Meetings', '/meetings'],
           ['Leadership', '/leadership'],
           ['Contact', '/contact'],
-        //   ['Constitution', '/constitution'],
-          //[(loggedIn.value ? 'Admin' : 'Login'), '/login', {style: {marginLeft: "auto"}}]
         ];
         if (loggedIn.value){  
             buttons.push(

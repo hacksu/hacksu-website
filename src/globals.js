@@ -24,3 +24,5 @@ if (typeof window !== "undefined"){
         }
     });
 }
+
+export const showingNavigationMenu = ref(false);

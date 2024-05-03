@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { showingNavigationMenu } from "../../globals.js";
 export default {
   name: 'Navbtn',
   props: ["link", "external"],
@@ -74,43 +75,6 @@ export default {
         }
       } else {
         buttons.classList.remove('dropdown-open')
-      }
-      /*let this_ = this;
-      if (debounce) {
-        this.debounce = true;
-        setTimeout(function() {
-          this_.debounce = false;
-        }, 2000)
-      }
-      if (debounce || !this.debounce) {
-        this.open = newOpen;
-        console.log('setting open to', this.open, debounce);
-      }
-      if (this.open) {
-        this.$parent.$el.lastChild.classList.add('dropdown-open')
-      } else {
-        this.$parent.$el.lastChild.classList.remove('dropdown-open')
-      }
-      let calc = function() {
-        this_.width = this_.$el.firstChild.offsetWidth;
-        this_.offset = -((this_.width / 2) + (this_.$el.lastChild.offsetWidth / 2)) + 'px';
-      };
-      calc();
-      window.requestAnimationFrame(calc);*/
-    },
-    routelink: function() {
-      //console.log(this);
-      if (typeof(this.link) == 'string') {
-        if (this.link && !(this.$router.currentRoute.path == this.link)) {
-          if (this.link.indexOf('http') == 0) {
-            window.location.href = this.link;
-          } else {
-            this.$router.push(this.link);
-            document.querySelector("#app").classList.remove('menu')
-          }
-        }
-      } else {
-        this.$el.classList.toggle('open');
       }
     },
   },

@@ -5,11 +5,14 @@
 		<meta property="og:description" v-if="description" :content="description" />
 		<meta property="og:image" v-if="image" :content="image" />
 	</Head>
-	<Navigation />
+	<div id="navigation" :class="{menu: showingNavigationMenu}">
+		<Navigation />
+	</div>
 	<router-view class="view" />
 </template>
 
 <script setup>
+import { showingNavigationMenu } from "./globals.js"
 import { Head } from "@unhead/vue/components";
 import { useRoute } from "vue-router";
 
