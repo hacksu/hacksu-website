@@ -28,7 +28,7 @@ export default {
   computed: {
     padding() {
       let scaleFactor = 1;
-      if (window && window.innerHeight && window.innerHeight < 700) {
+      if (typeof window !== "undefined" && window.innerHeight && window.innerHeight < 700) {
         scaleFactor = 0.5;
       }
       let n = (30 * scaleFactor) * (1 - this.progress) + (10 * scaleFactor) * this.progress
