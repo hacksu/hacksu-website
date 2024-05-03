@@ -69,7 +69,7 @@ const formatDate = (dateString) => {
 
     width: 100%;
     font-size: 1rem;
-    &:deep(a:visited) {
+    &:deep(a:visited), &:deep(a) {
         color: white;
     }
     h2 {
