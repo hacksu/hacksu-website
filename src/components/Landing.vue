@@ -1,5 +1,5 @@
 <template>
-  <div class="landing" v-bind:style="(height) ? { 'height': height + 'px', } : {}">
+  <div class="landing">
 
     <div class="hacksu-box box1" style=""/>
     <div class="hacksu-box box2" style=""/>
@@ -17,7 +17,7 @@
           <img v-bind:src="item.img">
         </a>
       </div>
-      <template v-if="true || !nextEvent">
+      <template v-if="!nextEvent">
         <img class="main-logo" src="@/assets/logo.svg">
         <h1 style="margin: 15px 0">{{ title }}</h1>
         <p>{{ body }}</p>
@@ -26,7 +26,7 @@
       </template>
       <template v-else>
         <div class="event-welcome">
-            <span style="text-align: right; font-size: 3rem;font-variant: small-caps;">Come <br class="no-mobile" />to</span>
+            <span style="text-align: right; font-size: 2rem;font-variant: small-caps;">Come <br class="no-mobile" />to</span>
             <img style="height: 150px" src="@/assets/logo.svg">
         </div>
         <MeetingCard :event="nextEvent" :solo="true" background="rgb(34, 40, 113)" style="margin: 0 10px" />
@@ -51,7 +51,6 @@ export default {
         return {
             ...details,
             inviteSVG,
-            height: false,
             nextEvent: null
         };
     },
@@ -70,27 +69,6 @@ export default {
                 this.nextEvent = event;
             }
         });
-        /*
-          This is to fix a weird issue with the address bar on mobile browsers
-          changing in height as you scroll, which leads to big fuckups
-          with the responsiveness of this component, as it is set to
-          100vh, or 100% of vertical height of the display....
-            ....which changes when you scroll..... great, right?
-    
-          so to fix this, we manually detect the height of the browser with code,
-          which bypasses the cheap magic the address bar uses (technically, it
-          just pushes the page downard off-screen, meaning 100vh is placed
-          beyond the bottom of your screen, which is unintended side effect).
-          So, we set the height of the element to the ACTUAL height if there
-          is a mismatch between its CSS 100vh height and the actual browser height
-          (aka, window.innerHeight).
-        */
-        let landingHeight = document.querySelector('.landing').clientHeight;
-        let totalHeight = window.innerHeight;
-        if (landingHeight != totalHeight) {
-            this.height = totalHeight;
-        }
-        //this.height = [landingHeight, totalHeight]
     },
     components: { MeetingCard }
 }
@@ -136,7 +114,7 @@ export default {
 
 .landing {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 
   #get-involved {
@@ -154,13 +132,12 @@ export default {
     align-items: center;
     box-sizing: border-box;
     h1 {
-      font-size: 6vh;
+      font-size: 4vh;
     }
     p {
       @include center;
-      font-size: 3.5vh;
-      width: 80vw;
-      max-width: 80vh;
+      font-size: 3vh;
+      width: 90vw;
     }
     button {
       @include green-bg;
@@ -175,7 +152,9 @@ export default {
   }
   .main-logo {
     width: 40vw;
-    max-width: 60vh;
+    @media (max-width: 800px) {
+        width: 60vw;
+    }
   }
   .buttons {
     @include display-hide(mobile);
@@ -221,9 +200,6 @@ export default {
     @include display-not(mobile) {
       bottom: 0px;
     }
-    /*@include mobile {
-      top: calc(100vh - 50vw);
-    }*/
   }
   &.box2 {
     transform: rotate(90deg);
