@@ -2,6 +2,7 @@
 	<Head>
 		<title v-if="title">{{ title }}</title>
 		<meta name="title" v-if="title" :content="title" />
+		<meta property="og:title" v-if="title" :content="title" />
 		<meta name="description" v-if="description" :content="description" />
 		<meta property="og:description" v-if="description" :content="description" />
 		<meta property="og:image" v-if="image" :content="image" />
