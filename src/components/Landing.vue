@@ -127,7 +127,7 @@ export default {
     padding-top: 10vh;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100dvh;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
@@ -176,7 +176,7 @@ export default {
     z-index: -2;
     top: 0px;
     left: 0px;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     background-color: #142027;
   }
@@ -187,14 +187,14 @@ export default {
 	background-image: url(../assets/hacksu-box.png);
 	background-size: contain;
 	background-repeat: no-repeat;
-	width: 40vh;
+	width: 40dvh;
 	max-width: 50vw;
-	height: 40vh;
+	height: 40dvh;
 	max-height: 50vw;
 	z-index: -1;
   &.box1 {
-    background-position-y: 7vh;
-    background-position-x: -14vh;
+    background-position-y: 7dvh;
+    background-position-x: -14dvh;
     left: 0px;
     bottom: 0px;
     @include display-not(mobile) {
@@ -203,8 +203,8 @@ export default {
   }
   &.box2 {
     transform: rotate(90deg);
-    background-position-x: -7vh;
-    background-position-y: -14vh;
+    background-position-x: -7dvh;
+    background-position-y: -14dvh;
     right: 0px;
     top: 0px;
   }
