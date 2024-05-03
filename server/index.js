@@ -70,5 +70,5 @@ if (process.env.NODE_ENV == "production"){
 
 let port = process.env.PORT || 8000;
 app.listen(port, function () {
-  console.log("Listening on port", port);
+  console.log(`Running at http://localhost:${port}`);
 });
