@@ -2,7 +2,6 @@
     <div>
         <p style="margin: 100px 30px 0 30px; max-width: 600px">
             <h2>Staff Page Editor</h2>
-            
         </p>
         <div id="edit-staff-container">
             <div class="person" v-for="staff, j in staffToDisplay" :key="staff.id">
@@ -16,11 +15,15 @@
                 </label>
                 <label><span>Grad Year: </span><input type="number" v-model="staff.gradYear" /></label>
                 <label><span>Github Username: </span><input type="string" v-model="staff.github" /></label>
-                <label><span>Website: </span><input type="string" v-model="staff.link" /></label>
                 <label>
-                    <span>Photo URL: </span>
-                    <input type="string" v-model="staff.photo" />
-                    <button @click="() => upload(j)" class="upload-button" title="Upload photo">📂</button>
+                    <span>Website: </span>
+                    <input type="string" v-model="staff.link" placeholder="[will link to Github by default]" />
+                </label>
+                <label>
+                    <span>Photo: </span>
+                    <input type="string" v-model="staff.photo" disabled placeholder="[uses Github pic by default]" />
+                    <button v-if="staff.photo" @click="staff.photo=''" class="upload-button">❌</button>
+                    <button @click="upload(j)" class="upload-button" title="Upload photo">Upload</button>
                     <input type="file" ref="fileUpload" style="display:none" accept="image/jpeg,image/png" />
                 </label>
                 Titles:
@@ -143,12 +146,16 @@ const upload = (i) => {
 }
 label {
     display: flex;
+    align-items: center;
     width: 100%;
 }
 input {
     padding: 2px;
     width: 100%;
     border-radius: 5px;
+    &:disabled {
+        background-color: #ddd;
+    }
 }
 label span {
     flex-shrink: 0;
@@ -161,10 +168,10 @@ button, button:hover {
 }
 .upload-button {
     height: 1.5em;
-    width: 1.5em;
-    border-radius: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0 2px;
+    padding: 5px;
 }
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: make this go away when a link is clicked -->
   <Navbar id="nav" v-if="showNavigation">
     <Navbtn v-for="[text, link, options] in buttons"
       :key="text"
