@@ -19,7 +19,6 @@ server.config.json
 ip.blocklist.json
 
 redirects.json
-package-lock.json
 
 # local env files
 .env.local
