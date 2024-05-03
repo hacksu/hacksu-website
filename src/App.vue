@@ -1,13 +1,22 @@
 <template>
+	<Head>
+		<title v-if="title">{{ title }}</title>
+		<meta name="description" v-if="description" :content="description" />
+		<meta property="og:description" v-if="description" :content="description" />
+		<meta property="og:image" v-if="image" :content="image" />
+	</Head>
 	<Navigation />
 	<router-view class="view" />
 </template>
 
-<script>
+<script setup>
+import { Head } from "@unhead/vue/components";
+import { useRoute } from "vue-router";
+
 import Navigation from "./components/Navigation";
-export default {
-	components: { Navigation }
-}
+
+const route = useRoute();
+const { title, description, image } = useRoute()?.meta;
 </script>
 
 <style lang="scss">

@@ -27,10 +27,6 @@ export const createApp = ViteSSG(
           next();
         }
       });
-
-      router.afterEach((to) => {
-        document.title = to.meta.title || to.name || "HacKSU";
-      });
     }
   }
 );

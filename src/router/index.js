@@ -16,7 +16,10 @@ export const routes = [
     path: "/",
     name: "Home",
     meta: {
-      title: "HacKSU: Helping Kent State University Learn To Code",
+      title: "HacKSU",
+      description: "HacKSU exists to connect Kent State University with the tools and " +
+        "technologies that hobbyist and professional programmers use to get stuff done.",
+      image: "/logo.png",
       scrollNav: true,
     },
     component: Home,
@@ -25,7 +28,8 @@ export const routes = [
     path: "/leadership",
     name: "Leadership",
     meta: {
-      title: "HacKSU Leadership",
+      title: "Leadership - HacKSU",
+      description: "Past and present leaders of HacKSU"
     },
     component: Leadership,
   },
@@ -57,7 +61,8 @@ export const routes = [
     path: '/meetings',
     name: "Meetings",
     meta: {
-      title: "HacKSU Meetings",
+      title: "Meetings - HacKSU",
+      description: "A record of our activities."
     },
     component: Meetings,
   },
