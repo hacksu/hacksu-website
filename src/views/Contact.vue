@@ -1,6 +1,6 @@
 <template>
   <div class="contact">
-    <div class="header">
+    <div class="header" style="min-height: 100vh">
       <div style="height: 5vh"/>
       <h1>{{ title }}</h1>
       <h3 class="description" v-html="description"/>

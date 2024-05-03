@@ -13,7 +13,7 @@
       <h2 class="year" v-else>Current Leadership</h2>
       <span class="group">
         <div>
-          <StaffCard v-for="(staff, index) in row.staff" :key="index" :staff="staff"/>
+          <StaffCard v-for="(staff, index) in row.staff" :key="staff.id" :staff="staff"/>
         </div>
       </span>
     </div>
@@ -40,7 +40,6 @@ export default {
   },
   computed: {
     organized(){
-      // TODO: use isCurrent!
       const years = [];
       for (const s of this.staff){
         const year = s.isCurrent ? 'current' : s.gradYear;
@@ -80,7 +79,7 @@ export default {
     text-align: center;
     width: 100vw;
     padding-top: $navbar-height;
-    height: 19vh;
+    height: 150px;
     font-size: 1.3em;
     background: linear-gradient(to top left, #35c982, #4683FF);
     h1 {

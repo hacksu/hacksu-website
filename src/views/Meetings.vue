@@ -16,13 +16,16 @@ import { Event } from "../../db/entities.js";
 import MeetingCard from '../components/MeetingCard.vue'
 
 const sineWavePeriod = 1500;
-// TODO: IDEA: make this reactive and based on scroll position. might be hard to
-// update container positions based on it in a performant way
 const sineWaveWidth = 200;
 const cards = ref([]);
+// this stores a two-dimensional array of translations to be applied to each
+// meeting card, where the first index is the index of the "group" the card is
+// in (i.e. which semester it's attached to) and the second index is the index
+// of the card itself within the group.
 const translations = ref([]);
 function updateContainerPositions(){
     if (window.innerWidth < 800) {
+        // don't apply a sine wave translation if the window is narrow and there isn't room
         return;
     } else if (cards.value && cards.value.length){
         translations.value = [];

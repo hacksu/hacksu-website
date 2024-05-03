@@ -21,7 +21,6 @@
                 <label><span>Link: </span><input type="text" v-model="event.link" /></label>
                 <div style="display: flex; justify-content: space-evenly; gap: 10px">
                     <button style="width:100%" @click="update(event, j)">
-                        <!-- TODO: also add little alert emoji if there is new content that needs to be saved -->
                         {{(j==0 ? "➕" : "💾") + (edited.has(j) ? "❗" : "")}}{{ confirmation.has(j) ? ' ✅' : "" }}
                     </button>
                     <button style="width:100%" v-if="j!==0" @click="remove(event, j)">
@@ -103,7 +102,7 @@ const update = (event, j) => {
 };
 
 const remove = (event, j) => {
-    if(confirm("really delete " + event.title+"?")){
+    if(confirm("really delete " + event.title + "?")){
         repo.delete(event);
     }
 }
