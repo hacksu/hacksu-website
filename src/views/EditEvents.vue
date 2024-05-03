@@ -4,11 +4,11 @@
             <h2>Events Editor</h2>
         </p>
         <div id="edit-events-container">
-            <div class="event" v-for="event, j in eventsToDisplay" :key="event.id">
+            <div class="event" v-for="event, j in eventsToDisplay" :key="event.id" @input="edited.add(j)">
                 <div class="cover-photo-preview"
                     :style="event.photo ? {backgroundImage: `url(${event.photo})`} : {backgroundColor: '#333'}">
                     <button @click="() => choosePhoto(j)" class="add-photo" v-if="!event.photo">+</button>
-                    <button @click="event.photo = ''" class="remove-photo" v-if="event.photo">x</button>
+                    <button @click="event.photo = ''; edited.add(j)" class="remove-photo" v-if="event.photo">x</button>
                     <input type="file" ref="fileUpload" style="display:none" accept="image/jpeg,image/png" />
                 </div>
                 <label><span>Title: </span><input type="text" v-model="event.title" /></label>
@@ -21,7 +21,8 @@
                 <label><span>Link: </span><input type="text" v-model="event.link" /></label>
                 <div style="display: flex; justify-content: space-evenly; gap: 10px">
                     <button style="width:100%" @click="update(event, j)">
-                        {{j==0 ? "➕" : "💾"}}{{ confirmation.has(j) ? ' ✅' : "" }}
+                        <!-- TODO: also add little alert emoji if there is new content that needs to be saved -->
+                        {{(j==0 ? "➕" : "💾") + (edited.has(j) ? "❗" : "")}}{{ confirmation.has(j) ? ' ✅' : "" }}
                     </button>
                     <button style="width:100%" v-if="j!==0" @click="remove(event, j)">
                         🗑️
@@ -57,6 +58,8 @@ const events = ref([]);
 
 const confirmation = ref(new Set());
 
+const edited = ref(new Set());
+
 const repo = remult.repo(Event);
 
 const newEvent = ref(repo.create());
@@ -68,7 +71,9 @@ const eventsToDisplay = computed(() => {
 let unsubscribe;
 onMounted(() => {
     unsubscribe = repo.liveQuery({orderBy: {date: "desc"}})
-      .subscribe(info => (events.value = info.applyChanges(events.value)));
+      .subscribe(info => {
+        events.value = info.items;
+    });
 });
 
 onUnmounted(() => {
@@ -86,6 +91,7 @@ const update = (event, j) => {
     }
     update.then(() => {
         confirmation.value.add(j);
+        edited.value.delete(j);
         setTimeout(() => confirmation.value.delete(j), 3000);
         if (j == 0){
             newEvent.value = repo.create();
@@ -110,9 +116,7 @@ const cropDoneCallback = ref(null);
 function crop(url, resultCallback){
     imagePreview.value = url;
     cropModal.value?.showModal();
-    console.log("setting cropDoneCallback");
     cropDoneCallback.value = () => {
-        console.log("cropDoneCallback called");
         cropDoneCallback.value = null;
         imagePreview.value = "";
         cropperComponent.value.getResult().canvas.toBlob(resultCallback);
@@ -217,6 +221,8 @@ button, button:hover {
 textarea {
     width: 300px;
     height: 100px;
+    overflow: scroll;
+    resize: none;
 }
 .cropper {
     width: 600px;
