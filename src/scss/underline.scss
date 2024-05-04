@@ -12,7 +12,7 @@
     padding-right: 0px;
     //background: none repeat scroll 0 0 transparent;
     background: $color;
-    margin-top: 5px;
+    transform: translateY(5px);
     border-radius: 5vh;
   }
   &:hover:after {
