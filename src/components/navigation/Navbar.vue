@@ -32,7 +32,7 @@ export default {
         scaleFactor = 0.5;
       }
       let n = (30 * scaleFactor) * (1 - this.progress) + (10 * scaleFactor) * this.progress
-      return `${n}px 10px ${10 + n}px 10px`;
+      return `${n}px 10px ${n}px 10px`;
     },
     color() {
       if (this.$el) {
@@ -113,7 +113,7 @@ export default {
 .navbar {
   position: fixed;
   width: 100vw;
-  height: 55px;
+  // height: 55px;
   @include mobile {
     text-align: left;
   }
