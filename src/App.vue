@@ -14,6 +14,7 @@
 </template>
 
 <script setup>
+import { ref, watch } from "vue";
 import { showingNavigationMenu } from "./globals.js"
 import { Head } from "@unhead/vue/components";
 import { useRoute } from "vue-router";
@@ -21,7 +22,19 @@ import { useRoute } from "vue-router";
 import Navigation from "./components/Navigation";
 
 const route = useRoute();
-const { title, description, image } = useRoute()?.meta;
+
+// load route metadata for initial-server side render
+const title = ref(route?.meta?.title);
+const description = ref(route?.meta?.description);
+const image = ref(route?.meta?.image);
+
+watch(route, (to) => {
+	// update route metadata on client-side navigation
+	title.value = to?.meta?.title;
+	description.value = to?.meta?.description;
+	image.value = to?.meta?.image;
+}, {flush: 'pre', immediate: true, deep: true});
+
 </script>
 
 <style lang="scss">
