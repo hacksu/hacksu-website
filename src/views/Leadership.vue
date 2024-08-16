@@ -40,7 +40,12 @@ export default {
   },
   computed: {
     organized(){
-      const years = [];
+      const years = {
+        current: [],
+        future: [],
+        past: [],
+      };
+      
       for (const s of this.staff){
         const year = s.isCurrent ? 'current' : s.gradYear;
         if (years[year]){
