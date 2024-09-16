@@ -31,6 +31,7 @@ export default {
           ['Meetings', '/meetings'],
           ['Leadership', '/leadership'],
           ['Contact', '/contact'],
+          ['IBM Fall Fest!','/ibm']
         ];
         if (loggedIn.value){  
             buttons.push(

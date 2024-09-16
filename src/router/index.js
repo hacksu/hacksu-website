@@ -9,7 +9,9 @@ import Admin from "../views/Admin.vue";
 import EditStaff from "../views/EditStaff.vue";
 import EditEvents from "../views/EditEvents.vue";
 import EditNotes from "../views/EditNotes.vue";
-import AdminMeetings from "../views/AdminMeetings.vue"
+import AdminMeetings from "../views/AdminMeetings.vue";
+import FallFest from "../views/FallFest.vue";
+import AdminInformation from "../views/AdminInformation.vue";
 
 export const routes = [
   {
@@ -67,6 +69,15 @@ export const routes = [
     component: Meetings,
   },
   { 
+    path: '/ibm',
+    name: "IBM Fall Fest",
+    meta: {
+      title: "IBM Fall Fest!",
+      description: "Infomration about our collaboration with IBM, Case Western Reserve University, and Cleveland State University."
+    },
+    component: FallFest,
+  },
+  { 
     path: "/admin",
     name: "Admin Stuff",
     component: Admin,
@@ -113,5 +124,13 @@ export const routes = [
     meta: {
       admin: true
     }
-  }
+  },
+  {
+    path: "/admin/informations",
+    name: "Information Editor",
+    component: AdminInformation,
+    meta: {
+      admin: true
+    }
+  },
 ];
