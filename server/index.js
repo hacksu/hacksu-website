@@ -12,7 +12,7 @@ import { remultExpress } from "remult/remult-express"
 import setUpAuth from "./auth.js";
 import setUpUpload from "./upload.js";
 import setUpLogging from "./log.js";
-import { Redirect, StaffMember, Event, Note } from '../db/entities.js';
+import { Redirect, StaffMember, Event, Note, Information } from '../db/entities.js';
 
 let app = express();
 
@@ -21,7 +21,7 @@ setUpUpload(app);
 setUpLogging(app);
 
 // set up db:
-const db = remultExpress({ entities: [Redirect, StaffMember, Event, Note] });
+const db = remultExpress({ entities: [Redirect, StaffMember, Event, Note, Information] });
 app.use(db);
 
 // set up redirects:

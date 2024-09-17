@@ -35,6 +35,17 @@ export default function setUpUpload(app){
         res.send(`/${staffFolderName}/`+req.file.filename);
     });
 
+    const infoFolderName = "information-photos";
+    app.use("/information-photo-upload", makePhotoReceiver(infoFolderName), async (req, res) =>{
+        const buffer = await sharp(req.file.path)
+            .resize(800, 800, {
+                fit: sharp.fit.inside,
+                withoutEnlargement: true,
+            }).toBuffer();
+        await sharp(buffer).toFile(req.file.path);
+        res.send(`/${infoFolderName}/`+req.file.filename);
+    });
+
     const eventFolderName = "event-photos";
     const maxEventPhotoWidth = 1000;
     const eventPhotoAR = 2.5;

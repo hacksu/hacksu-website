@@ -158,3 +158,47 @@ describeClass(
         notesHTML: Fields.string()
     }
 );
+
+export class Information {
+    /** @type {string} */
+    id;
+    /** @type {string} */
+    title;
+    /** @type {string} */
+    link;
+    /** @type {string} */
+    descriptionMD;
+    /** @type {string} */
+    descriptionHTML;
+    /** @type {string | undefined} */
+    photo;
+};
+
+let md_information;
+
+describeClass(
+    Information,
+    Entity(
+        "informations",
+        {
+            allowApiRead: true,
+            allowApiCrud: r=> r.user && r.user.isLeader,
+            saving: async information => {
+                if (isBackend()){
+                    if (!md_information) {
+                        md_information = (await import("markdown-it")).default();
+                    }
+                    information.descriptionHTML = md_information.render(information.descriptionMD || "");
+                }
+            }
+        },
+    ),
+    {
+        id: Fields.uuid(),
+        title: Fields.string(),
+        link: Fields.string(),
+        descriptionMD: Fields.string(),
+        descriptionHTML: Fields.string(),
+        photo: Fields.string()
+    }
+);
