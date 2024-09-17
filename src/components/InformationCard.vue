@@ -5,8 +5,8 @@
         </div>
         <div class="information">
             <component class="information-title" :is="information.link ? 'a' : 'span'" :href="information.link" target="_blank" style="color:white">
-                <img class="external-link" v-if="information.link.startsWith('https://github.com')"
-                    style="height: 30px" src="@/assets/images/github-white.svg" />
+                <img class="external-link" v-if="false"
+                    style="height: 30px" src="@/assets/images/external-link.svg" />
                 <img v-else-if="information.link" style="height: 26px;margin-right:10px" src="@/assets/external-link.svg" />
                 <h2>{{ information.title }}</h2>
             </component>
