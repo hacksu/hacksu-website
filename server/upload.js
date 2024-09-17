@@ -43,7 +43,7 @@ export default function setUpUpload(app){
                 withoutEnlargement: true,
             }).toBuffer();
         await sharp(buffer).toFile(req.file.path);
-        res.send('/${infoFolderName}/'+req.file.filename);
+        res.send(`/${infoFolderName}/`+req.file.filename);
     });
 
     const eventFolderName = "event-photos";
