@@ -1,7 +1,7 @@
 <template>
-    <div class="container">
+    <div class="fall-fest-container">
         <h1 style="margin: auto; text-align: center;">IBM Fall Fest!</h1>
-        <InformationCard v-for="information, j in informations" :key="information.id" ref="informations"
+        <InformationCard v-for="information, j in informations" :key="information" ref=""
                     :information="information"/>
     </div>
 </template>
@@ -9,12 +9,15 @@
 import { onMounted, ref } from 'vue';
 import { remult } from 'remult';
 import { Information } from "../../db/entities.js";
-import InformationCard from "../components/InformationCard.vue"
+import InformationCard from "../components/InformationCard.vue";
 
 const informations = ref([]);
 const repo = remult.repo(Information);
-onMounted(() => {
-    repo.find().then(e => (informations.value = e));
+onMounted(async () => {
+    repo.find()
+        .then(e => {
+            informations.value = e;
+        });
 });
 </script>
 <style scoped lang="scss">
@@ -39,7 +42,7 @@ onMounted(() => {
     }
 }
 
-.container{
+.fall-fest-container{
     background: linear-gradient(to top left, #35c982, #4683FF);
     max-width: 1600px;
     background-repeat: repeat;
