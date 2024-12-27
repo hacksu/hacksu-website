@@ -1,6 +1,6 @@
 <template>
     <div class="fall-fest-container">
-        <h1 style="margin: auto; text-align: center;">IBM Fall Fest!</h1>
+        <h1 style="margin: auto; text-align: center;">Helpful Resources</h1>
         <InformationCard v-for="information, j in informations" :key="information" ref=""
                     :information="information"/>
     </div>
