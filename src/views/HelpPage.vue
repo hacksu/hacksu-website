@@ -14,11 +14,8 @@ import InformationCard from "../components/InformationCard.vue";
 const informations = ref([]);
 const repo = remult.repo(Information);
 onMounted(async () => {
-    repo.find({
-        skip: 4 // Skips the first 4 items (starts from the 5th, allows the fall-fest stuff to stay Anna's legacy and all that)
-    }).then(e => {
-        informations.value = e;
-    });
+    const allData = await repo.find(); // Fetch all data
+    informations.value = allData.slice(4); // Skip the first 4 items
 });
 </script>
 <style scoped lang="scss">
