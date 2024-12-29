@@ -1,6 +1,6 @@
 <template>
-    <div class="fall-fest-container">
-        <h1 style="margin: auto; text-align: center;">IBM Fall Fest!</h1>
+    <div class="info-page-container">
+        <h1 style="margin: auto; text-align: center;">Helpful Resources</h1>
         <InformationCard v-for="information, j in informations" :key="information" ref=""
                     :information="information"/>
     </div>
@@ -14,10 +14,11 @@ import InformationCard from "../components/InformationCard.vue";
 const informations = ref([]);
 const repo = remult.repo(Information);
 onMounted(async () => {
-    repo.find()
-        .then(e => {
-            informations.value = e;
-        });
+    repo.find({
+        skip: 4 // Skips the first 4 items (starts from the 5th, allows the fall-fest stuff to stay Anna's legacy and all that)
+    }).then(e => {
+        informations.value = e;
+    });
 });
 </script>
 <style scoped lang="scss">
@@ -42,7 +43,7 @@ onMounted(async () => {
     }
 }
 
-.fall-fest-container{
+.info-page-container{
     background: linear-gradient(to top left, #35c982, #4683FF);
     width: 100%;
     background-repeat: repeat;

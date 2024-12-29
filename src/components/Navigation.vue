@@ -31,7 +31,7 @@ export default {
           ['Meetings', '/meetings'],
           ['Leadership', '/leadership'],
           ['Contact', '/contact'],
-          ['IBM Fall Fest!','/ibm']
+          ['Useful Information & Links','/helpful_info']
         ];
         if (loggedIn.value){  
             buttons.push(
