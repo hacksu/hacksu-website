@@ -2,7 +2,7 @@
     <div class="container">
         <h1 style="margin: auto">HacKSU Administrative Meetings</h1>
         <br>
-        <div class="meeting" v-for="note in notes" :keys="note.id"
+        <div class="meeting" v-for="note in notes.reverse()" :keys="note.id"
             style="border: 1px solid darkgray;">
             <div style="display: flex; flex-direction: column; width: 100%;">
                 <h2>{{ note.title }}</h2>
