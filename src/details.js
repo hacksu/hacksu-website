@@ -26,7 +26,7 @@ export const meetings = {
     virtual: `Due to COVID-19, all meetings are being held virtually through
       <a class="link" href="${discord}">discord</a>.`,
     building: {
-      name: "Bowman",
+      name: "Bowman Hall",
       room: "Room 219",
       image: bowmanImage,
       url: 'https://map.concept3d.com/?id=568#!ct/74937,78237,78239?m/57856?s/bowman',
