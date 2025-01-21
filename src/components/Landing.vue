@@ -23,6 +23,10 @@
         <p>{{ body }}</p>
         <p style="opacity: 0.8;">Join our Discord for updates:</p>
         <div id="invite-container" v-html="inviteSVG"></div>
+        <br/>
+        <button>
+          <a href="https://www.redbubble.com/people/KentStateCS/shop" target="_blank" rel="noopener noreferrer">Check Out Our Merch!</a>
+        </button>
       </template>
       <template v-else>
         <div class="event-welcome">
