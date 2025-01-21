@@ -91,7 +91,8 @@ const groupedEvents = computed(() => {
 
     // reverse the order of events within each group to make them
     // forward-chronological within each semester
-    result.forEach(value => value.reverse());
+    // result.forEach(value => value.reverse());
+    // I like reverse chronological order more :-) -Brandon
     
     return result;
 });

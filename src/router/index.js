@@ -11,6 +11,7 @@ import EditEvents from "../views/EditEvents.vue";
 import EditNotes from "../views/EditNotes.vue";
 import AdminMeetings from "../views/AdminMeetings.vue";
 import FallFest from "../views/FallFest.vue";
+import HelpPage from "../views/HelpPage.vue";
 import AdminInformation from "../views/AdminInformation.vue";
 
 export const routes = [
@@ -76,6 +77,15 @@ export const routes = [
       description: "Infomration about our collaboration with IBM, Case Western Reserve University, and Cleveland State University."
     },
     component: FallFest,
+  },
+  {
+    path: '/helpful_info',
+    name: "Useful Links and Information",
+    meta: {
+      title: "Links and Resources!",
+      description: "A collection of useful links and information for students."
+    },
+    component: HelpPage,
   },
   { 
     path: "/admin",
