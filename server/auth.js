@@ -25,7 +25,9 @@ passport.use(new DiscordStrategy({
         const membership = await res.json();
         if (membership && membership.roles) {
             if (membership.roles.includes("632637403454111769") ||  // "Leader" role
-                membership.roles.includes("634455003834089513")){   // "New Leader" role
+                membership.roles.includes("634455003834089513") ||  // "New Leader" role
+                membership.roles.includes("1362900867186950274") ||  // "Core Leader" role
+            ){   
                 return done(null, {...profile, isLeader: true});
             }
         }
