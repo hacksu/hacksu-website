@@ -37,5 +37,8 @@
     "nodemon": "^3.0.1",
     "sass": "^1.26.5",
     "vite": "^4.4.11"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ]
 }
