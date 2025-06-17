@@ -4,14 +4,14 @@ Note that you can edit some of the site's content without changing its source co
 
 ## Guide to development
 
-Install [Node.js](https://nodejs.org/en) and [yarn](https://yarnpkg.com/).
+Install [Node.js](https://nodejs.org/en) and [Bun](https://bun.sh).
 
 ### Install dependencies
 
 Run this before attempting to start the site:
 
 ```
-yarn install
+bun install
 ```
 
 ### The configuration file
@@ -48,7 +48,7 @@ The Discord application whose client ID and secret are currently used in the ser
 ### Run a server in debug mode with hot-reloading for development
 
 ```
-yarn dev
+bun dev
 ```
 
 Then go to the localhost URL that shows up in the browser console.
@@ -56,7 +56,7 @@ Then go to the localhost URL that shows up in the browser console.
 ### Bundle for production
 
 ```
-yarn build
+bun build
 ```
 
 This step uses [vite-ssg](https://github.com/antfu-collective/vite-ssg) to save the site's content as HTML. Keep this step in mind when developing the site; if you write code in a Vue component that directly accesses objects that are provided by a browser, like `window`, this step will crash, since this initial build is not run in a browser. You can usually move code that accesses browser-y stuff to a callback like `onMounted` to avoid this.
