@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.khe-renaissance.rule=Host(`hacksu.com`)"
@@ -18,3 +16,4 @@ services:
 
 networks:
   traefik:
+    external: true
