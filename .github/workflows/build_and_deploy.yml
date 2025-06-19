@@ -22,30 +22,10 @@ jobs:
       cancel-in-progress: true
 
     name: Deploy
-    outputs:
-      run_build: ${{ steps.check_build.outputs.run_build }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-      - name: Determine Build Requirement
-        id: check_build
-        run: |
-          echo "========== Modified Files =========="
-          git diff --name-only HEAD^ HEAD
-          echo "===================================="
-          if grep -q "src" <<< $(git diff --name-only HEAD^ HEAD); then
-            echo "Build Required"
-            echo "::set-output name=run_build::true"
-          else
-            echo "::set-output name=run_build::false"
-          fi
-
-      - name: Deploying
+      - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -59,31 +39,7 @@ jobs:
             git fetch
             echo "Pulling Changes from Github"
             git pull
-            echo "Installing Modules"
-            yarn install
-            echo "Restarting Application"
-            pm2 restart hacksu-2021
-            echo "Finished"
-            exit
-
-  build:
-    name: Build
-    needs: deploy
-    if: github.event_name == 'workflow_dispatch' || needs.deploy.outputs.run_build == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Building Vue
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          #passphrase: ${{ secrets.KEY_PASSPHRASE }}
-          script: |
-            cd /var/www/hacksu-2021
-            yarn build  # goes to dist2 by default
-            ls dist2
-            rm -rf dist
-            mv dist2 dist
-            exit
+            echo "Take down docker compose stack"
+            docker compose down
+            echo "Start docker compose stack and rebuild"
+            docker compose up --build -d
