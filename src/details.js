@@ -1,6 +1,6 @@
 export const discord = "https://discord.gg/rJDdvnt";
 
-import bowmanImage from "@/assets/images/bowman.jpg";
+import MSBimage from "@/assets/images/msb.jpg";
 import githubImage from "@/assets/images/github-white.svg";
 
 export const landing = {
@@ -26,10 +26,10 @@ export const meetings = {
     virtual: `Due to COVID-19, all meetings are being held virtually through
       <a class="link" href="${discord}">discord</a>.`,
     building: {
-      name: "Bowman Hall",
-      room: "Room 219",
-      image: bowmanImage,
-      url: 'https://map.concept3d.com/?id=568#!ct/74937,78237,78239?m/57856?s/bowman',
+      name: "Mathematical Sciences Building",
+      room: "Room 228",
+      image: MSBimage,
+      url: 'https://map.concept3d.com/?id=568#!ct/74937,78237,78239?m/57856?s/msb',
     },
 
   },
