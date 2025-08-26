@@ -117,6 +117,14 @@ onMounted(async () => {
 
     @media (max-width: 768px) {
         padding: 2rem 1rem;
+.fall-fest-container{
+    background: linear-gradient(to top left, #35c982, #4683FF);
+    width: 100%;
+    background-repeat: repeat;
+    min-height: 50vh;
+    padding: 100px;
+    @media (max-width: 1000px){
+        padding: 100px 10px;
     }
 }
 

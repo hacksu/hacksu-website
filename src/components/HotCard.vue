@@ -78,7 +78,7 @@ export default {
       title: "Interested in Coding?",
       body: `HacKSU teaches anyone, regardless of skill level or major, how to code!`,
       meetings: `Tuesdays, 7PM - 8PM`,
-      meetings2: `via Discord`,
+      meetings2: `IN PERSON`,
       discord: 'discord.gg/sfBBXCJt83',
       showcases: [
         "Design a website",
