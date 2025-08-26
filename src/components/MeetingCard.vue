@@ -1,5 +1,8 @@
 <template>
-	<div class="event-container" :style="background ? {background} : {}">
+    <div class="event-container" :class="{ 'future-meeting': isFutureMeeting, 'past-meeting': isPastMeeting }" :style="background ? {background} : {}">
+        <div class="meeting-status" v-if="isFutureMeeting || isPastMeeting">
+            {{ isFutureMeeting ? 'Upcoming' : 'Past Meeting' }}
+        </div>
         <div class="cover-photo" v-if="event.photo" :style="{backgroundImage: `url(${event.photo})`}" />
         <div class="event">
             <component class="event-title" :is="event.link ? 'a' : 'span'" :href="event.link" target="_blank" style="color:white">
@@ -23,12 +26,18 @@
 </template>
 
 <script setup>
-defineProps(["event", "solo", "background"]);
+const props = defineProps(["event", "solo", "background"]);
 
 const formatDate = (dateString) => {
     return new Date(dateString + "T19:00:00")  // that day at 7pm
         .toLocaleDateString("en-us", {month: "long", day: "numeric", year: "numeric"});
 }
+
+const currentDate = new Date();
+const meetingDate = new Date(props.event.date + "T19:00:00");
+
+const isPastMeeting = meetingDate < currentDate;
+const isFutureMeeting = meetingDate > currentDate;
 </script>
 
 <style scoped lang="scss">
@@ -40,6 +49,7 @@ const formatDate = (dateString) => {
     flex-direction: column;
     justify-content: center;
     margin: 0 auto 80px auto;
+    position: relative;
     &:first-of-type {
         margin-top: 50px;
     }
@@ -55,6 +65,7 @@ const formatDate = (dateString) => {
     min-height: 0;
     flex-shrink: 1;
 }
+
 .event {
     &>* {
         padding: 0 24px;
@@ -78,18 +89,21 @@ const formatDate = (dateString) => {
         margin: 0;
     }
 }
+
 .cover-photo {
     width: 100%;
     padding-bottom: 40%;
     background-size: cover;
     background-position: center;
 }
+
 .event-title {
     margin: 12px 0 8px;
     // text-decoration: none;
     display: flex;
     align-items: center;
 }
+
 .event-text {
     scrollbar-width: thin;
     &::-webkit-scrollbar {
@@ -100,6 +114,7 @@ const formatDate = (dateString) => {
     min-height: 0;
     flex-shrink: 1;
 }
+
 .event-footer {
     display:flex;
     justify-content: space-between;
@@ -109,10 +124,39 @@ const formatDate = (dateString) => {
         margin: 2px -4px;
     }
 }
+
 .external-link {
     margin-right: 10px;
 }
+
 strong {
     font-weight: 600;
+}
+
+.meeting-status {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.future-meeting {
+    border: 2px solid #2ecc71;
+    .meeting-status {
+        background-color: #2ecc71;
+    }
+}
+
+.past-meeting {
+    opacity: 0.8;
+    .meeting-status {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 }
 </style>
