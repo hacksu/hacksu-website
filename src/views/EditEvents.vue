@@ -3,6 +3,7 @@
         <div class="page-header">
             <h1>Events Editor</h1>
         </div>
+        <p style="margin-left:30px">Hey! Andrew here! If the image upload isn't working: Make sure there are no spaces in the file name AND try logging out and back in! This note is mostly for me so don't delete it. I will forget.</p>
         <div class="events-grid">
             <div class="event-card" v-for="(event, j) in eventsToDisplay" :key="event.id" @input="edited.add(j)">
                 <div class="cover-photo-preview"
