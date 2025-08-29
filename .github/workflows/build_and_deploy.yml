@@ -39,7 +39,7 @@ jobs:
             git fetch
             echo "Pulling Changes from Github"
             git pull
-            echo "Take down docker compose stack"
-            docker compose down
-            echo "Start docker compose stack and rebuild"
-            docker compose up --build -d
+            echo "Building docker"
+            docker compose build
+            echo "Starting docker"
+            docker compose up -d --force-recreate
