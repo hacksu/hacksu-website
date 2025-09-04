@@ -1,5 +1,5 @@
 const sendgrid = "https://api.sendgrid.com/v3";
-const sendgridToken = config.sendgrid.token;
+const sendgridToken = process.env.SENDGRID_TOKEN;
 const fetch = require("node-fetch");
 
 function ContactEmail({ email, name, subject, body, ip }) {

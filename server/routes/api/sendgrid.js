@@ -1,7 +1,7 @@
 let fetch = require('node-fetch');
 
-const sendgrid = 'https://api.sendgrid.com/v3'
-const sendgridToken = config.sendgrid.token;
+const sendgrid = 'https://api.sendgrid.com/v3';
+const sendgridToken = process.env.SENDGRID_TOKEN;
 
 
 let defaultPayload = {

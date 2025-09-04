@@ -1,19 +1,5 @@
-name: "hacksu-website"
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.hacksu-website.rule=Host(`hacksu.com`)"
-      - "traefik.http.routers.hacksu-website.entrypoints=websecure"
-      - "traefik.http.routers.hacksu-website.tls.certresolver=letsencrypt"
-      - "traefik.http.services.hacksu-website.loadbalancer.server.port=8000"
-    networks:
-      - traefik
-
-networks:
-  traefik:
-    external: true
