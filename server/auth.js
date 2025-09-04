@@ -1,7 +1,9 @@
+import dotenv from "dotenv";
+import session from "express-session";
 import passport from "passport";
 import DiscordStrategy from "passport-discord";
-import session from "express-session";
-import config from "../server.config.json" assert { type: "json" };
+
+dotenv.config();
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -12,7 +14,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new DiscordStrategy({
-    ...config.discord,
+    clientID: process.env.DISCORD_CLIENT_ID,
+    clientSecret: DISCORD_CLIENT_SECRET,
     scope: ["identify", "guilds", "guilds.members.read"],
     prompt: "consent",
     callbackURL: "/discord-callback"
@@ -37,7 +40,7 @@ passport.use(new DiscordStrategy({
 
 export default function setUpAuth(app){
     app.use(session({
-        secret: config.session.secret,
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false
     }));

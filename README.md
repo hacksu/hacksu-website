@@ -16,21 +16,14 @@ bun install
 
 ### The configuration file
 
-In order for the site to work properly, a server.config.json file must be present in the root directory. An example configuration file is provided below:
+In order for the site to work properly, a .env file must be present in the root directory. An example configuration file is provided below:
 
-```json
-{
-    "sendgrid": {
-        "token": "sendgrid token goes here"
-    },
-    "session": {
-        "secret": "session secret goes here"
-    },
-    "discord": {
-        "clientID": "Discord client ID goes here",
-        "clientSecret": "Discord client secret goes here"
-    }
-}
+```properties
+SENDGRID_OLDTOKEN=old sendgrid token
+SENDGRID_TOKEN=new sendgrid token
+SESSION_SECRET=session secret
+DISCORD_CLIENT_ID=discord client id
+DISCORD_CLIENT_SECRET=discord client secret
 ```
 
 The session secret should be some random or otherwise arbitrary string.
@@ -41,7 +34,7 @@ The Discord client ID and secret should correspond to some Discord application t
 
 ![](discord-oauth-callbacks.png)
 
-Grab the client ID and secret from the OAuth2 page in the new application's settings and add them to the server.config.json file. Then, go to localhost:8000/login (which is the local development equivalent of https://hacksu.com/login) to initiate the login process using this Discord application. This setup allows leaders (with the "Leader" role in the HacKSU Discord server) to automatically authenticate themselves and make edits to the content on the site.
+Grab the client ID and secret from the OAuth2 page in the new application's settings and add them to the .env file. Then, go to localhost:8000/login (which is the local development equivalent of https://hacksu.com/login) to initiate the login process using this Discord application. This setup allows leaders (with the "Leader" role in the HacKSU Discord server) to automatically authenticate themselves and make edits to the content on the site.
 
 The Discord application whose client ID and secret are currently used in the server configuration on the live site belongs to me (Mitch) and will work unless I someday accidentally delete it.
 
