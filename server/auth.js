@@ -15,7 +15,7 @@ passport.deserializeUser(function(obj, done) {
 
 passport.use(new DiscordStrategy({
     clientID: process.env.DISCORD_CLIENT_ID,
-    clientSecret: DISCORD_CLIENT_SECRET,
+    clientSecret: process.env.DISCORD_CLIENT_SECRET,
     scope: ["identify", "guilds", "guilds.members.read"],
     prompt: "consent",
     callbackURL: "/discord-callback"
