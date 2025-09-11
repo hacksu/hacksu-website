@@ -10,10 +10,10 @@
     </div>
 </template>
 <script setup>
-import { computed, nextTick, onMounted, ref } from "vue";
 import { remult } from "remult";
-import { Event } from "../../db/entities.js";
-import MeetingCard from '../components/MeetingCard.vue'
+import { computed, nextTick, onMounted, ref } from "vue";
+import { Event } from "../../db/entities";
+import MeetingCard from '../components/MeetingCard.vue';
 
 const sineWavePeriod = 1500;
 const sineWaveWidth = 200;

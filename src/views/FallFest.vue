@@ -26,9 +26,9 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
 import { remult } from 'remult';
-import { Information } from "../../db/entities.js";
+import { onMounted, ref } from 'vue';
+import { Information } from "../../db/entities";
 import InformationCard from "../components/InformationCard.vue";
 
 const informations = ref([]);

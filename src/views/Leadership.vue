@@ -22,8 +22,8 @@
 </template>
 
 <script>
+import StaffCard from '@/components/StaffCard.vue';
 import { remult } from "remult";
-import StaffCard from '@/components/StaffCard.vue'
 import { StaffMember } from "../../db/entities";
 
 function withinTermComparator(s1, s2){
