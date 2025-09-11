@@ -22,7 +22,7 @@
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "i": "^0.3.7",
-    "markdown-it": "^13.0.2",
+    "markdown-it": "^14.1.0",
     "multer": "^1.4.5-lts.2",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
@@ -35,16 +35,17 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@types/express-session": "^1.18.2",
-    "@types/passport-discord": "^0.1.14",
+    "@types/bun": "latest",
     "@types/express": "^5.0.3",
+    "@types/express-session": "^1.18.2",
+    "@types/markdown-it": "^14.1.2",
     "@types/multer": "^2.0.0",
     "@types/passport": "^1.0.17",
+    "@types/passport-discord": "^0.1.14",
     "@vitejs/plugin-vue": "^4.6.2",
     "nodemon": "^3.1.10",
     "sass": "^1.89.2",
-    "vite": "^4.5.14",
-    "@types/bun": "latest"
+    "vite": "^4.5.14"
   },
   "trustedDependencies": [
     "@parcel/watcher",
