@@ -1,8 +1,16 @@
+import type { RequestHandler } from "express";
+
 const sendgrid = "https://api.sendgrid.com/v3";
 const sendgridToken = process.env.SENDGRID_TOKEN;
-const fetch = require("node-fetch");
 
-function ContactEmail({ email, name, subject, body, ip }) {
+type ContactEmail = {
+  email: string;
+  name: string;
+  subject: string;
+  body: string;
+  ip: string;
+}
+const createContactEmailPayload = ({ email, name, subject, body, ip }: ContactEmail) => {
   let payload = {
     personalizations: [
       {
@@ -51,10 +59,9 @@ function ContactEmail({ email, name, subject, body, ip }) {
   return payload;
 }
 
-let cooldown = [];
-exports.contact = async function (req, res) {
+export const contact: RequestHandler = async (req, res) => {
   let { ip } = req;
-  let payload = ContactEmail({
+  let payload = createContactEmailPayload({
     ...req.body,
     ip,
   });
@@ -69,7 +76,7 @@ exports.contact = async function (req, res) {
     });
     console.log("sent contact form, status " + sendgridRes.status);
     res.status(200).json({ success: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     res.status(500).json({
       success: false,
