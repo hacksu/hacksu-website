@@ -73,9 +73,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import { remult } from "remult";
-import { Event } from "../../db/entities.js";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { Event } from "../../db/entities";
 
 import { Cropper } from 'vue-advanced-cropper';
 import 'vue-advanced-cropper/dist/style.css';

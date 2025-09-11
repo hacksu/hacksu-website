@@ -76,9 +76,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, reactive, computed } from "vue";
 import { remult } from "remult";
-import { StaffMember } from "../../db/entities.js";
+import { computed, onMounted, onUnmounted, reactive, ref, watch } from "vue";
+import { StaffMember } from "../../db/entities";
 
 const staffMembers = ref([]);
 const confirmation = ref(new Set());
