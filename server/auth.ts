@@ -1,10 +1,7 @@
-import dotenv from "dotenv";
 import type { Application } from "express";
 import session from "express-session";
 import passport from "passport";
 import DiscordStrategy from "passport-discord";
-
-dotenv.config();
 
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj: any, done) => done(null, obj));
