@@ -23,6 +23,8 @@ services:
       dockerfile: Dockerfile
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/hacksu
+    networks:
+      - app_internal
 
 networks:
   app_internal:
