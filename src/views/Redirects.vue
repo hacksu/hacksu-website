@@ -73,7 +73,7 @@ onUnmounted(() => {
 const update = async (redirect, j) => {
     try {
         // Validate URL format
-        if (!redirect.url.match(/^https?:\/\/.+/)) {
+        if (!redirect.destination.match(/^https?:\/\/.+/)) {
             alert("Please enter a valid URL starting with http:// or https://");
             return;
         }

@@ -9,6 +9,7 @@ dotenv.config();
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj: any, done) => done(null, obj));
 
+const ROLES = process.env.DISCORD_ROLES!.split(" ");
 passport.use(
     new DiscordStrategy({
         clientID: process.env.DISCORD_CLIENT_ID!,
@@ -22,14 +23,9 @@ passport.use(
             .then(res => res.json())
             .catch(_ => null);
         
-        const roles = data?.roles;
-        if (roles) {
-            if (roles.includes("632637403454111769") ||  // "Leader" role
-                roles.includes("634455003834089513") ||  // "New Leader" role
-                roles.includes("1239730741882130542"))   // "Core Leade" role
-            {
-                return done(null, {...profile, isLeader: true});
-            }
+        const roles: string[] = data?.roles ?? [];
+        if (roles.some(role => ROLES?.includes(role))) {
+            return done(null, {...profile, isLeader: true});
         }
         return done(null, false);
     })
