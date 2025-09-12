@@ -154,7 +154,7 @@ strong {
 }
 
 .past-meeting {
-    opacity: 0.8;
+    opacity: 1;
     .meeting-status {
         background-color: rgba(0, 0, 0, 0.4);
     }
