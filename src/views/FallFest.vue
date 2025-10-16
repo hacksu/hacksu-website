@@ -26,9 +26,9 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
 import { remult } from 'remult';
-import { Information } from "../../db/entities.js";
+import { onMounted, ref } from 'vue';
+import { Information } from "../../db/entities";
 import InformationCard from "../components/InformationCard.vue";
 
 const informations = ref([]);
@@ -117,6 +117,8 @@ onMounted(async () => {
 
     @media (max-width: 768px) {
         padding: 2rem 1rem;
+    }
+}
 .fall-fest-container{
     background: linear-gradient(to top left, #35c982, #4683FF);
     width: 100%;

@@ -1,12 +1,12 @@
+import express, { type Application } from "express";
 import fs from "fs";
-import { fileURLToPath } from "url";
 import path from "path";
-import express from "express";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default function setUpLogging(app) {
+export const setUpLogging = (app: Application) => {
     const logFile = "audit-log.txt";
 
     if (!fs.existsSync(logFile)) {
