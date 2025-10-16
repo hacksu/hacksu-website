@@ -149,7 +149,7 @@ strong {
 .future-meeting {
     border: 2px solid #2ecc71;
     .meeting-status {
-        background-color: #2ecc71;
+        background-color: rgba(46, 204, 113, 0.4);
     }
 }
 
