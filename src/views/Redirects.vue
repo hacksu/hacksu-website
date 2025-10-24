@@ -12,14 +12,14 @@
                         <label>Redirect Path</label>
                         <div class="input-with-prefix">
                             <span class="prefix">hacksu.com/</span>
-                            <input type="text" v-model="redirect.path" class="form-input" 
+                            <input type="text" v-model="redirect.urlSlug" class="form-input" 
                                 placeholder="e.g., discord" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Target URL</label>
-                        <input type="url" v-model="redirect.url" class="form-input" 
+                        <input type="url" v-model="redirect.destination" class="form-input" 
                             placeholder="https://..." />
                     </div>
 
@@ -39,9 +39,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, reactive, computed } from "vue";
 import { remult } from "remult";
-import { Redirect } from "../../db/entities.js";
+import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
+import { Redirect } from "../../db/entities";
 
 const redirects = ref([]);
 const confirmation = ref(new Set());
@@ -73,12 +73,17 @@ onUnmounted(() => {
 const update = async (redirect, j) => {
     try {
         // Validate URL format
-        if (!redirect.url.match(/^https?:\/\/.+/)) {
+        if (!redirect.destination.match(/^https?:\/\/.+/)) {
             alert("Please enter a valid URL starting with http:// or https://");
             return;
         }
 
         let update;
+        
+        console.log(redirect);
+        console.log(newRedirect);
+
+        console.log(j);
         if (j === 0) {
             update = await repo.insert(newRedirect);
         } else {

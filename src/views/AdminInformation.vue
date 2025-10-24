@@ -42,9 +42,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, reactive, computed } from "vue";
 import { remult } from "remult";
-import { Information } from "../../db/entities.js";
+import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
+import { Information } from "../../db/entities";
 
 const info = ref([]);
 const confirmation = ref(new Set());

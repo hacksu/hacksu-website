@@ -5,14 +5,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import express from "express";
-import { createServer as createViteServer } from 'vite';
 import { remult } from "remult";
-import { remultExpress } from "remult/remult-express"
+import { remultExpress } from "remult/remult-express";
+import { createServer as createViteServer } from 'vite';
 
-import setUpAuth from "./auth.js";
-import setUpUpload from "./upload.js";
-import setUpLogging from "./log.js";
-import { Redirect, StaffMember, Event, Note, Information } from '../db/entities.js';
+
+import { createPostgresDataProvider } from 'remult/postgres';
+import { Event, Information, Note, Redirect, StaffMember } from '../db/entities.js';
+import { setUpAuth } from './auth.js';
+import { setUpLogging } from './log.js';
+import { setUpUpload } from './upload.js';
 
 let app = express();
 
@@ -21,20 +23,20 @@ setUpUpload(app);
 setUpLogging(app);
 
 // set up db:
-const db = remultExpress({ entities: [Redirect, StaffMember, Event, Note, Information] });
+const db = remultExpress({ 
+  dataProvider:  createPostgresDataProvider({ connectionString: process.env.DATABASE_URL! }),
+  entities: [Redirect, StaffMember, Event, Note, Information] 
+});
 app.use(db);
 
 // set up redirects:
-app.use("*", db.withRemult, (req, res, next) => {
-  remult.repo(Redirect)
-    .findFirst({urlSlug: req.originalUrl.substring(1)})
-    .then(result => {
-      if (result){
-        res.redirect(result.destination);
-      } else {
-        next();
-      }
-    });
+app.use("*", db.withRemult, async (req, res, next) => {
+  const result = await remult.repo(Redirect)
+    .findFirst({ urlSlug: req.originalUrl.substring(1) });
+  if (!result) {
+    return next();
+  }
+  return res.redirect(result.destination);
 });
 
 // needed so this app knows it's behind a https reverse proxy when creating
@@ -53,7 +55,7 @@ app.set("trust proxy", 1);
 //   require("./routes/api")
 // );
 
-if (process.env.NODE_ENV == "production"){
+if (process.env.NODE_ENV == "production") {
   // serve static files from the dist directory (`npm run build` will put the frontend there)
   app.use(express.static(path.resolve(__dirname, "../dist/"), { extensions: ["html"] }));
   app.use(express.static(path.resolve(__dirname, "../public/")));
@@ -69,6 +71,4 @@ if (process.env.NODE_ENV == "production"){
 
 
 let port = process.env.PORT || 8000;
-app.listen(port, function () {
-  console.log(`Running at http://localhost:${port}`);
-});
+app.listen(port, () => console.log(`Running at http://localhost:${port}`));

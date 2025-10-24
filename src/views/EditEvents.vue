@@ -3,6 +3,7 @@
         <div class="page-header">
             <h1>Events Editor</h1>
         </div>
+        <p style="margin-left:30px">Hey! Andrew here! If the image upload isn't working: Make sure there are no spaces in the file name AND try logging out and back in! This note is mostly for me so don't delete it. I will forget.</p>
         <div class="events-grid">
             <div class="event-card" v-for="(event, j) in eventsToDisplay" :key="event.id" @input="edited.add(j)">
                 <div class="cover-photo-preview"
@@ -72,9 +73,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import { remult } from "remult";
-import { Event } from "../../db/entities.js";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { Event } from "../../db/entities";
 
 import { Cropper } from 'vue-advanced-cropper';
 import 'vue-advanced-cropper/dist/style.css';

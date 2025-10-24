@@ -1,19 +1,32 @@
-name: "hacksu-website"
-
 services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=hacksu
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d hacksu"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app_internal
+
   app:
+    depends_on:
+      db:
+        condition: service_healthy
     build:
       context: .
       dockerfile: Dockerfile
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.hacksu-website.rule=Host(`hacksu.com`)"
-      - "traefik.http.routers.hacksu-website.entrypoints=websecure"
-      - "traefik.http.routers.hacksu-website.tls.certresolver=letsencrypt"
-      - "traefik.http.services.hacksu-website.loadbalancer.server.port=8000"
+    volumes:
+      - "../files/public:/app/public"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/hacksu
     networks:
-      - traefik
+      - app_internal
 
 networks:
-  traefik:
-    external: true
+  app_internal:
