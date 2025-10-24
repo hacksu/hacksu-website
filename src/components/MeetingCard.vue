@@ -43,7 +43,7 @@ const isFutureMeeting = meetingDate > currentDate;
 <style scoped lang="scss">
 .event-container {
     background: linear-gradient(90deg, rgb(155, 76, 187) 0%, rgb(157, 77, 185) 24%, rgb(161, 78, 194) 32%, rgb(171, 82, 203) 100%); 
-    opacity: 0.975;
+    opacity: 1;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -154,7 +154,7 @@ strong {
 }
 
 .past-meeting {
-    opacity: 0.8;
+    opacity: 1;
     .meeting-status {
         background-color: rgba(0, 0, 0, 0.4);
     }
