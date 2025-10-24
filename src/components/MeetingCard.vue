@@ -74,34 +74,28 @@ const isFutureMeeting = meetingDate > currentDate;
 
 <style scoped lang="scss">
 .event-container {
-  background: linear-gradient(
-    90deg,
-    rgb(155, 76, 187) 0%,
-    rgb(157, 77, 185) 24%,
-    rgb(161, 78, 194) 32%,
-    rgb(171, 82, 203) 100%
-  );
-  opacity: 0.975;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto 80px auto;
-  position: relative;
-  &:first-of-type {
-    margin-top: 50px;
-  }
-  max-width: 500px;
-  box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.15);
-  padding-bottom: 16px;
-  overflow: hidden;
-  text-align: left;
+    background: linear-gradient(90deg, rgb(155, 76, 187) 0%, rgb(157, 77, 185) 24%, rgb(161, 78, 194) 32%, rgb(171, 82, 203) 100%); 
+    opacity: 1;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto 80px auto;
+    position: relative;
+    &:first-of-type {
+        margin-top: 50px;
+    }
+    max-width: 500px;
+    box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.15);
+    padding-bottom: 16px;
+    overflow: hidden;
+    text-align: left;
 
-  // allow this item to shrink to less than its natural height when necessary;
-  // the .event-text element inside the .event element will then shrink and
-  // become scrollable due to those elements' css
-  min-height: 0;
-  flex-shrink: 1;
+    // allow this item to shrink to less than its natural height when necessary;
+    // the .event-text element inside the .event element will then shrink and
+    // become scrollable due to tose elements' css
+    min-height: 0;
+    flex-shrink: 1;
 }
 
 .event {
@@ -192,9 +186,9 @@ strong {
 }
 
 .past-meeting {
-  opacity: 0.8; 
-  .meeting-status {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
+    opacity: 1;
+    .meeting-status {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 }
 </style>
