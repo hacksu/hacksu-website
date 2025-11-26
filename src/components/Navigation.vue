@@ -29,6 +29,7 @@ export default {
       const buttons = [
           ['Home', '/'],
           ['Meetings', '/meetings'],
+          ['Lessons', '/lessons'],
           ['Leadership', '/leadership'],
           ['Contact', '/contact'],
           ['Useful Information & Links','/helpful_info']

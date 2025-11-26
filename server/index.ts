@@ -15,6 +15,7 @@ import { Event, Information, Note, Redirect, StaffMember } from '../db/entities.
 import { setUpAuth } from './auth.js';
 import { setUpLogging } from './log.js';
 import { setUpUpload } from './upload.js';
+import lessonsRouter from './routes/lessons.js';
 
 let app = express();
 
@@ -22,10 +23,13 @@ setUpAuth(app);
 setUpUpload(app);
 setUpLogging(app);
 
+// API routes
+app.use('/api', lessonsRouter);
+
 // set up db:
-const db = remultExpress({ 
-  dataProvider:  createPostgresDataProvider({ connectionString: process.env.DATABASE_URL! }),
-  entities: [Redirect, StaffMember, Event, Note, Information] 
+const db = remultExpress({
+  dataProvider: createPostgresDataProvider({ connectionString: process.env.DATABASE_URL! }),
+  entities: [Redirect, StaffMember, Event, Note, Information]
 });
 app.use(db);
 

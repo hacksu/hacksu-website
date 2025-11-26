@@ -4,6 +4,8 @@ import Contact from "../views/Contact.vue";
 import Constitution from "../views/Constitution.vue";
 import HotCard from "../views/HotCard.vue";
 import Meetings from "../views/Meetings.vue";
+import Lessons from "../views/Lessons.vue";
+import LessonDetail from "../views/LessonDetail.vue";
 import Redirects from "../views/Redirects.vue";
 import Admin from "../views/Admin.vue";
 import EditStaff from "../views/EditStaff.vue";
@@ -69,7 +71,32 @@ export const routes = [
     },
     component: Meetings,
   },
-  { 
+  {
+    path: '/lessons',
+    name: "Lessons",
+    meta: {
+      title: "Lessons - HacKSU",
+      description: "Explore our collection of programming lessons and tutorials."
+    },
+    component: Lessons,
+  },
+  {
+    path: '/lessons/detail/:pathMatch(.*)*',
+    name: "LessonDetail",
+    meta: {
+      title: "Lesson - HacKSU",
+    },
+    component: LessonDetail,
+  },
+  {
+    path: '/lessons/:pathMatch(.*)*',
+    name: "LessonsCategory",
+    meta: {
+      title: "Lessons - HacKSU",
+    },
+    component: Lessons,
+  },
+  {
     path: '/ibm',
     name: "IBM Fall Fest",
     meta: {
@@ -87,7 +114,7 @@ export const routes = [
     },
     component: HelpPage,
   },
-  { 
+  {
     path: "/admin",
     name: "Admin Stuff",
     component: Admin,
@@ -97,7 +124,7 @@ export const routes = [
   },
   {
     path: "/admin/redirects",
-    name: "Redirects", 
+    name: "Redirects",
     component: Redirects,
     meta: {
       admin: true
@@ -105,7 +132,7 @@ export const routes = [
   },
   {
     path: "/admin/staff",
-    name: "Edit Staff", 
+    name: "Edit Staff",
     component: EditStaff,
     meta: {
       admin: true
@@ -113,7 +140,7 @@ export const routes = [
   },
   {
     path: "/admin/events",
-    name: "Edit Events", 
+    name: "Edit Events",
     component: EditEvents,
     meta: {
       admin: true
