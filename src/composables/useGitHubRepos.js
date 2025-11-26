@@ -24,22 +24,30 @@ const parseTag = (tag) => {
 };
 
 /**
- * Get all numbered tags from a repo, sorted by level
+ * Get all numbered tags from a repo, grouped by level
+ * Returns: { 1: ['framework'], 2: ['html', 'javascript', 'css'] }
  */
-const getOrderedTags = (repo) => {
-    if (!repo.topics || repo.topics.length === 0) return [];
+const getTagsByLevel = (repo) => {
+    if (!repo.topics || repo.topics.length === 0) return {};
 
-    const numberedTags = repo.topics
-        .map(parseTag)
-        .filter(tag => tag !== null)
-        .sort((a, b) => a.level - b.level);
+    const tagsByLevel = {};
 
-    return numberedTags;
+    repo.topics.forEach(topic => {
+        const parsed = parseTag(topic);
+        if (parsed) {
+            if (!tagsByLevel[parsed.level]) {
+                tagsByLevel[parsed.level] = [];
+            }
+            tagsByLevel[parsed.level].push(parsed.name);
+        }
+    });
+
+    return tagsByLevel;
 };
 
 /**
  * Vue composable for fetching and caching GitHub lesson repositories
- * With numbered tag hierarchy (e.g., framework-1, javascript-2, express-3)
+ * Supports multiple tags at the same level (e.g., html-2, javascript-2, css-2)
  */
 export function useGitHubRepos() {
 
@@ -78,7 +86,7 @@ export function useGitHubRepos() {
     };
 
     /**
-     * Get categories at root level
+     * Get categories at current level
      */
     const getCategoriesAtLevel = (path = []) => {
         if (path.length === 0) {
@@ -89,18 +97,18 @@ export function useGitHubRepos() {
         const categories = new Set();
 
         cachedRepos.value.forEach(repo => {
-            const orderedTags = getOrderedTags(repo);
+            const tagsByLevel = getTagsByLevel(repo);
 
+            // Check if repo matches current path (any tag at each level matches)
             const matchesPath = path.every((segment, index) => {
-                const tagAtLevel = orderedTags.find(t => t.level === index + 1);
-                return tagAtLevel && tagAtLevel.name.toLowerCase() === segment.toLowerCase();
+                const tagsAtLevel = tagsByLevel[index + 1] || [];
+                return tagsAtLevel.some(tag => tag.toLowerCase() === segment.toLowerCase());
             });
 
             if (matchesPath) {
-                const nextTag = orderedTags.find(t => t.level === targetLevel);
-                if (nextTag) {
-                    categories.add(nextTag.name);
-                }
+                // Add all tags at the next level
+                const nextLevelTags = tagsByLevel[targetLevel] || [];
+                nextLevelTags.forEach(tag => categories.add(tag));
             }
         });
 
@@ -112,64 +120,77 @@ export function useGitHubRepos() {
      */
     const getLessonsAtLevel = (path = []) => {
         return cachedRepos.value.filter(repo => {
-            const orderedTags = getOrderedTags(repo);
+            const tagsByLevel = getTagsByLevel(repo);
+            const maxLevel = Math.max(...Object.keys(tagsByLevel).map(Number), 0);
 
-            if (orderedTags.length !== path.length) return false;
+            // Must have exactly as many levels as path length
+            if (maxLevel !== path.length) return false;
 
+            // Must match all path segments (any tag at each level)
             return path.every((segment, index) => {
-                const tagAtLevel = orderedTags.find(t => t.level === index + 1);
-                return tagAtLevel && tagAtLevel.name.toLowerCase() === segment.toLowerCase();
+                const tagsAtLevel = tagsByLevel[index + 1] || [];
+                return tagsAtLevel.some(tag => tag.toLowerCase() === segment.toLowerCase());
             });
         });
     };
 
     /**
      * Get items grouped by next level tag
+     * Handles multiple tags per level - repo appears under ALL matching tags
      */
     const getGroupedItemsAtLevel = (path = []) => {
         const grouped = {};
         const currentDepth = path.length;
 
         cachedRepos.value.forEach(repo => {
-            const orderedTags = getOrderedTags(repo);
+            const tagsByLevel = getTagsByLevel(repo);
+            const maxLevel = Math.max(...Object.keys(tagsByLevel).map(Number), 0);
 
             // Check if repo matches current path
             const matchesPath = path.every((segment, index) => {
-                const tagAtLevel = orderedTags.find(t => t.level === index + 1);
-                return tagAtLevel && tagAtLevel.name.toLowerCase() === segment.toLowerCase();
+                const tagsAtLevel = tagsByLevel[index + 1] || [];
+                return tagsAtLevel.some(tag => tag.toLowerCase() === segment.toLowerCase());
             });
 
             if (matchesPath) {
                 // If this repo has exactly the same depth as current path, it's a leaf lesson
-                if (orderedTags.length === currentDepth) {
-                    const groupKey = currentDepth > 0 ? path[currentDepth - 1] : 'lessons';
+                if (maxLevel === currentDepth) {
+                    // Add to all categories at current level
+                    const currentLevelTags = tagsByLevel[currentDepth] || [];
+                    currentLevelTags.forEach(categoryTag => {
+                        // Only include if it matches the last segment of the path
+                        if (path.length === 0 || categoryTag.toLowerCase() === path[currentDepth - 1].toLowerCase()) {
+                            const groupKey = categoryTag;
 
-                    if (!grouped[groupKey]) {
-                        grouped[groupKey] = new Set();
-                    }
+                            if (!grouped[groupKey]) {
+                                grouped[groupKey] = new Set();
+                            }
 
-                    grouped[groupKey].add(repo);
+                            grouped[groupKey].add(repo);
+                        }
+                    });
                 }
                 // If repo has more depth, process it
-                else if (orderedTags.length > currentDepth) {
-                    const nextLevelTag = orderedTags[currentDepth];
+                else if (maxLevel > currentDepth) {
+                    const nextLevelTags = tagsByLevel[currentDepth + 1] || [];
 
-                    if (nextLevelTag) {
-                        const groupKey = nextLevelTag.name;
+                    // Add repo under each next-level tag
+                    nextLevelTags.forEach(nextTag => {
+                        const groupKey = nextTag;
 
                         if (!grouped[groupKey]) {
                             grouped[groupKey] = new Set();
                         }
 
                         // If there's yet another level deeper
-                        if (orderedTags.length > currentDepth + 1) {
-                            const deeperLevelTag = orderedTags[currentDepth + 1];
-                            grouped[groupKey].add(deeperLevelTag.name);
+                        if (maxLevel > currentDepth + 1) {
+                            const deeperLevelTags = tagsByLevel[currentDepth + 2] || [];
+                            deeperLevelTags.forEach(tag => grouped[groupKey].add(tag));
                         } else {
                             // This is the final level - add the repo
                             grouped[groupKey].add(repo);
                         }
-                    }
+                    });
                 }
             }
         });
@@ -193,14 +214,19 @@ export function useGitHubRepos() {
 
     /**
      * Get breadcrumb path for a repository
+     * For multi-tag repos, uses the first tag at each level
      */
     const getBreadcrumbs = (repo) => {
         if (!repo) return [];
 
-        const orderedTags = getOrderedTags(repo);
-        return orderedTags.map(tag =>
-            tag.name.charAt(0).toUpperCase() + tag.name.slice(1)
-        );
+        const tagsByLevel = getTagsByLevel(repo);
+        const levels = Object.keys(tagsByLevel).map(Number).sort((a, b) => a - b);
+
+        return levels.map(level => {
+            const tags = tagsByLevel[level];
+            const firstTag = tags[0]; // Use first tag as primary
+            return firstTag.charAt(0).toUpperCase() + firstTag.slice(1);
+        });
     };
 
     return {
