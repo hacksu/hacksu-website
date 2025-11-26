@@ -53,6 +53,7 @@ const getIconName = (name) => {
     'swift': 'logos:swift',
     'kotlin': 'logos:kotlin',
     'csharp': 'logos:c-sharp',
+    'html': 'logos:html-5',
     'c#': 'logos:c-sharp',
     
     // Frameworks/Libraries
