@@ -66,6 +66,7 @@ const getIconName = (name) => {
     'express': 'logos:express',
     'fastify': 'logos:fastify-icon',
     'flask': 'logos:flask',
+    'flutter': 'logos:flutter',
     'django': 'logos:django-icon',
     'fastapi': 'logos:fastapi-icon',
     'spring': 'logos:spring-icon',
