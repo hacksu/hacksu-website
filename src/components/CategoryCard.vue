@@ -61,6 +61,7 @@ const getIconName = (name) => {
     'vue': 'logos:vue',
     'angular': 'logos:angular-icon',
     'svelte': 'logos:svelte-icon',
+    'sqlite': 'logos:sqlite',
     'nextjs': 'logos:nextjs-icon',
     'next': 'logos:nextjs-icon',
     'express': 'logos:express',
@@ -73,6 +74,7 @@ const getIconName = (name) => {
     'laravel': 'logos:laravel',
     'nodejs': 'logos:nodejs-icon',
     'node': 'logos:nodejs-icon',
+    'discord-bot': 'logos:discord-icon',
     
     // Tools/Databases
     'git': 'logos:git-icon',
@@ -82,6 +84,9 @@ const getIconName = (name) => {
     'postgresql': 'logos:postgresql',
     'mysql': 'logos:mysql-icon',
     'redis': 'logos:redis',
+    'vercel': 'logos:vercel-icon',
+    'unix': 'logos:linux-tux', // yes I know they are different
+    'github': 'logos:github-icon',
   };
   
   return iconMap[name.toLowerCase()] || null;

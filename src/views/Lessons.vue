@@ -57,16 +57,14 @@
             </template>
           </div>
           
-          <!-- Or show as list items if they're all lessons -->
-          <div v-else class="section-items">
-            <div
-              v-for="(item, index) in items"
+          <!-- Or show as cards if they're all lessons -->
+          <div v-else class="section-lessons">
+            <LessonCard
+              v-for="item in items"
               :key="item.id"
-              class="section-item"
+              :repo="item"
               @click="navigateToLesson(item)"
-            >
-              <span class="item-name">{{ getItemDisplayName(item, subcategory) }}</span>
-            </div>
+            />
           </div>
         </div>
       </div>
@@ -307,26 +305,10 @@ h1 {
   gap: 24px;
 }
 
-.section-items {
+.section-lessons {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 16px;
-}
-
-.section-item {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-  padding: 18px 24px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  
-  &:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
-    transform: translateX(8px);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 .item-name {
