@@ -113,7 +113,6 @@ const getLanguageColor = (language) => {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 0 auto 0 auto;
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -132,10 +131,6 @@ const getLanguageColor = (language) => {
   
   &:active {
     transform: translateY(-3px);
-  }
-  
-  &:first-of-type {
-    margin-top: 0;
   }
 }
 
