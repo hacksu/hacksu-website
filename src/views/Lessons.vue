@@ -140,7 +140,17 @@ const updateView = () => {
   } else {
     // Deeper: show grouped sections
     categories.value = [];
-    groupedItems.value = getGroupedItemsAtLevel(path);
+    const grouped = getGroupedItemsAtLevel(path);
+    groupedItems.value = grouped;
+    
+    // Auto-navigate if there's only one lesson and no categories
+    const allItems = Object.values(grouped).flat();
+    const hasOnlyOneLesson = allItems.length === 1 && typeof allItems[0] === 'object';
+    
+    if (hasOnlyOneLesson) {
+      const lesson = allItems[0];
+      navigateToLesson(lesson);
+    }
   }
 };
 
