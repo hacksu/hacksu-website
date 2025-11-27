@@ -6,11 +6,16 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=hacksu
+      - PGDATA=/var/lib/postgresql/data/pgdata
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d hacksu"]
       interval: 10s
       timeout: 5s
       retries: 5
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - app_internal
 
@@ -25,8 +30,13 @@ services:
       - "../files/public:/app/public"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/hacksu
+    ports:
+      - "8000:8000"
     networks:
       - app_internal
 
 networks:
   app_internal:
+
+volumes:
+  postgres_data:
