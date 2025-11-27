@@ -1,12 +1,23 @@
 <template>
   <div class="lessons-page-container">
     <h1 style="text-align: center;">HacKSU Lessons</h1>
-    <p class="page-subtitle" v-if="!currentPath.length">
+    <p class="page-subtitle" v-if="!currentPath.length && !isSearching">
       Explore our collection of programming lessons and tutorials
     </p>
     
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search lessons by title or tags..."
+        class="search-input"
+      />
+      <span class="search-icon">🔍</span>
+    </div>
+    
     <!-- Breadcrumbs -->
-    <LessonBreadcrumbs v-if="currentPath.length > 0" :breadcrumbs="breadcrumbs" />
+    <LessonBreadcrumbs v-if="currentPath.length > 0 && !isSearching" :breadcrumbs="breadcrumbs" />
     
     <!-- Loading State -->
     <div v-if="loading" class="loading-container">
@@ -18,6 +29,35 @@
     <div v-else-if="error" class="error-container">
       <p>⚠️ {{ error }}</p>
       <button @click="loadRepos" class="retry-button">Retry</button>
+    </div>
+    
+    <!-- Search Results -->
+    <div v-else-if="isSearching" class="search-results">
+      <h2 class="search-results-title">
+        {{ searchResults.length }} result{{ searchResults.length !== 1 ? 's' : '' }} found
+      </h2>
+      
+      <div v-if="searchResults.length === 0" class="no-results">
+        <p>No lessons found matching "{{ searchQuery }}"</p>
+      </div>
+      
+      <div v-else class="results-list">
+        <div
+          v-for="result in searchResults"
+          :key="result.repo.id"
+          class="search-result-item"
+          @click="navigateToSearchResult(result)"
+        >
+          <div class="result-breadcrumbs">
+            <span v-for="(crumb, index) in result.breadcrumbs" :key="index" class="breadcrumb">
+              {{ crumb }}
+              <span v-if="index < result.breadcrumbs.length - 1" class="separator">→</span>
+            </span>
+          </div>
+          <div class="result-title">{{ getItemDisplayName(result.repo, '') }}</div>
+          <div v-if="result.repo.description" class="result-description">{{ result.repo.description }}</div>
+        </div>
+      </div>
     </div>
     
     <!-- Content -->
@@ -87,7 +127,11 @@ import LessonBreadcrumbs from '../components/LessonBreadcrumbs.vue';
 
 const route = useRoute();
 const router = useRouter();
-const { fetchRepos, getCategoriesAtLevel, getGroupedItemsAtLevel, loading, error } = useGitHubRepos();
+const { fetchRepos, getCategoriesAtLevel, getGroupedItemsAtLevel, searchLessons, loading, error } = useGitHubRepos();
+
+// Search state
+const searchQuery = ref('');
+const searchResults = ref([]);
 
 // Current path in the hierarchy
 const currentPath = computed(() => {
@@ -98,8 +142,11 @@ const currentPath = computed(() => {
   return pathMatch.split('/');
 });
 
+// Check if we're searching
+const isSearching = computed(() => searchQuery.value.trim().length > 0);
+
 // Check if we're at root level
-const isRootLevel = computed(() => currentPath.value.length === 0);
+const isRootLevel = computed(() => currentPath.value.length === 0 && !isSearching.value);
 
 // Breadcrumbs for navigation
 const breadcrumbs = computed(() => {
@@ -208,9 +255,29 @@ const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+// Handle search input
+const handleSearch = () => {
+  if (searchQuery.value.trim().length === 0) {
+    searchResults.value = [];
+    return;
+  }
+  
+  searchResults.value = searchLessons(searchQuery.value);
+};
+
+// Navigate to search result
+const navigateToSearchResult = (result) => {
+  navigateToLesson(result.repo);
+};
+
 // Watch route changes to update view
 watch(currentPath, () => {
   updateView();
+});
+
+// Watch search query
+watch(searchQuery, () => {
+  handleSearch();
 });
 
 // Load on mount
@@ -249,14 +316,139 @@ h1 {
   text-align: center;
   color: rgba(255, 255, 255, 0.95);
   font-size: 1.3rem;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   font-weight: 400;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   
   @media (max-width: 700px) {
     font-size: 1.1rem;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
+}
+
+.search-container {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  position: relative;
+  
+  @media (max-width: 700px) {
+    margin-bottom: 30px;
+  }
+}
+
+.search-input {
+  width: 100%;
+  padding: 18px 55px 18px 24px;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.search-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+
+.search-results {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-results-title {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.no-results {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 48px;
+  border-radius: 16px;
+  text-align: center;
+  
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin: 0;
+  }
+}
+
+.results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.search-result-item {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  padding: 20px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+    transform: translateX(8px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.result-breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .separator {
+    opacity: 0.6;
+  }
+}
+
+.result-title {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.result-description {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .content-grid {

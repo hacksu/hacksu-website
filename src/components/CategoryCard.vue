@@ -54,7 +54,8 @@ const getIconName = (name) => {
     'kotlin': 'logos:kotlin',
     'csharp': 'logos:c-sharp',
     'html': 'logos:html-5',
-    'c#': 'logos:c-sharp',
+    'cs': 'logos:c-sharp',
+    'jupyter': 'logos:jupyter',
     
     // Frameworks/Libraries
     'react': 'logos:react',
@@ -87,6 +88,7 @@ const getIconName = (name) => {
     'vercel': 'logos:vercel-icon',
     'unix': 'logos:linux-tux', // yes I know they are different
     'github': 'logos:github-icon',
+    'hosting': 'streamline-color:database-server-1',
   };
   
   return iconMap[name.toLowerCase()] || null;
