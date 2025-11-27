@@ -49,11 +49,6 @@ const getTagsByLevel = (repo) => {
         }
     });
 
-    // Debug logging
-    if (Object.keys(tagsByChainAndLevel).length > 1 || Object.keys(tagsByChainAndLevel).some(k => k !== '_default')) {
-        console.log(`[Chain Debug] Repo: ${repo.name}`, tagsByChainAndLevel);
-    }
-
     return tagsByChainAndLevel;
 };
 
@@ -114,7 +109,6 @@ export function useGitHubRepos() {
             });
         });
 
-        console.log(`[Categories] Path: [${path.join('/')}] → Categories:`, Array.from(categories));
         return Array.from(categories).sort();
     };
 
@@ -234,6 +228,7 @@ export function useGitHubRepos() {
                 if (repo.description && repo.description.toLowerCase().includes(searchTerm)) {
                     return true;
                 }
+
                 const tagsByChainAndLevel = getTagsByLevel(repo);
                 const allTags = Object.values(tagsByChainAndLevel)
                     .flatMap(chain => Object.values(chain))
