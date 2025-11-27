@@ -89,6 +89,14 @@ const getIconName = (name) => {
     'unix': 'logos:linux-tux', // yes I know they are different
     'github': 'logos:github-icon',
     'hosting': 'streamline-color:database-server-1',
+    'wasm': 'logos:webassembly',
+    'ai': 'mingcute:ai-line',
+    'gulp': 'logos:gulp',
+    'jquery': 'logos:jquery',
+    'meteor': 'logos:meteor-icon',
+    'art': 'streamline-color:paint-palette-flat',
+    'native': 'logos:android-icon',
+
   };
   
   return iconMap[name.toLowerCase()] || null;
