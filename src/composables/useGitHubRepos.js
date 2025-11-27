@@ -212,6 +212,29 @@ export function useGitHubRepos() {
         });
     };
 
+    const getRecursiveLessonCount = (path, categoryName) => {
+        const targetPath = [...path, categoryName];
+        const uniqueRepos = new Set();
+
+        cachedRepos.value.forEach(repo => {
+            const tagsByChainAndLevel = getTagsByLevel(repo);
+
+            const matches = Object.values(tagsByChainAndLevel).some(tagsByLevel => {
+                return targetPath.every((segment, index) => {
+                    const level = index + 1;
+                    const tagsAtLevel = tagsByLevel[level] || [];
+                    return tagsAtLevel.some(tag => tag.toLowerCase() === segment.toLowerCase());
+                });
+            });
+
+            if (matches) {
+                uniqueRepos.add(repo.id || repo.name);
+            }
+        });
+
+        return uniqueRepos.size;
+    };
+
     const searchLessons = (query) => {
         if (!query || query.trim().length === 0) {
             return [];
@@ -258,6 +281,7 @@ export function useGitHubRepos() {
         getGroupedItemsAtLevel,
         getLessonByPath,
         getBreadcrumbs,
+        getRecursiveLessonCount,
         searchLessons
     };
 }

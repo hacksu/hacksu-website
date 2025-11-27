@@ -11,6 +11,7 @@ import Admin from "../views/Admin.vue";
 import EditStaff from "../views/EditStaff.vue";
 import EditEvents from "../views/EditEvents.vue";
 import EditNotes from "../views/EditNotes.vue";
+import EditLessonIcons from "../views/EditLessonIcons.vue";
 import AdminMeetings from "../views/AdminMeetings.vue";
 import FallFest from "../views/FallFest.vue";
 import HelpPage from "../views/HelpPage.vue";
@@ -119,7 +120,7 @@ export const routes = [
     name: "Admin Stuff",
     component: Admin,
     meta: {
-      admin: true
+      admin: true  // TO DISABLE AUTH: Comment out this line
     }
   },
   {
@@ -142,6 +143,14 @@ export const routes = [
     path: "/admin/events",
     name: "Edit Events",
     component: EditEvents,
+    meta: {
+      admin: true
+    }
+  },
+  {
+    path: "/admin/lesson-icons",
+    name: "Edit Lesson Icons",
+    component: EditLessonIcons,
     meta: {
       admin: true
     }

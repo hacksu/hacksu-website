@@ -85,7 +85,7 @@
               <CategoryCard
                 v-if="typeof item === 'string'"
                 :categoryName="capitalize(item)"
-                :itemCount="0"
+                :itemCount="getRecursiveLessonCount(currentPath, item)"
                 @navigate="navigateToCategoryInSection(item, subcategory)"
               />
               <!-- Lesson card for objects -->
@@ -127,7 +127,7 @@ import LessonBreadcrumbs from '../components/LessonBreadcrumbs.vue';
 
 const route = useRoute();
 const router = useRouter();
-const { fetchRepos, getCategoriesAtLevel, getGroupedItemsAtLevel, searchLessons, loading, error } = useGitHubRepos();
+const { fetchRepos, getCategoriesAtLevel, getGroupedItemsAtLevel, searchLessons, getRecursiveLessonCount, loading, error } = useGitHubRepos();
 
 // Search state
 const searchQuery = ref('');

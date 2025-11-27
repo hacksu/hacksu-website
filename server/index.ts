@@ -11,7 +11,7 @@ import { createServer as createViteServer } from 'vite';
 
 
 import { createPostgresDataProvider } from 'remult/postgres';
-import { Event, Information, Note, Redirect, StaffMember } from '../db/entities.js';
+import { Event, Information, Note, Redirect, StaffMember, LessonIcon } from '../db/entities.js';
 import { setUpAuth } from './auth.js';
 import { setUpLogging } from './log.js';
 import { setUpUpload } from './upload.js';
@@ -29,7 +29,7 @@ app.use('/api', lessonsRouter);
 // set up db:
 const db = remultExpress({
   dataProvider: createPostgresDataProvider({ connectionString: process.env.DATABASE_URL! }),
-  entities: [Redirect, StaffMember, Event, Note, Information]
+  entities: [Redirect, StaffMember, Event, Note, Information, LessonIcon]
 });
 app.use(db);
 
