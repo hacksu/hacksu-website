@@ -103,7 +103,6 @@ const getFallbackIcon = (name) => {
     'database': '🗄️',
     'testing': '🧪',
     'other': '🎲',
-    'library': '📚',
   };
   
   return iconMap[name.toLowerCase()] || '📁';

@@ -11,10 +11,6 @@ const CACHE_DURATION = 5 * 60 * 1000;
 
 /**
  * Parse a numbered tag like "framework-1" or "language-1a" into {name, level, chain}
- * Supports:
- * - Simple: "language-1" → {name: "language", level: 1, chain: undefined}
- * - Chain: "language-1a" → {name: "language", level: 1, chain: "a"}
- * - Multi-word: "game-engine-2" → {name: "game-engine", level: 2, chain: undefined}
  */
 const parseTag = (tag) => {
     const match = tag.match(/^(.+)-(\d+)([a-z])?$/);
@@ -30,7 +26,6 @@ const parseTag = (tag) => {
 
 /**
  * Get all numbered tags from a repo, grouped by chain and level
- * Returns: { 'a': { 1: ['language'], 2: ['bash'] }, '_default': { 1: ['other'], 2: ['development'], 3: ['unix'] } }
  */
 const getTagsByLevel = (repo) => {
     if (!repo.topics || repo.topics.length === 0) return {};
@@ -54,13 +49,14 @@ const getTagsByLevel = (repo) => {
         }
     });
 
+    // Debug logging
+    if (Object.keys(tagsByChainAndLevel).length > 1 || Object.keys(tagsByChainAndLevel).some(k => k !== '_default')) {
+        console.log(`[Chain Debug] Repo: ${repo.name}`, tagsByChainAndLevel);
+    }
+
     return tagsByChainAndLevel;
 };
 
-/**
- * Vue composable for fetching and caching GitHub lesson repositories
- * Supports chain IDs for independent hierarchies
- */
 export function useGitHubRepos() {
 
     const fetchRepos = async (force = false) => {
@@ -96,7 +92,7 @@ export function useGitHubRepos() {
 
     const getCategoriesAtLevel = (path = []) => {
         if (path.length === 0) {
-            return ['Framework', 'Language', 'Library', 'Database', 'Other'];
+            return ['Framework', 'Language', 'Tool', 'Database', 'Other'];
         }
 
         const targetLevel = path.length + 1;
@@ -118,6 +114,7 @@ export function useGitHubRepos() {
             });
         });
 
+        console.log(`[Categories] Path: [${path.join('/')}] → Categories:`, Array.from(categories));
         return Array.from(categories).sort();
     };
 
@@ -237,7 +234,6 @@ export function useGitHubRepos() {
                 if (repo.description && repo.description.toLowerCase().includes(searchTerm)) {
                     return true;
                 }
-
                 const tagsByChainAndLevel = getTagsByLevel(repo);
                 const allTags = Object.values(tagsByChainAndLevel)
                     .flatMap(chain => Object.values(chain))
