@@ -47,7 +47,10 @@ const fetchRepoTopics = async (
       )
     });
 
-    if (!response.ok) return [];
+    if (!response.ok) {
+      console.warn(`Failed to fetch topics for ${repo.name}: ${response.status}`);
+      return [];
+    }
 
     const data = await response.json();
     return data.names || [];
@@ -67,26 +70,59 @@ router.get('/lessons/repos', async (req, res) => {
         .json({ error: 'GitHub token not configured' });
     }
 
-    const response = await fetch(
-      `${GITHUB_API_BASE}/orgs/hacksu/repos?per_page=400&sort=updated`,
-      { headers: createGitHubHeaders(githubToken) }
-    );
+    // Fetch all pages of repos from GitHub
+    let allRepos: GitHubRepo[] = [];
+    let nextUrl: string | null = `${GITHUB_API_BASE}/orgs/hacksu/repos?per_page=100&sort=updated`;
 
-    if (!response.ok) {
-      throw new Error(
-        `GitHub API error: ${response.status} ${response.statusText}`
-      );
+    while (nextUrl) {
+      const response = await fetch(nextUrl, {
+        headers: createGitHubHeaders(githubToken)
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `GitHub API error: ${response.status} ${response.statusText}`
+        );
+      }
+
+      const repos: GitHubRepo[] = await response.json();
+      allRepos = [...allRepos, ...repos];
+
+      // Check for next page in link header
+      const linkHeader: string | null = response.headers.get('link');
+      nextUrl = null;
+
+      if (linkHeader) {
+        const nextMatch: RegExpMatchArray | null = linkHeader.match(/<([^>]+)>;\s*rel="next"/);
+        if (nextMatch) {
+          nextUrl = nextMatch[1];
+        }
+      }
     }
 
-    const repos: GitHubRepo[] = await response.json();
 
-    // Fetch topics for all repos
-    const reposWithTopics = await Promise.all(
-      repos.map(async (repo) => ({
-        ...repo,
-        topics: await fetchRepoTopics(repo, githubToken)
-      }))
-    );
+    // Fetch topics for all repos in batches to avoid rate limiting
+    const BATCH_SIZE = 20;
+    const BATCH_DELAY = 100; // ms between batches
+    const reposWithTopics: (GitHubRepo & { topics: string[] })[] = [];
+
+    for (let i = 0; i < allRepos.length; i += BATCH_SIZE) {
+      const batch = allRepos.slice(i, i + BATCH_SIZE);
+      const batchResults = await Promise.all(
+        batch.map(async (repo) => ({
+          ...repo,
+          topics: await fetchRepoTopics(repo, githubToken)
+        }))
+      );
+      reposWithTopics.push(...batchResults);
+
+      // Add delay between batches (except for the last batch)
+      if (i + BATCH_SIZE < allRepos.length) {
+        await new Promise(resolve => setTimeout(resolve, BATCH_DELAY));
+      }
+    }
+
+    const reposWithoutTopics = reposWithTopics.filter(r => r.topics.length === 0);
 
     // Filter first, then map to final shape (avoid fetching README for non-lesson repos)
     const lessonRepos: LessonRepo[] = reposWithTopics
