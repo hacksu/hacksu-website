@@ -1,5 +1,8 @@
 <template>
   <div class="lessons-page-container">
+    <!-- Hovering Back Button -->
+    <BackButton v-if="parentPath" :to="parentPath" />
+
     <h1 style="text-align: center;">HacKSU Lessons</h1>
     <p class="page-subtitle" v-if="!currentPath.length && !isSearching">
       Explore our collection of programming lessons and tutorials
@@ -124,6 +127,7 @@ import { useGitHubRepos } from '../composables/useGitHubRepos.js';
 import CategoryCard from '../components/CategoryCard.vue';
 import LessonCard from '../components/LessonCard.vue';
 import LessonBreadcrumbs from '../components/LessonBreadcrumbs.vue';
+import BackButton from '../components/BackButton.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -147,6 +151,35 @@ const isSearching = computed(() => searchQuery.value.trim().length > 0);
 
 // Check if we're at root level
 const isRootLevel = computed(() => currentPath.value.length === 0 && !isSearching.value);
+
+// Calculate parent path with smart skip logic
+const parentPath = computed(() => {
+  if (isRootLevel.value || isSearching.value) return null;
+  
+  // Initial candidate: just go up one level
+  const currentPathArray = currentPath.value;
+  const candidatePathArray = currentPathArray.slice(0, -1);
+  
+  if (candidatePathArray.length === 0) return '/lessons';
+  
+  // Check if the candidate parent folder has only one lesson (which would be this one)
+  // We need to use getGroupedItemsAtLevel to check the contents of the parent folder
+  const grouped = getGroupedItemsAtLevel(candidatePathArray);
+  const allItems = Object.values(grouped).flat();
+  
+  // If the parent folder contains only one item and it is a lesson object (not a category string)
+  // Then the Lessons page would auto-redirect back to here, causing a loop.
+  // So we skip the parent and go to the grandparent.
+  const hasOnlyOneLesson = allItems.length === 1 && typeof allItems[0] === 'object';
+  
+  if (hasOnlyOneLesson) {
+    const grandparentPathArray = candidatePathArray.slice(0, -1);
+    if (grandparentPathArray.length === 0) return '/lessons';
+    return `/lessons/${grandparentPathArray.join('/')}`;
+  }
+  
+  return `/lessons/${candidatePathArray.join('/')}`;
+});
 
 // Breadcrumbs for navigation
 const breadcrumbs = computed(() => {
