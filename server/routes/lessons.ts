@@ -11,7 +11,7 @@ interface GitHubRepo {
   name: string;
   description: string | null;
   html_url: string;
-  updated_at: string;
+  pushed_at: string;
   language: string | null;
   url: string;
 }
@@ -132,7 +132,7 @@ router.get('/lessons/repos', async (req, res) => {
         name: repo.name,
         description: repo.description,
         html_url: repo.html_url,
-        updated_at: repo.updated_at,
+        updated_at: repo.pushed_at,
         language: repo.language,
         topics: repo.topics
       }));
