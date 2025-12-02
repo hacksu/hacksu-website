@@ -6,6 +6,11 @@ const router = express.Router();
 const GITHUB_API_BASE = 'https://api.github.com';
 const GITHUB_API_VERSION = '2022-11-28';
 
+// Simple in-memory cache to avoid fetching repos + topics on every request
+const CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutes
+let cachedLessonRepos: LessonRepo[] | null = null;
+let lastCacheTime = 0;
+
 interface GitHubRepo {
   id: number;
   name: string;
@@ -62,6 +67,12 @@ const fetchRepoTopics = async (
 
 router.get('/lessons/repos', async (req, res) => {
   try {
+    // Return cached data if it's still fresh
+    const now = Date.now();
+    if (cachedLessonRepos && now - lastCacheTime < CACHE_DURATION_MS) {
+      return res.json(cachedLessonRepos);
+    }
+
     const githubToken = process.env.GITHUB_TOKEN;
 
     if (!githubToken) {
@@ -75,7 +86,7 @@ router.get('/lessons/repos', async (req, res) => {
     let nextUrl: string | null = `${GITHUB_API_BASE}/orgs/hacksu/repos?per_page=100&sort=updated`;
 
     while (nextUrl) {
-      const response = await fetch(nextUrl, {
+      const response: Response = await fetch(nextUrl, {
         headers: createGitHubHeaders(githubToken)
       });
 
@@ -136,6 +147,10 @@ router.get('/lessons/repos', async (req, res) => {
         language: repo.language,
         topics: repo.topics
       }));
+
+    // Update cache
+    cachedLessonRepos = lessonRepos;
+    lastCacheTime = Date.now();
 
     res.json(lessonRepos);
   } catch (error) {
