@@ -30,7 +30,10 @@
             ></span>
             {{ lesson.language }}
           </span>
-          <span class="meta-item">
+          <span
+            v-if="lesson.updated_at"
+            class="meta-item"
+          >
             Updated {{ formatDate(lesson.updated_at) }}
           </span>
           <a
@@ -74,9 +77,10 @@ const readme = ref(null);
 const readmeLoading = ref(false);
 const readmeError = ref(null);
 
-// Combined loading state
-const loading = computed(() => reposLoading.value || readmeLoading.value);
-const error = computed(() => reposError.value || readmeError.value);
+// On this page, the README is the primary content we care about.
+// Repo metadata can hydrate later without blocking the view.
+const loading = computed(() => readmeLoading.value);
+const error = computed(() => readmeError.value);
 
 // Extract path from route
 const lessonPath = computed(() => {
@@ -140,16 +144,29 @@ const fetchReadme = async (repoName) => {
   }
 };
 
-// Load lesson
+// Load lesson metadata (non-blocking) and README (primary content)
 const loadLesson = async () => {
   try {
-    await fetchRepos();
-    const lessonData = getLessonByPath(lessonPath.value);
+    const path = lessonPath.value;
+    const repoName = path[path.length - 1];
+
+    // Try to hydrate lesson metadata from any already-cached repos
+    let lessonData = getLessonByPath(path);
     lesson.value = lessonData;
-    
-    // Fetch README after lesson is loaded
-    if (lessonData) {
-      await fetchReadme(lessonData.name);
+
+    // Always start loading the README immediately based on repo name
+    if (repoName) {
+      // Fire and forget; loading state is handled inside fetchReadme
+      fetchReadme(repoName);
+    }
+
+    // If we don't have metadata yet (e.g. direct link), fetch repos in the background
+    if (!lessonData) {
+      await fetchRepos();
+      lessonData = getLessonByPath(path);
+      if (lessonData) {
+        lesson.value = lessonData;
+      }
     }
   } catch (err) {
     console.error('Failed to load lesson:', err);
