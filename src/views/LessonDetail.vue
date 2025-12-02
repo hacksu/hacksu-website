@@ -1,8 +1,5 @@
 <template>
   <div class="lesson-detail-container">
-    <!-- Hovering Back Button -->
-    <BackButton v-if="parentPath" :to="parentPath" />
-
     <LessonBreadcrumbs v-if="breadcrumbs.length > 0" :breadcrumbs="breadcrumbs" />
     
     <!-- Loading State -->
@@ -23,14 +20,25 @@
       <div class="lesson-header">
         <h1 class="lesson-title">{{ displayName }}</h1>
         <div class="lesson-meta">
-          <span class="meta-item">
-            <span v-if="lesson.language" class="language-dot" :style="{ backgroundColor: getLanguageColor(lesson.language) }"></span>
-            {{ lesson.language || 'Unknown' }}
+          <span
+            v-if="lesson.language"
+            class="meta-item"
+          >
+            <span
+              class="language-dot"
+              :style="{ backgroundColor: getLanguageColor(lesson.language) }"
+            ></span>
+            {{ lesson.language }}
           </span>
           <span class="meta-item">
             Updated {{ formatDate(lesson.updated_at) }}
           </span>
-          <a :href="lesson.html_url" target="_blank" rel="noopener noreferrer" class="github-link">
+          <a
+            :href="lesson.html_url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="github-link"
+          >
             <img src="@/assets/images/github-white.svg" alt="GitHub" class="github-icon" />
             View on GitHub
           </a>
@@ -57,10 +65,9 @@ import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useGitHubRepos } from '../composables/useGitHubRepos.js';
 import LessonBreadcrumbs from '../components/LessonBreadcrumbs.vue';
-import BackButton from '../components/BackButton.vue';
 
 const route = useRoute();
-const { fetchRepos, getLessonByPath, getBreadcrumbs, getGroupedItemsAtLevel, loading: reposLoading, error: reposError } = useGitHubRepos();
+const { fetchRepos, getLessonByPath, getBreadcrumbs, loading: reposLoading, error: reposError } = useGitHubRepos();
 
 const lesson = ref(null);
 const readme = ref(null);
@@ -78,35 +85,6 @@ const lessonPath = computed(() => {
   if (!pathMatch) return [];
   if (Array.isArray(pathMatch)) return pathMatch;
   return pathMatch.split('/');
-});
-
-// Calculate parent path with smart skip logic
-const parentPath = computed(() => {
-  if (lessonPath.value.length === 0) return '/lessons';
-  
-  // Initial candidate: just go up one level
-  const currentPathArray = lessonPath.value;
-  const candidatePathArray = currentPathArray.slice(0, -1);
-  
-  if (candidatePathArray.length === 0) return '/lessons';
-  
-  // Check if the candidate parent folder has only one lesson (which would be this one)
-  // We need to use getGroupedItemsAtLevel to check the contents of the parent folder
-  const grouped = getGroupedItemsAtLevel(candidatePathArray);
-  const allItems = Object.values(grouped).flat();
-  
-  // If the parent folder contains only one item and it is a lesson object (not a category string)
-  // Then the Lessons page would auto-redirect back to here, causing a loop.
-  // So we skip the parent and go to the grandparent.
-  const hasOnlyOneLesson = allItems.length === 1 && typeof allItems[0] === 'object';
-  
-  if (hasOnlyOneLesson) {
-    const grandparentPathArray = candidatePathArray.slice(0, -1);
-    if (grandparentPathArray.length === 0) return '/lessons';
-    return `/lessons/${grandparentPathArray.join('/')}`;
-  }
-  
-  return `/lessons/${candidatePathArray.join('/')}`;
 });
 
 // Breadcrumbs including the lesson name
