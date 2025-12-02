@@ -1,7 +1,7 @@
 <template>
     <div class="edit-staff-page">
         <div class="page-header">
-            <h1>Staff Page Editor</h1>
+            <h1>Leadership  Editor</h1>
         </div>
         <div class="staff-grid">
             <div class="staff-card" v-for="staff, j in staffToDisplay" :key="staff.id">
@@ -63,10 +63,10 @@
 
                     <div class="button-group">
                         <button class="btn btn-primary" @click="update(staff, j)">
-                            {{j==0 ? "Add New Staff" : "Save Changes"}}{{ confirmation.has(j) ? ' ✅' : "" }}
+                            {{j==0 ? "Add Leader" : "Save Changes"}}{{ confirmation.has(j) ? ' ✅' : "" }}
                         </button>
                         <button class="btn btn-danger" v-if="j!==0" @click="remove(staff, j)">
-                            Delete Staff
+                            Delete Leader
                         </button>
                     </div>
                 </div>

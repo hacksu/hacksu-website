@@ -7,9 +7,9 @@
                     <h3>Redirect Links</h3>
                     <p>Manage URL redirects and short links</p>
                 </router-link>
-                <router-link to="/admin/staff" class="admin-card">
-                    <h3>Staff Page</h3>
-                    <p>Edit staff members and roles</p>
+                <router-link to="/admin/leadership" class="admin-card">
+                    <h3>Leadership Page</h3>
+                    <p>Edit leaders and roles</p>
                 </router-link>
                 <router-link to="/admin/events" class="admin-card">
                     <h3>Events</h3>

@@ -8,7 +8,7 @@ import Lessons from "../views/Lessons.vue";
 import LessonDetail from "../views/LessonDetail.vue";
 import Redirects from "../views/Redirects.vue";
 import Admin from "../views/Admin.vue";
-import EditStaff from "../views/EditStaff.vue";
+import EditLeadership from "../views/EditLeadership.vue";
 import EditEvents from "../views/EditEvents.vue";
 import EditNotes from "../views/EditNotes.vue";
 import EditLessonIcons from "../views/EditLessonIcons.vue";
@@ -132,9 +132,9 @@ export const routes = [
     }
   },
   {
-    path: "/admin/staff",
-    name: "Edit Staff",
-    component: EditStaff,
+    path: "/admin/leadership",
+    name: "Edit Leadership",
+    component: EditLeadership,
     meta: {
       admin: true
     }
