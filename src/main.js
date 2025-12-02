@@ -19,8 +19,9 @@ export const createApp = ViteSSG(
   // function to have custom setups
   ({ app, router, routes, isClient, initialState }) => {
     if (isClient) {
+      // TO DISABLE AUTH: Comment out the if block below and only keep next()
       router.beforeEach((to, from, next) => {
-        if (to.meta?.admin && !loggedIn.value && attemptedLogin.value){
+        if (to.meta?.admin && !loggedIn.value && attemptedLogin.value) {
           window.location.href = "/discord-login";
         } else {
           next();

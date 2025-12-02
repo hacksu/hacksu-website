@@ -14,21 +14,21 @@ passport.use(
         scope: ["identify", "guilds", "guilds.members.read"],
         callbackURL: "/discord-callback"
     },
-    async (accessToken, refreshToken, profile, done) => {
-        const hacksuMembershipURL = `https://discord.com/api/v10/users/@me/guilds/632634799303032852/member`;
-        const data = await fetch(hacksuMembershipURL, { headers: {"Authorization": "Bearer " + accessToken } })
-            .then(res => res.json())
-            .catch(_ => null);
-        
-        const roles: string[] = data?.roles ?? [];
-        if (roles.some(role => ROLES?.includes(role))) {
-            return done(null, {...profile, isLeader: true});
-        }
-        return done(null, false);
-    })
+        async (accessToken, refreshToken, profile, done) => {
+            const hacksuMembershipURL = `https://discord.com/api/v10/users/@me/guilds/632634799303032852/member`;
+            const data = await fetch(hacksuMembershipURL, { headers: { "Authorization": "Bearer " + accessToken } })
+                .then(res => res.json())
+                .catch(_ => null);
+
+            const roles: string[] = data?.roles ?? [];
+            if (roles.some(role => ROLES?.includes(role))) {
+                return done(null, { ...profile, isLeader: true });
+            }
+            return done(null, false);
+        })
 );
 
-export const setUpAuth = (app: Application) =>{
+export const setUpAuth = (app: Application) => {
     app.use(session({
         secret: process.env.SESSION_SECRET!,
         resave: false,
@@ -40,9 +40,9 @@ export const setUpAuth = (app: Application) =>{
 
     app.get('/discord-login', passport.authenticate('discord'));
     app.get('/discord-callback',
-        passport.authenticate('discord', 
-            { failureRedirect: '/' }), 
-            (req, res) => { res.redirect('/admin') } // auth success
+        passport.authenticate('discord',
+            { failureRedirect: '/' }),
+        (req, res) => { res.redirect('/admin') } // auth success
     );
 
     app.get('/logout', (req, res, next) => {
@@ -61,9 +61,11 @@ export const setUpAuth = (app: Application) =>{
     // routes. these routes should track those in src/router/index.js. this is
     // not super important, since the allowApi* checks in entities.js should
     // prevent unauthorized db access anyway, but it looks more secure this way
-    for (const route of ["/login", "/admin/*", "/audit-log"]){
+
+    // TO DISABLE AUTH: Comment out the for loop below
+    for (const route of ["/login", "/admin/*", "/audit-log"]) {
         app.get(route, (req, res, next) => {
-            if (req.isAuthenticated() && req.user?.isLeader){
+            if (req.isAuthenticated() && req.user?.isLeader) {
                 return next();
             }
             return res.redirect("/discord-login");

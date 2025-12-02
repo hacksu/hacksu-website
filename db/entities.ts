@@ -11,7 +11,7 @@ const isLeader = (remult: Remult | undefined) => !!remult?.user?.isLeader;
 export class Redirect {
     @Fields.string()
     urlSlug!: string;
-    
+
     @Fields.string()
     destination!: string;
 }
@@ -34,7 +34,7 @@ export class StaffMember {
         validate: t => ["Spring", "Summer", "Fall"].includes(t)
     })
     gradTerm!: "Spring" | "Summer" | "Fall";
-    
+
     @Fields.string()
     github?: string;
 
@@ -56,7 +56,7 @@ let md_event: MarkdownIt;
     allowApiRead: true,
     allowApiCrud: isLeader,
     saving: async (event: Event) => {
-        if (isBackend()){
+        if (isBackend()) {
             if (!md_event) {
                 md_event = (await import("markdown-it")).default();
             }
@@ -67,25 +67,25 @@ let md_event: MarkdownIt;
 export class Event {
     @Fields.uuid()
     id!: string;
-    
+
     @Fields.string()
     title!: string;
-    
+
     @Fields.string()
     date!: string;
-    
+
     @Fields.string()
     presenter!: string;
-    
+
     @Fields.string()
     link!: string;
-    
+
     @Fields.string()
     descriptionMD!: string;
-    
+
     @Fields.string()
     descriptionHTML!: string;
-    
+
     @Fields.string()
     photo?: string;
 }
@@ -109,12 +109,12 @@ export class Note {
 
     @Fields.string()
     title!: string;
-    
+
     @Fields.string()
     date!: string;
 
     @Fields.string()
-    notesMD!: string; 
+    notesMD!: string;
 
     @Fields.string()
     notesHTML!: string;
@@ -125,7 +125,7 @@ let md_information: MarkdownIt;
     allowApiRead: true,
     allowApiCrud: isLeader,
     saving: async (information: Information) => {
-        if (isBackend()){
+        if (isBackend()) {
             if (!md_information) {
                 md_information = (await import("markdown-it")).default();
             }
@@ -136,19 +136,32 @@ let md_information: MarkdownIt;
 export class Information {
     @Fields.uuid()
     id!: string;
-    
+
     @Fields.string()
     title!: string;
-    
+
     @Fields.string()
     link!: string;
-    
+
     @Fields.string()
-    descriptionMD!: string; 
-    
+    descriptionMD!: string;
+
     @Fields.string()
-    descriptionHTML!: string; 
-    
+    descriptionHTML!: string;
+
     @Fields.string()
     photo!: string;
+}
+
+@Entity("lesson_icons", {
+    allowApiRead: true,
+    allowApiCrud: isLeader,  // TO DISABLE AUTH: Change to 'true'
+    id: (r: FieldsMetadata<LessonIcon>) => r.categoryName
+})
+export class LessonIcon {
+    @Fields.string()
+    categoryName!: string;
+
+    @Fields.string()
+    iconifyId!: string;
 }
