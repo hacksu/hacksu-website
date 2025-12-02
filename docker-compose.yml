@@ -31,7 +31,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/hacksu
     ports:
-      - "8000:8000"
+      - "3000:8000"
     networks:
       - app_internal
 
